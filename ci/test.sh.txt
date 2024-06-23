@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -x
+
+echo "Running ${TEST_PLATFORM} tests..."
+
+${UNITY_EXECUTABLE:-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' /opt/unity/Editor/Unity} \
+  -projectPath ${UNITY_DIR:-.} \
+  -runTests \
+  -testPlatform ${TEST_PLATFORM} \
+  -testResults ${CI_PROJECT_DIR}/${TEST_PLATFORM}-results.xml \
+  -logFile /dev/stdout \
+  -batchmode
