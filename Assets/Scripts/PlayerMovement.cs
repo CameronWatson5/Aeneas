@@ -1,51 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    private Rigidbody2D _myRigidBody;
-    private Vector3 _change;
-    private Animator _animator;
+    [SerializeField] private float speed = 5f;
     
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D myRigidBody;
+    private Vector2 change;
+    private Animator animator;
+    
+    private const string HORIZONTAL = "Horizontal";
+    private const string VERTICAL = "Vertical";
+    private const string MOVE_X = "moveX";
+    private const string MOVE_Y = "moveY";
+    private const string MOVING = "moving";
+
+    private void Start()
     {
-        _animator = GetComponent<Animator>();
-        _myRigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        myRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        _change = Vector3.zero;
-        // GetAxisRaw is used as it returns a value of 1, 0, or -1. GetAxis returns a float.
-        // So, GetAxisRaw is more responsive to player input due to the binary movement.
-        // GetAxis is gradual in the context of movement while GetAxisRaw creates immediate movement.
-        _change.x = Input.GetAxisRaw("Horizontal");
-        _change.y = Input.GetAxisRaw("Vertical");
+        // GetAxisRaw is used because it is more responsive than GetAxis.
+        // This allows for quick movement and instant movement.
+        change.x = Input.GetAxisRaw(HORIZONTAL);
+        change.y = Input.GetAxisRaw(VERTICAL);
+
+        // Normalize for consistent diagonal speed
+        if (change.magnitude > 1)
+        {
+            change.Normalize();
+        }
+
         UpdateAnimationAndMove();
     }
 
-    void UpdateAnimationAndMove()
+    private void UpdateAnimationAndMove()
     {
-        if (_change != Vector3.zero)
+        if (change != Vector2.zero)
         {
             MoveCharacter();
-            _animator.SetFloat("moveX", _change.x);
-            _animator.SetFloat("moveY", _change.y);
-            _animator.SetBool("moving", true);
+            animator.SetFloat(MOVE_X, change.x);
+            animator.SetFloat(MOVE_Y, change.y);
+            animator.SetBool(MOVING, true);
         }
         else
         {
-            _animator.SetBool("moving", false);
+            animator.SetBool(MOVING, false);
         }
     }
 
-    void MoveCharacter()
+    private void MoveCharacter()
     {
-        _myRigidBody.MovePosition(
-           transform.position + _change * speed * Time.deltaTime);
+        Vector2 targetPosition = myRigidBody.position + change * speed * Time.fixedDeltaTime;
+        myRigidBody.MovePosition(Vector2.MoveTowards(myRigidBody.position, targetPosition, speed * Time.fixedDeltaTime));
     }
 }
