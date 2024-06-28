@@ -1,0 +1,1393 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.19f1 (244b723c30a6) revision 2378610'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 16077 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.19f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Users/cswat/Aeneas
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+49981
+Successfully changed project path to: C:/Users/cswat/Aeneas
+C:/Users/cswat/Aeneas
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [14604] Host "[IP] 192.168.0.34 [Port] 0 [Flags] 2 [Guid] 1211712352 [EditorId] 1211712352 [Version] 1048832 [Id] WindowsEditor(7,Cameron_Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [14604] Host "[IP] 192.168.0.34 [Port] 0 [Flags] 2 [Guid] 1211712352 [EditorId] 1211712352 [Version] 1048832 [Id] WindowsEditor(7,Cameron_Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
+Refreshing native plugins compatible for Editor in 35.69 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.19f1 (244b723c30a6)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/cswat/Aeneas/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0x46aa)
+    Vendor:   Intel
+    VRAM:     8038 MB
+    Driver:   31.0.101.5186
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56536
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.017812 seconds.
+- Loaded All Assemblies, in  0.698 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.537 seconds
+Domain Reload Profiling: 1232ms
+	BeginReloadAssembly (192ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (60ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (125ms)
+	LoadAllAssembliesAndSetupDomain (290ms)
+		LoadAssemblies (191ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (284ms)
+			TypeCache.Refresh (282ms)
+				TypeCache.ScanAssembly (265ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (538ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (443ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (295ms)
+			ProcessInitializeOnLoadMethodAttributes (122ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.320 seconds
+Refreshing native plugins compatible for Editor in 10.65 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.264 seconds
+Domain Reload Profiling: 2573ms
+	BeginReloadAssembly (255ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (33ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (78ms)
+	LoadAllAssembliesAndSetupDomain (917ms)
+		LoadAssemblies (679ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (367ms)
+			TypeCache.Refresh (324ms)
+				TypeCache.ScanAssembly (294ms)
+			ScanForSourceGeneratedMonoScriptInfo (35ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (1264ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (960ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (27ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (139ms)
+			ProcessInitializeOnLoadAttributes (684ms)
+			ProcessInitializeOnLoadMethodAttributes (78ms)
+			AfterProcessingInitializeOnLoad (24ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (20ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 5.79 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4033 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 70 unused Assets / (244.8 KB). Loaded Objects now: 4488.
+Memory consumption went from 150.1 MB to 149.9 MB.
+Total: 5.232500 ms (FindLiveObjects: 0.367800 ms CreateObjectMapping: 0.184800 ms MarkObjects: 4.402000 ms  DeleteObjects: 0.275800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/TileLayerEraser.cs: 649cc37a0065f8d5890ca95921da61d4 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2200.075934 seconds.
+  path: Assets/Tile_Palettes/vegetation_27.asset
+  artifactKey: Guid(2b61f5f580aa1e04897b349c8335644a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_27.asset using Guid(2b61f5f580aa1e04897b349c8335644a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec18b3a6f4837208483144de01c3fc9b') in 0.070519 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_336.asset
+  artifactKey: Guid(1e9d2a6c9d5d3cd4fb40bfe9e967ab03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_336.asset using Guid(1e9d2a6c9d5d3cd4fb40bfe9e967ab03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0897d6822642524aead50923266d4732') in 0.011418 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Tile_Palettes/vegetation_32.asset
+  artifactKey: Guid(9f1e9b478863d09418722cd10215bec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_32.asset using Guid(9f1e9b478863d09418722cd10215bec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d497345c8684a24d79650b330d93f0c') in 0.009290 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Tile_Palettes/Terrian_67.asset
+  artifactKey: Guid(8fee77b726880094ba6eddf3496e0a1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_67.asset using Guid(8fee77b726880094ba6eddf3496e0a1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b29fc2d842ed320b4485892dd3a03bb9') in 0.012153 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2411.asset
+  artifactKey: Guid(9aa59df31aa17bf45a012aba0db1f755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2411.asset using Guid(9aa59df31aa17bf45a012aba0db1f755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e0e160dba81d3165920a87cc5e60418') in 0.010856 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_801.asset
+  artifactKey: Guid(3b24696cfdbad5c48903d2a565096613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_801.asset using Guid(3b24696cfdbad5c48903d2a565096613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca7e74b41f858f0a7ec58702b236d6f3') in 0.012269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/vegetation_147.asset
+  artifactKey: Guid(5e81ae85ffc1fb443971b3d3480797c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_147.asset using Guid(5e81ae85ffc1fb443971b3d3480797c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f2d2c982d6f38f128daa956fe5fa5b5') in 0.012682 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_316.asset
+  artifactKey: Guid(22f84561424b0db4eb0b93b4623bb4e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_316.asset using Guid(22f84561424b0db4eb0b93b4623bb4e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4313de21b55d83ef7b3c463db5d5979e') in 0.010654 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_298.asset
+  artifactKey: Guid(3ac1d686de3662841b377c499563616d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_298.asset using Guid(3ac1d686de3662841b377c499563616d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f39702f4690def0cc6fbee1666b5166') in 0.013180 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/vegetation_38.asset
+  artifactKey: Guid(c08c6852e0ba670448bed1d61cf90c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_38.asset using Guid(c08c6852e0ba670448bed1d61cf90c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f1b1160ee972692afd59c917bbbfd96') in 0.008893 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_822.asset
+  artifactKey: Guid(758fd7df14dfc734d86f415dac4e36db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_822.asset using Guid(758fd7df14dfc734d86f415dac4e36db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae264d40d05c14ea36dfa9c90923b51c') in 0.011434 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/vegetation_148.asset
+  artifactKey: Guid(7933f4fd03b6b304da6aff355a9ea911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_148.asset using Guid(7933f4fd03b6b304da6aff355a9ea911) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dad0e94646b5603e807204bfaede2522') in 0.011931 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Tile_Palettes/vegetation_23.asset
+  artifactKey: Guid(72419d5590406a44f9c1a2a7bb820830) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_23.asset using Guid(72419d5590406a44f9c1a2a7bb820830) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e711356657f177f7281ef2be3274ad7') in 0.009385 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/Dungeon_46.asset
+  artifactKey: Guid(5ab17ae6f87b6b64d9aa356aa58e831f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_46.asset using Guid(5ab17ae6f87b6b64d9aa356aa58e831f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfe098f011fed5dc77d97f8bc05050eb') in 0.010476 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2383.asset
+  artifactKey: Guid(aeb1d4ed0442a9044a3bff9fb4937787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2383.asset using Guid(aeb1d4ed0442a9044a3bff9fb4937787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '946218d4947df912c2501bbc5a6b2d05') in 0.011528 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2412.asset
+  artifactKey: Guid(18b7d228bdb8b244dba6481b0a53f321) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2412.asset using Guid(18b7d228bdb8b244dba6481b0a53f321) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dc429e2aa71a60bddf0900b4ba0eadc') in 0.010686 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_317.asset
+  artifactKey: Guid(d1eb8dfce9aa88347bf7c62e18d2a057) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_317.asset using Guid(d1eb8dfce9aa88347bf7c62e18d2a057) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19ac7b6d341234b3b857d43d400f5646') in 0.014637 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2362.asset
+  artifactKey: Guid(ef07e57a3ed8f4744b5844fda35f7960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2362.asset using Guid(ef07e57a3ed8f4744b5844fda35f7960) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05508ad73afac3c79b384aa79acac21c') in 0.011289 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Tile_Palettes/Overworld_486.asset
+  artifactKey: Guid(0008d58983e358b49ad4ebf56609c486) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_486.asset using Guid(0008d58983e358b49ad4ebf56609c486) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c60cbe094d78f178ffeab549ada60bf') in 0.010917 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2385.asset
+  artifactKey: Guid(83c94b6265797364bbcc0104c27f8b4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2385.asset using Guid(83c94b6265797364bbcc0104c27f8b4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f36913cbb2f1ed2e7b37f28e5ed02772') in 0.016244 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_330.asset
+  artifactKey: Guid(61dac081b8f9df14ba62277f56a5d5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_330.asset using Guid(61dac081b8f9df14ba62277f56a5d5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23111d5939aaad94588f2f8a1122f944') in 0.018041 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2350.asset
+  artifactKey: Guid(ec96661a786fe704298662a28cbdd0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2350.asset using Guid(ec96661a786fe704298662a28cbdd0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f669b162d96a305c034bc5a07c562373') in 0.014846 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1569.asset
+  artifactKey: Guid(e461864503800fb43aaebc6d6106f907) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1569.asset using Guid(e461864503800fb43aaebc6d6106f907) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1600f3313070e1e7f1ca906b611f5a5e') in 0.012692 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1605.asset
+  artifactKey: Guid(dd6afec2fcaab9940ac20996c52472fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1605.asset using Guid(dd6afec2fcaab9940ac20996c52472fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee4da097481d05e86bd7b88773568e5f') in 0.016112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2322.asset
+  artifactKey: Guid(7932543e2ca713948a1e6c7f0c5ae817) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2322.asset using Guid(7932543e2ca713948a1e6c7f0c5ae817) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34b9c68468727dffc4ae55dcd97b20a0') in 0.011229 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/Dungeon_51.asset
+  artifactKey: Guid(6e1fb4082c437524fa210dd7cbf20306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_51.asset using Guid(6e1fb4082c437524fa210dd7cbf20306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15b15dd69c31bd60a194784f1b9fa7bf') in 0.010894 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1590.asset
+  artifactKey: Guid(48e4ca0bc0ff38c4f874c80b9da80cf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1590.asset using Guid(48e4ca0bc0ff38c4f874c80b9da80cf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6513c63adae1b2cd8075925965709ccf') in 0.011714 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Overworld_493.asset
+  artifactKey: Guid(6b66a4b59c489bb43afa28df8c289096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_493.asset using Guid(6b66a4b59c489bb43afa28df8c289096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc644569da0e926c888ecf06f6d08d1e') in 0.009896 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Tile_Palettes/Overworld_522.asset
+  artifactKey: Guid(ccc5d275a8fc6e446af5a7e02b64c13d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_522.asset using Guid(ccc5d275a8fc6e446af5a7e02b64c13d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8efb5969f6d4b93dcc4dd5c430f29d6c') in 0.010787 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Tile_Palettes/vegetation_71.asset
+  artifactKey: Guid(82998977c0ac609438e6f071f3ae37fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_71.asset using Guid(82998977c0ac609438e6f071f3ae37fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc595a017fde29ddd0ef0a15b6aba97c') in 0.008741 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Tile_Palettes/vegetation_143.asset
+  artifactKey: Guid(903a4d085b1970a409eb13434a84af74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_143.asset using Guid(903a4d085b1970a409eb13434a84af74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68dc244e8dc6100d8d2a58180f19e397') in 0.009742 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_815.asset
+  artifactKey: Guid(42ca28a52e50af34882851075d881013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_815.asset using Guid(42ca28a52e50af34882851075d881013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b9d925eb08e68ae3e6dd8c906f5fa00') in 0.011265 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Tile_Palettes/vegetation_136.asset
+  artifactKey: Guid(0ae4bc1f9c2766842bcd5ba3be5b52cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_136.asset using Guid(0ae4bc1f9c2766842bcd5ba3be5b52cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85734486365540a64780b8d954bac9f4') in 0.010892 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/vegetation_65.asset
+  artifactKey: Guid(fda91fda6b77f594bbac608aa79506bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_65.asset using Guid(fda91fda6b77f594bbac608aa79506bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ae086aaaf9709849dd0ef5dd91e0d58') in 0.010022 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Tile_Palettes/Terrian_74.asset
+  artifactKey: Guid(ac725c8cac1482a4abcdf93e2b663018) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_74.asset using Guid(ac725c8cac1482a4abcdf93e2b663018) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acdead2cb17e8095da4777293b92e43b') in 0.010264 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1613.asset
+  artifactKey: Guid(326d3df94edb3eb44b74c1e8ff6b8320) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1613.asset using Guid(326d3df94edb3eb44b74c1e8ff6b8320) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b6111673d97c38021013d4287008ac9') in 0.011737 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Tile_Palettes/Overworld_474.asset
+  artifactKey: Guid(832d23009b6fb3545ba64d506284b24a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_474.asset using Guid(832d23009b6fb3545ba64d506284b24a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2f065c8f7223f641a4e59b64d0c706a') in 0.013226 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Tile_Palettes/Overworld_513.asset
+  artifactKey: Guid(57702db35def49344a5dce8f61c37df1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_513.asset using Guid(57702db35def49344a5dce8f61c37df1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b91a9f4b128ccf2d7bbfcd36752fd8a6') in 0.014124 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Houses_3.asset
+  artifactKey: Guid(5c1c3edc09e13f849a1d78fb1eb18636) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_3.asset using Guid(5c1c3edc09e13f849a1d78fb1eb18636) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9ededa7dcb1c463ee9c8a89094e0828') in 0.013083 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Tile_Palettes/Overworld_484.asset
+  artifactKey: Guid(7f388d6f30d32d0419009e40b8d845ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_484.asset using Guid(7f388d6f30d32d0419009e40b8d845ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e79c0215d43dd71eab5db30b27c67f9') in 0.015060 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_326.asset
+  artifactKey: Guid(5aef2284253fc5e4abfe928b5e3e3851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_326.asset using Guid(5aef2284253fc5e4abfe928b5e3e3851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a72d941f8f543e8933917c56e9530be') in 0.014079 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/Houses_8.asset
+  artifactKey: Guid(f5394c8df678d2e4aa768933a57cfb3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_8.asset using Guid(f5394c8df678d2e4aa768933a57cfb3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0db7131f472ac3b20d5db00d72762a14') in 0.011954 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Tile_Palettes/Overworld_507.asset
+  artifactKey: Guid(2ec7ddb7e50f49d4da6db76cc8694814) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_507.asset using Guid(2ec7ddb7e50f49d4da6db76cc8694814) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea9c6373b6813471e625fa31d8bb3433') in 0.016246 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_311.asset
+  artifactKey: Guid(a86ee1c62861a9d408e345f97a5fdf62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_311.asset using Guid(a86ee1c62861a9d408e345f97a5fdf62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e665438be811791c0917958f6ed9f44a') in 0.016769 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/Terrian_111.asset
+  artifactKey: Guid(ca6053044d9712343b2717c5e4693f17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_111.asset using Guid(ca6053044d9712343b2717c5e4693f17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ac7637b4fdd15db8c1bedf2946c13ac') in 0.012573 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_798.asset
+  artifactKey: Guid(9185813837b633c47852d83a2c71d316) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_798.asset using Guid(9185813837b633c47852d83a2c71d316) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c54d6084157cbac2967cc9efe5370b0') in 0.014824 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/Houses_2.asset
+  artifactKey: Guid(24acbe4d1d4233a418cf872951435c87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_2.asset using Guid(24acbe4d1d4233a418cf872951435c87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecdd262665ddcf264c530860533c7ea7') in 0.013086 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/vegetation_43.asset
+  artifactKey: Guid(2adf86b471501b54994f5e4c3960231f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_43.asset using Guid(2adf86b471501b54994f5e4c3960231f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df1339c4388d243b89d09abc079be416') in 0.012965 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/Houses_26.asset
+  artifactKey: Guid(8673750cd438ee645b23e4a9b807d17a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_26.asset using Guid(8673750cd438ee645b23e4a9b807d17a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec31ea306b405b59ad295d41872165ca') in 0.018492 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/Overworld_499.asset
+  artifactKey: Guid(3412a33f98525bb4b88bb51163f73d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_499.asset using Guid(3412a33f98525bb4b88bb51163f73d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '844c5d22cc530efa42b41e5a8cd75b52') in 0.013947 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Tile_Palettes/Houses_13.asset
+  artifactKey: Guid(5e49e00b9b46b0a489bc17e56f9c4ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_13.asset using Guid(5e49e00b9b46b0a489bc17e56f9c4ffa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95ab6962f425571305131c44fc26741a') in 0.010995 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2356.asset
+  artifactKey: Guid(9b82d1e5235e5bc4aa4085f2da40a5c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2356.asset using Guid(9b82d1e5235e5bc4aa4085f2da40a5c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c40125c06becd8b19eb0caf0e690f98') in 0.014636 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Tile_Palettes/vegetation_37.asset
+  artifactKey: Guid(00963e4242c3495459ee84d0d7763ef7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_37.asset using Guid(00963e4242c3495459ee84d0d7763ef7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'addaf85ec354ba0a377ebd4df18c3bb5') in 0.013550 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_787.asset
+  artifactKey: Guid(1f6ad768201e660488a5c3859076171a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_787.asset using Guid(1f6ad768201e660488a5c3859076171a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a98ed4cbaeb19618b83880c61eef5dc') in 0.016380 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_819.asset
+  artifactKey: Guid(b001be7ed5f52a1479a4008a867a6b91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_819.asset using Guid(b001be7ed5f52a1479a4008a867a6b91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec6c442711201388e606410aa3ac5846') in 0.017650 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Dungeon_104.asset
+  artifactKey: Guid(c4a475f55d44d35489238f841b3bdf2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_104.asset using Guid(c4a475f55d44d35489238f841b3bdf2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9b1dec7753e63b004898fbd5d63937f') in 0.013097 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Tile_Palettes/Terrian_75.asset
+  artifactKey: Guid(5ea184596b05b224fb798c2287865a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_75.asset using Guid(5ea184596b05b224fb798c2287865a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60eaf634acfd19bcaded448a40b1d792') in 0.014336 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/Terrian_101.asset
+  artifactKey: Guid(00cbd87b8dfae1241bc72a3e6fdabd01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_101.asset using Guid(00cbd87b8dfae1241bc72a3e6fdabd01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '045d625a7d5a1d0ddb39208fa57f2ad3') in 0.013324 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/Dungeon_111.asset
+  artifactKey: Guid(ae9f4a16873617542b308f7c39a7fb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_111.asset using Guid(ae9f4a16873617542b308f7c39a7fb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43789f28a3bc2657f39757c6e7a63a67') in 0.013302 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Tile_Palettes/Houses_31.asset
+  artifactKey: Guid(72a88ce28c47ac042ba20a9400242a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_31.asset using Guid(72a88ce28c47ac042ba20a9400242a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ef4b42d80cb8c438952941859aacb54') in 0.016838 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_792.asset
+  artifactKey: Guid(837c23a7f4de2e244b1f8bf08f285a3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_792.asset using Guid(837c23a7f4de2e244b1f8bf08f285a3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5fe247ac0ae2ab2426827a20153ad4a') in 0.014710 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Tile_Palettes/vegetation_26.asset
+  artifactKey: Guid(a46a63ea23f45734a99f7b082c66392b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_26.asset using Guid(a46a63ea23f45734a99f7b082c66392b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '101719676fb7e9af8a6fb981dd5e351d') in 0.013565 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/vegetation_39.asset
+  artifactKey: Guid(38fba9ff5c4dae94e89ef4730ef79693) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_39.asset using Guid(38fba9ff5c4dae94e89ef4730ef79693) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9b2cc1794faf7ba45f36ee88761e82b') in 0.014528 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_345.asset
+  artifactKey: Guid(9f76922353a04524b962b70461a5db72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_345.asset using Guid(9f76922353a04524b962b70461a5db72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e0a35ceafc3e435b9ac0dd0ba59fa4f') in 0.014398 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Tile_Palettes/Dungeon_105.asset
+  artifactKey: Guid(59fe3c3a7ca3f8f41be6de204ea34724) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_105.asset using Guid(59fe3c3a7ca3f8f41be6de204ea34724) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ed8f650f8f9f615650af28b2aee36e4') in 0.012412 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/Overworld_519.asset
+  artifactKey: Guid(59d31f79c44600745bc262597afe1311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_519.asset using Guid(59d31f79c44600745bc262597afe1311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7501fe7b9b3a1c069d5de5c5879a911') in 0.010611 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2364.asset
+  artifactKey: Guid(5bb8c0a93e9476e488db0b8d3aa54a9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2364.asset using Guid(5bb8c0a93e9476e488db0b8d3aa54a9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fae9ea2a05596458c38e2cdf1b84e7c8') in 0.013822 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Tile_Palettes/Overworld_520.asset
+  artifactKey: Guid(81b433ec2fd1c3c42934f173202bee1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_520.asset using Guid(81b433ec2fd1c3c42934f173202bee1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1506c1cfa669af314c01665bac90cdcd') in 0.017685 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1588.asset
+  artifactKey: Guid(69f69d566d2d9b64fb23ce2f291d8424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1588.asset using Guid(69f69d566d2d9b64fb23ce2f291d8424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'deb26c30983ebaff52341e8a09fc87d6') in 0.012872 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1602.asset
+  artifactKey: Guid(5551905ad4574c04891911066498ce27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1602.asset using Guid(5551905ad4574c04891911066498ce27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e49efb398341421de20d8c99a3ab25c') in 0.016460 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1598.asset
+  artifactKey: Guid(6c1a5f349a5495344b096b18f7f378d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1598.asset using Guid(6c1a5f349a5495344b096b18f7f378d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dd0830ec7fe36e063fc75039592f47f') in 0.011930 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_293.asset
+  artifactKey: Guid(9688b21abc2ce5747af64a4b52b05fba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_293.asset using Guid(9688b21abc2ce5747af64a4b52b05fba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5bb01f4b02a0c63960dc3d9e22366e2') in 0.014423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Tile_Palettes/vegetation_34.asset
+  artifactKey: Guid(7b4526141d58c6344a58012d27b1a299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_34.asset using Guid(7b4526141d58c6344a58012d27b1a299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8852cd06102216e5eebb1a4e02eef2ff') in 0.015058 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_791.asset
+  artifactKey: Guid(bf293f05947de0046a7461ec9a33a65b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_791.asset using Guid(bf293f05947de0046a7461ec9a33a65b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70895f8392df59ef8bd8d93a37078ef0') in 0.015110 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Tile_Palettes/Overworld_478.asset
+  artifactKey: Guid(de819a60ae07f484bbbbb02135b29041) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_478.asset using Guid(de819a60ae07f484bbbbb02135b29041) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb7d274e633533d4f877b3ff91caa6f4') in 0.013974 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1611.asset
+  artifactKey: Guid(ae2eaec921df458498453ad06a9418ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1611.asset using Guid(ae2eaec921df458498453ad06a9418ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c219baae1713944bbbfb0ff5aeb4095c') in 0.018106 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Tile_Palettes/vegetation_60.asset
+  artifactKey: Guid(2b471526dd7d8d247af5565c19c25579) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_60.asset using Guid(2b471526dd7d8d247af5565c19c25579) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5dafa31e6d92e56074625bf4e1233d8b') in 0.015522 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1572.asset
+  artifactKey: Guid(3fdbb8e14ab52df48aa99fd4d756de2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1572.asset using Guid(3fdbb8e14ab52df48aa99fd4d756de2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6fa4f69f0704da8c8024068d5832888') in 0.015970 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1594.asset
+  artifactKey: Guid(a2d889a2398156142bcda62c9e3d29d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1594.asset using Guid(a2d889a2398156142bcda62c9e3d29d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb102e6e029e949455a63a45eda036d2') in 0.011919 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/Overworld_524.asset
+  artifactKey: Guid(47455b8d78a96a641ad2e209c08642cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_524.asset using Guid(47455b8d78a96a641ad2e209c08642cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a453e2aae0fc71d759b495c747c905c') in 0.013378 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2373.asset
+  artifactKey: Guid(7fb393a7d0fc54845917c01c2f5d4c26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2373.asset using Guid(7fb393a7d0fc54845917c01c2f5d4c26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c03751cee2c9558d0f90f6cbaa90dfa') in 0.013328 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Tile_Palettes/Houses_17.asset
+  artifactKey: Guid(54630a7e8d2339b42b1092882777bf63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_17.asset using Guid(54630a7e8d2339b42b1092882777bf63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bca4932610d3a60d884c2f7a93fa6f3f') in 0.011971 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Tile_Palettes/Houses_32.asset
+  artifactKey: Guid(802cdcfbdbe85054da52978f055458cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_32.asset using Guid(802cdcfbdbe85054da52978f055458cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df977d7fa66088de19f1cf4a7ad8990e') in 0.013633 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Overworld_509.asset
+  artifactKey: Guid(c85a150acbcaa6445b5ad2b3aab8b789) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_509.asset using Guid(c85a150acbcaa6445b5ad2b3aab8b789) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f565567a653a513ba9a357cb126d8fb2') in 0.013194 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2372.asset
+  artifactKey: Guid(e93b2c835a250f7428e9a2c3098e1593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2372.asset using Guid(e93b2c835a250f7428e9a2c3098e1593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48f496fcbee522cbf322acbd5e18d917') in 0.014712 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_320.asset
+  artifactKey: Guid(7e2c28ab3d4113247b2ce08b86cd9a39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_320.asset using Guid(7e2c28ab3d4113247b2ce08b86cd9a39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eed5182aaa801f41b1c17bf7915d5604') in 0.015809 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2388.asset
+  artifactKey: Guid(cc0740e211d8c3c4c88dcac52f7b0b6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2388.asset using Guid(cc0740e211d8c3c4c88dcac52f7b0b6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9244cc7878e4b8d2f90bb940ff382e68') in 0.014294 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Tile_Palettes/Terrian_80.asset
+  artifactKey: Guid(2df1f37869dd13143a36be0178dd736e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_80.asset using Guid(2df1f37869dd13143a36be0178dd736e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58da1a420bbb8f833bcbbfbda9533f7d') in 0.015136 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1574.asset
+  artifactKey: Guid(2079804386a039f43a096ec4b9109a67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1574.asset using Guid(2079804386a039f43a096ec4b9109a67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58b807deaad081a7126a14c2d41cc29e') in 0.012649 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2361.asset
+  artifactKey: Guid(ba5c3f7331f376c49a910181af01fa2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2361.asset using Guid(ba5c3f7331f376c49a910181af01fa2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab32fb2169038a14e2035121fe05aee3') in 0.015852 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Tile_Palettes/Overworld_526.asset
+  artifactKey: Guid(3bd9df57649539f4a85fb5e214bccaf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_526.asset using Guid(3bd9df57649539f4a85fb5e214bccaf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5eacaa330b11757b700e55309448c17') in 0.016507 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Tile_Palettes/Terrian_79.asset
+  artifactKey: Guid(646dbbda21acf754abec888583f49f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_79.asset using Guid(646dbbda21acf754abec888583f49f5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3376104617a9d124c2356d1b12cf0931') in 0.013505 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_319.asset
+  artifactKey: Guid(64176a8312cd3c94381d8fff518e2be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_319.asset using Guid(64176a8312cd3c94381d8fff518e2be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c56dcbab534129d03562f6eedcf052c1') in 0.016865 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2334.asset
+  artifactKey: Guid(1adbf4842aed0114db3ef6bdf9e3dd0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2334.asset using Guid(1adbf4842aed0114db3ef6bdf9e3dd0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ddaa7e112f6943b38fbc32b13c1a794') in 0.011459 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2409.asset
+  artifactKey: Guid(c82551a64fee8c7488e17c1f412fed14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2409.asset using Guid(c82551a64fee8c7488e17c1f412fed14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2fa7a18eb4bc528639351ffe857aff0') in 0.017818 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/vegetation_130.asset
+  artifactKey: Guid(826262d97d04e1a4da6494e36648857f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_130.asset using Guid(826262d97d04e1a4da6494e36648857f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5057f81dc473e53cdee3ddd1e8329688') in 0.012086 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/Terrian_83.asset
+  artifactKey: Guid(735f83f0fd07fbb4a945be548e42e096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_83.asset using Guid(735f83f0fd07fbb4a945be548e42e096) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94ef5a5a754eaeede41a190f9abf7698') in 0.015317 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Tile_Palettes/Houses_9.asset
+  artifactKey: Guid(667961ec11c323b4e937750bbeb86264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_9.asset using Guid(667961ec11c323b4e937750bbeb86264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09e9bafe1f89e42162679c9b5f7b68af') in 0.012771 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/Overworld_496.asset
+  artifactKey: Guid(5060af29cea0f94439beb81d338ada47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_496.asset using Guid(5060af29cea0f94439beb81d338ada47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68fa7f02fe0c826c5e2720d549a0b235') in 0.012061 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/Terrian_64.asset
+  artifactKey: Guid(c04305b3d442ede4aaa4d5c0ace2d01e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_64.asset using Guid(c04305b3d442ede4aaa4d5c0ace2d01e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30a31788484fa6050952110fece495a1') in 0.013358 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Tile_Palettes/Terrian_69.asset
+  artifactKey: Guid(f409cbaf62b6c054a8c3b652ed766ac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_69.asset using Guid(f409cbaf62b6c054a8c3b652ed766ac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b720a72c661b0f3ef3b5939d8fe4092') in 0.013261 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Tile_Palettes/Overworld_523.asset
+  artifactKey: Guid(55cc662c164936a439957bee79619fdf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_523.asset using Guid(55cc662c164936a439957bee79619fdf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e92d3dc6439b0dca036fe3b08d63ab5a') in 0.012082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2374.asset
+  artifactKey: Guid(366018dee24200c498713eb8598b2c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2374.asset using Guid(366018dee24200c498713eb8598b2c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56da26f53fc9cdec3218652a8761a4a0') in 0.014007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Tile_Palettes/Dungeon_110.asset
+  artifactKey: Guid(513a9f84760ca9a46ae4ad88299f2a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_110.asset using Guid(513a9f84760ca9a46ae4ad88299f2a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0702df23cde5d78e35fd57b58561814') in 0.013059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Tile_Palettes/vegetation_48.asset
+  artifactKey: Guid(0b2fc60c5dee25d4ca4d2c6451f5232a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_48.asset using Guid(0b2fc60c5dee25d4ca4d2c6451f5232a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdc8adbacb125c9200807b6fce308cdd') in 0.015362 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2396.asset
+  artifactKey: Guid(385230ef008c19742bb7c7c21be4fc74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2396.asset using Guid(385230ef008c19742bb7c7c21be4fc74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '174ac659697d5e4d74af6e35306a864f') in 0.012263 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_327.asset
+  artifactKey: Guid(9ec1cd5a14747154ebcf39268f67c52b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_327.asset using Guid(9ec1cd5a14747154ebcf39268f67c52b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bca3b5bb6533a0b5305780ee1f2f1d6') in 0.013895 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/vegetation_134.asset
+  artifactKey: Guid(a54d52c787f7cd74095fd9d3dbcca843) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_134.asset using Guid(a54d52c787f7cd74095fd9d3dbcca843) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '687c6388a7e252b72e9d68d74a28fc49') in 0.012884 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1616.asset
+  artifactKey: Guid(16886169c2b25ae499c5ec5175ba2b1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1616.asset using Guid(16886169c2b25ae499c5ec5175ba2b1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9764fd0354ce5179b6599fc7758a9fd') in 0.012471 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Tile_Palettes/vegetation_42.asset
+  artifactKey: Guid(77b86ff765be94d4b87dbae00c63f6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_42.asset using Guid(77b86ff765be94d4b87dbae00c63f6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '179f1a0f42cb0c6b19a147ac90c81e11') in 0.011867 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1615.asset
+  artifactKey: Guid(3f73a333e472c2246b8810b778cd68c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1615.asset using Guid(3f73a333e472c2246b8810b778cd68c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '864a35ac2f87013cf436c24187681761') in 0.014833 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_302.asset
+  artifactKey: Guid(184ec7de32a95b34286484678e00c20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_302.asset using Guid(184ec7de32a95b34286484678e00c20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '198945d8f44ed49e0c4fc058000406d7') in 0.014790 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_823.asset
+  artifactKey: Guid(10b91cf10ac8b104c84c0c0b3d577175) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_823.asset using Guid(10b91cf10ac8b104c84c0c0b3d577175) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7db2b35dddcd433b9f262c98c54d9b10') in 0.012996 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_802.asset
+  artifactKey: Guid(a94422881897ff74bb17135db36c1caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_802.asset using Guid(a94422881897ff74bb17135db36c1caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dc08da1b59962ae1cd8af966e031718') in 0.015660 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Overworld_488.asset
+  artifactKey: Guid(bf89cf4b73c20b04bafbf1de03a6c9c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_488.asset using Guid(bf89cf4b73c20b04bafbf1de03a6c9c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '870ae6299f36ab398864b2b50e807a14') in 0.012124 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000064 seconds.
+  path: Assets/Tile_Palettes/Overworld_494.asset
+  artifactKey: Guid(91a3ad2528fb869419e8d4cbf1b82613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_494.asset using Guid(91a3ad2528fb869419e8d4cbf1b82613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c04a6636983f28899cfadcc139a0cb9') in 0.013828 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Tile_Palettes/vegetation_45.asset
+  artifactKey: Guid(c596f4ff4599db24e8bf1a73d6e1ac1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_45.asset using Guid(c596f4ff4599db24e8bf1a73d6e1ac1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfa8121479c98cc64c207c5ca49588b2') in 0.012748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_799.asset
+  artifactKey: Guid(d313e1784824f694fbc1c6b5a7c66c81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_799.asset using Guid(d313e1784824f694fbc1c6b5a7c66c81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b4e74f840958a1e750d83be37cd3fbe') in 0.013362 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_295.asset
+  artifactKey: Guid(a9f49d7b299c0104ba95def63e853bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_295.asset using Guid(a9f49d7b299c0104ba95def63e853bc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4a6e7098eb60f8b77536cab04ee3c00') in 0.012834 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Tile_Palettes/vegetation_150.asset
+  artifactKey: Guid(8aa749b99e077694ca892dd6f9b286c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_150.asset using Guid(8aa749b99e077694ca892dd6f9b286c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '532770a1209f3232f78967bd92331e3c') in 0.014976 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Tile_Palettes/Houses_12.asset
+  artifactKey: Guid(64e2f72fa5d75a14a950ee5d1076332c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_12.asset using Guid(64e2f72fa5d75a14a950ee5d1076332c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '804492d92232b2df2e4a9b5aa6a8cbf1') in 0.016156 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2389.asset
+  artifactKey: Guid(4f2898261a2d97946aa235fd6c0b6068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2389.asset using Guid(4f2898261a2d97946aa235fd6c0b6068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f26acf483d1b9e62faa59f3a882f2953') in 0.014828 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Tile_Palettes/vegetation_66.asset
+  artifactKey: Guid(2130648bf8b47f446af3d2dbcc447bb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_66.asset using Guid(2130648bf8b47f446af3d2dbcc447bb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccde07582890843fcd6b37748fa7553c') in 0.013001 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Tile_Palettes/vegetation_151.asset
+  artifactKey: Guid(161f13ba807f8994099f75d9a7031845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_151.asset using Guid(161f13ba807f8994099f75d9a7031845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '698ecbee7c1fe9ca09b17e04cca06ebd') in 0.013116 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Tile_Palettes/Houses_28.asset
+  artifactKey: Guid(15f8a7490715022458a248053b785eb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_28.asset using Guid(15f8a7490715022458a248053b785eb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9c0c7d2e5bf390767eae7be79d038c9') in 0.016081 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1596.asset
+  artifactKey: Guid(2f48844d56aef3b46a711252bf9b72bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1596.asset using Guid(2f48844d56aef3b46a711252bf9b72bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c95988c534b3be01478ec4161ddbc245') in 0.019081 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1587.asset
+  artifactKey: Guid(17d0934e73e62ec44b446f0802a84824) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1587.asset using Guid(17d0934e73e62ec44b446f0802a84824) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef166ee5e695ec97c0c5a2ab619f0f32') in 0.017319 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Tile_Palettes/Houses_19.asset
+  artifactKey: Guid(9ec3dd2212d66e74483c7381ff5c7288) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_19.asset using Guid(9ec3dd2212d66e74483c7381ff5c7288) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59a1e7e87bcb82edbb51859de4b24724') in 0.016227 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Tile_Palettes/Terrian_86.asset
+  artifactKey: Guid(2965a8b7b930e8943a1986fa6d57f100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_86.asset using Guid(2965a8b7b930e8943a1986fa6d57f100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30815743e9936ac4145ffe1f896ff594') in 0.012571 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Tile_Palettes/Overworld_521.asset
+  artifactKey: Guid(049a47fff11a9e94dace9a0b7ca29ddd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_521.asset using Guid(049a47fff11a9e94dace9a0b7ca29ddd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39cb932811e9282e3c2c004ed203eb56') in 0.012446 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Tile_Palettes/Terrian_104.asset
+  artifactKey: Guid(ed1cdc2704c19f34a8fed94552bb5462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_104.asset using Guid(ed1cdc2704c19f34a8fed94552bb5462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b79772356642f540f498468d218e920') in 0.015724 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/vegetation_61.asset
+  artifactKey: Guid(d1c7d06530f2ea749b2aa6c35f792c5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_61.asset using Guid(d1c7d06530f2ea749b2aa6c35f792c5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62a97a85c63f00bb9c90f98b974714e9') in 0.016721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_778.asset
+  artifactKey: Guid(e9c651161e7f452488d9d9f1bcfd60b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_778.asset using Guid(e9c651161e7f452488d9d9f1bcfd60b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd321f47373d8e5be9db84859f017821') in 0.016857 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1580.asset
+  artifactKey: Guid(3925f3313e8a24045935ee3651567d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_1580.asset using Guid(3925f3313e8a24045935ee3651567d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18c251328d61017e56df2c80320afbe7') in 0.016534 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Tile_Palettes/vegetation_44.asset
+  artifactKey: Guid(18a84bfaedd17814a96391527b00d544) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_44.asset using Guid(18a84bfaedd17814a96391527b00d544) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '605787560ab3e0d96aecbf701de350a6') in 0.013841 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Tile_Palettes/Terrian_87.asset
+  artifactKey: Guid(88cb4f36b00fedb4db5ce84909844555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Terrian_87.asset using Guid(88cb4f36b00fedb4db5ce84909844555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa8819ad7cbf4dd7641e6d527a90c918') in 0.014366 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2407.asset
+  artifactKey: Guid(7dda474ecb56bae48b5e2d70c67e36ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_2407.asset using Guid(7dda474ecb56bae48b5e2d70c67e36ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adc9c10eac73c74dfa22e5516b4a1898') in 0.018509 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_784.asset
+  artifactKey: Guid(152ae3b021fa1ce45a76d273d4fae3e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_784.asset using Guid(152ae3b021fa1ce45a76d273d4fae3e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88189fea34691267f96414151a637678') in 0.012884 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Tile_Palettes/Houses_15.asset
+  artifactKey: Guid(36ab02fdb12ffef49918413d442e3090) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_15.asset using Guid(36ab02fdb12ffef49918413d442e3090) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8579acac96b1ce6493d41a7aeb2da5b8') in 0.015679 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_805.asset
+  artifactKey: Guid(943c8b0c184880c45a6f9d71cb322833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_805.asset using Guid(943c8b0c184880c45a6f9d71cb322833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87cce7f7170645226003ed3165c484f9') in 0.017312 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Tile_Palettes/vegetation_146.asset
+  artifactKey: Guid(f1eeacee276515944a947e353c407a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_146.asset using Guid(f1eeacee276515944a947e353c407a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4619cb84994ed02e582fa21b04d67b81') in 0.014979 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Tile_Palettes/Dungeon_49.asset
+  artifactKey: Guid(05e46554179e4ea41a0ea2ca2ea4bebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Dungeon_49.asset using Guid(05e46554179e4ea41a0ea2ca2ea4bebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '846072dc95d874a1f0add4f2130b2873') in 0.012016 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_340.asset
+  artifactKey: Guid(c2cd9c88787df0b458277324c462444f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_340.asset using Guid(c2cd9c88787df0b458277324c462444f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e070a13f52dd800b6cfda880eff5766e') in 0.014487 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Tile_Palettes/Houses_38.asset
+  artifactKey: Guid(685bc34b0583d82449738db493b99a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Houses_38.asset using Guid(685bc34b0583d82449738db493b99a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f847332cde95cc2dee024a14e971610') in 0.009248 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Tile_Palettes/vegetation_50.asset
+  artifactKey: Guid(29e87a4a2b5f07245808dc561b5552c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_50.asset using Guid(29e87a4a2b5f07245808dc561b5552c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77c8f37b8d0bde43429c81a42029e843') in 0.014920 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Tile_Palettes/Overworld_489.asset
+  artifactKey: Guid(b9c52c50568af8741931cf4d5d463395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_489.asset using Guid(b9c52c50568af8741931cf4d5d463395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0827165e5384c640893313bf17e7ac08') in 0.019219 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Tile_Palettes/Overworld_510.asset
+  artifactKey: Guid(85d1a9287071cae469f051167841d80e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/Overworld_510.asset using Guid(85d1a9287071cae469f051167841d80e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '900c1386f1a2291929e7e29bf6d77eb4') in 0.015046 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_323.asset
+  artifactKey: Guid(292e4eab507029a488effce3d6084551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_323.asset using Guid(292e4eab507029a488effce3d6084551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73ab982558e70a65b11d88c0182cac6f') in 0.013170 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/hyptosis_tile-art-batch-3_780.asset
+  artifactKey: Guid(597f1b8fc4fb3ea4e88c5b85bda17074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/hyptosis_tile-art-batch-3_780.asset using Guid(597f1b8fc4fb3ea4e88c5b85bda17074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc2d6c9921b5d2534e08c05003073778') in 0.014155 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Tile_Palettes/vegetation_49.asset
+  artifactKey: Guid(9effb81e72d2e554e8b0ca78e5951a83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/vegetation_49.asset using Guid(9effb81e72d2e554e8b0ca78e5951a83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ab2e443539f3e03c23d8ff54cb10d8d') in 0.012610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Tile_Palettes/h_3.prefab
+  artifactKey: Guid(2b4e7a222e404344694e1260757af235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tile_Palettes/h_3.prefab using Guid(2b4e7a222e404344694e1260757af235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a49c07b1adc60379641092038528e303') in 1.534782 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5159

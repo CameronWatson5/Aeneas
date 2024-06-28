@@ -1,3 +1,8 @@
+// This is the player movement script.
+// This is used so that the player (Aeneas) can move.
+// Furthermore, it triggers the animation.
+// The default speed is 5, however, this can be changed in Unity.
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
