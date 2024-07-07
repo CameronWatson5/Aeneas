@@ -24,8 +24,14 @@ public class CameraFollow : MonoBehaviour
         CalculateBounds();
     }
 
-    void CalculateBounds()
+    public void CalculateBounds()
     {
+        if (tilemap == null)
+        {
+            Debug.LogWarning("Tilemap is not set in CameraFollow script.");
+            return;
+        }
+
         // Get the world space bounds of the tilemap
         Vector3 tilemapMin = tilemap.localBounds.min;
         Vector3 tilemapMax = tilemap.localBounds.max;
@@ -39,8 +45,16 @@ public class CameraFollow : MonoBehaviour
         maxBounds = tilemapMax - new Vector3(camHalfWidth, camHalfHeight, 0);
     }
 
+    public void SetNewTilemap(Tilemap newTilemap)
+    {
+        tilemap = newTilemap;
+        CalculateBounds();
+    }
+
     void LateUpdate()
     {
+        if (target == null || tilemap == null) return;
+
         Vector3 targetPosition = target.position + offset;
         
         // Moves camera towards target

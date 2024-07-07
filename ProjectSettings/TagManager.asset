@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Aeneas
+  - Collision
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4164821197
+    locked: 0
+  - name: Mainground
+    uniqueID: 390921463
+    locked: 0
+  - name: Foreground
+    uniqueID: 1402239873
     locked: 0
   - name: Aeneas
     uniqueID: 299054301
