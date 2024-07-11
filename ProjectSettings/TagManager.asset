@@ -50,6 +50,9 @@ TagManager:
   - name: Foreground
     uniqueID: 1402239873
     locked: 0
+  - name: Highest
+    uniqueID: 126818355
+    locked: 0
   - name: Aeneas
     uniqueID: 299054301
     locked: 0
