@@ -6,15 +6,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(AeneasAttributes))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    
     private static PlayerMovement instance;
     private Rigidbody2D myRigidBody;
     private Vector2 change;
     private Animator animator;
+    private AeneasAttributes aeneasAttributes;
     
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -45,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myRigidBody = GetComponent<Rigidbody2D>();
+        aeneasAttributes = GetComponent<AeneasAttributes>();
+        if (aeneasAttributes == null)
+        {
+            Debug.LogError("AeneasAttributes component not found on the player object!");
+        }
         PositionPlayer();
     }
 
@@ -78,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.DeleteKey("SpawnPositionX");
             PlayerPrefs.DeleteKey("SpawnPositionY");
         }
-        // If neither spawn point nor coordinates are set, the player will remain at their current position
     }
 
     private void FixedUpdate()
@@ -111,7 +114,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveCharacter()
     {
-        Vector2 targetPosition = myRigidBody.position + change * speed * Time.fixedDeltaTime;
+        float currentSpeed = aeneasAttributes != null ? aeneasAttributes.speed : 5f;
+        Vector2 targetPosition = myRigidBody.position + change * currentSpeed * Time.fixedDeltaTime;
         myRigidBody.MovePosition(targetPosition);
     }
 }
