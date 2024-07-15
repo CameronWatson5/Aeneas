@@ -118,4 +118,14 @@ public class PlayerMovement : MonoBehaviour
         Vector2 targetPosition = myRigidBody.position + change * currentSpeed * Time.fixedDeltaTime;
         myRigidBody.MovePosition(targetPosition);
     }
+
+    public Vector2 GetLastMovementDirection()
+    {
+        return new Vector2(animator.GetFloat(MOVE_X), animator.GetFloat(MOVE_Y)).normalized;
+    }
+
+    public Vector2 GetMovementInput()
+    {
+        return change;
+    }
 }
