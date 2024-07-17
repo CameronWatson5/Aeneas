@@ -11,9 +11,15 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
   - Aeneas
   - Collision
   - Enemies
+=======
+  - 
+  - 
+  - 
+>>>>>>> gitlab/main
   - 
   - 
   - 
@@ -41,6 +47,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
   - name: Background
     uniqueID: 4164821197
     locked: 0
@@ -53,6 +60,8 @@ TagManager:
   - name: Highest
     uniqueID: 126818355
     locked: 0
+=======
+>>>>>>> gitlab/main
   - name: Aeneas
     uniqueID: 299054301
     locked: 0

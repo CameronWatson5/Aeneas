@@ -15,4 +15,8 @@ MonoBehaviour:
   m_Keys:
   - __PanelContainer__rootVisualContainer__unity-tilepalette-splitview-data__UnityEngine.UIElements.TwoPaneSplitView
   m_Values:
+<<<<<<< HEAD
   - '{"m_FixedPaneDimension":121.0}'
+=======
+  - '{"m_FixedPaneDimension":246.5}'
+>>>>>>> gitlab/main

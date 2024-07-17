@@ -115,11 +115,17 @@ m_ResolvedPackages:
     - 2.1.0
     - 2.2.0
     - 2.3.1
+<<<<<<< HEAD
     - 2.4.3
     compatible:
     - 2.2.0
     - 2.3.1
     - 2.4.3
+=======
+    compatible:
+    - 2.2.0
+    - 2.3.1
+>>>>>>> gitlab/main
     recommended: 2.2.0
     deprecated: []
   dependencies: []
@@ -347,12 +353,19 @@ m_ResolvedPackages:
     - 3.0.26
     - 3.0.27
     - 3.0.28
+<<<<<<< HEAD
     - 3.0.31
     compatible:
     - 3.0.27
     - 3.0.28
     - 3.0.31
     recommended: 3.0.31
+=======
+    compatible:
+    - 3.0.27
+    - 3.0.28
+    recommended: 3.0.28
+>>>>>>> gitlab/main
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
