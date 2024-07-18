@@ -6,37 +6,23 @@
 // this prevents the camera from going out of bounds.
 using UnityEngine;
 using UnityEngine.Tilemaps;
-<<<<<<< HEAD
 using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
-=======
-
-public class CameraFollow : MonoBehaviour
-{
-    public Transform target; // Target = player (Aeneas)
->>>>>>> gitlab/main
     public Vector3 offset = new Vector3(0, 0, -10); // Offset from player
     public float followSpeed = 2f; // This is used to determine how quickly the camera follows the player
     public Tilemap tilemap; // Tilemap is the 2D map
     
-<<<<<<< HEAD
     private Transform target; // Target = player (Aeneas)
     private Camera cam;
     private Vector3 minBounds;
     private Vector3 maxBounds;
     private bool isNewScene = true; // New variable to track scene changes
-=======
-    private Camera cam;
-    private Vector3 minBounds;
-    private Vector3 maxBounds;
->>>>>>> gitlab/main
 
     void Start()
     {
         cam = GetComponent<Camera>();
-<<<<<<< HEAD
         SceneManager.sceneLoaded += OnSceneLoaded;
         FindPlayer();
         CalculateBounds();
@@ -85,13 +71,6 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
-=======
-        CalculateBounds();
-    }
-
-    void CalculateBounds()
-    {
->>>>>>> gitlab/main
         // Get the world space bounds of the tilemap
         Vector3 tilemapMin = tilemap.localBounds.min;
         Vector3 tilemapMax = tilemap.localBounds.max;
@@ -105,7 +84,6 @@ public class CameraFollow : MonoBehaviour
         maxBounds = tilemapMax - new Vector3(camHalfWidth, camHalfHeight, 0);
     }
 
-<<<<<<< HEAD
     public void SetNewTilemap(Tilemap newTilemap)
     {
         tilemap = newTilemap;
@@ -149,19 +127,5 @@ public class CameraFollow : MonoBehaviour
         float clampedX = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
         float clampedY = Mathf.Clamp(position.y, minBounds.y, maxBounds.y);
         return new Vector3(clampedX, clampedY, position.z);
-=======
-    void LateUpdate()
-    {
-        Vector3 targetPosition = target.position + offset;
-        
-        // Moves camera towards target
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-        
-        // Ensures camera stays in bounds
-        float clampedX = Mathf.Clamp(smoothedPosition.x, minBounds.x, maxBounds.x);
-        float clampedY = Mathf.Clamp(smoothedPosition.y, minBounds.y, maxBounds.y);
-        
-        transform.position = new Vector3(clampedX, clampedY, smoothedPosition.z);
->>>>>>> gitlab/main
     }
 }

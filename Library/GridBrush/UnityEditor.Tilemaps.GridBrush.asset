@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Default Brush
   m_EditorClassIdentifier: 
   m_Cells:
-<<<<<<< HEAD
   - m_Tile: {fileID: 0}
-=======
-  - m_Tile: {fileID: 11400000, guid: 042ae389939cd8e4095b1565d24cbf6a, type: 2}
->>>>>>> gitlab/main
     m_Matrix:
       e00: 1
       e01: 0
@@ -38,9 +34,5 @@ MonoBehaviour:
     m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
   m_CanChangeZPosition: 0
-=======
-  m_CanChangeZPosition: 1
->>>>>>> gitlab/main
   m_FloodFillContiguousOnly: 1

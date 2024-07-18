@@ -4,7 +4,6 @@
 // The default speed is 5, however, this can be changed in Unity.
 
 using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(AeneasAttributes))]
@@ -15,17 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 change;
     private Animator animator;
     private AeneasAttributes aeneasAttributes;
-=======
-
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
-public class PlayerMovement : MonoBehaviour
-{
-    [SerializeField] private float speed = 5f;
-    
-    private Rigidbody2D myRigidBody;
-    private Vector2 change;
-    private Animator animator;
->>>>>>> gitlab/main
     
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -33,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private const string MOVE_Y = "moveY";
     private const string MOVING = "moving";
 
-<<<<<<< HEAD
     private void Awake()
     {
         if (instance == null)
@@ -53,13 +40,10 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-=======
->>>>>>> gitlab/main
     private void Start()
     {
         animator = GetComponent<Animator>();
         myRigidBody = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
         aeneasAttributes = GetComponent<AeneasAttributes>();
         if (aeneasAttributes == null)
         {
@@ -98,26 +82,14 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.DeleteKey("SpawnPositionX");
             PlayerPrefs.DeleteKey("SpawnPositionY");
         }
-=======
->>>>>>> gitlab/main
     }
 
     private void FixedUpdate()
     {
-<<<<<<< HEAD
         change.x = Input.GetAxisRaw(HORIZONTAL);
         change.y = Input.GetAxisRaw(VERTICAL);
 
         if (change.sqrMagnitude > 1)
-=======
-        // GetAxisRaw is used because it is more responsive than GetAxis.
-        // This allows for quick movement and instant movement.
-        change.x = Input.GetAxisRaw(HORIZONTAL);
-        change.y = Input.GetAxisRaw(VERTICAL);
-
-        // Normalize for consistent diagonal speed
-        if (change.magnitude > 1)
->>>>>>> gitlab/main
         {
             change.Normalize();
         }
@@ -142,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveCharacter()
     {
-<<<<<<< HEAD
         float currentSpeed = aeneasAttributes != null ? aeneasAttributes.speed : 5f;
         Vector2 targetPosition = myRigidBody.position + change * currentSpeed * Time.fixedDeltaTime;
         myRigidBody.MovePosition(targetPosition);
@@ -156,9 +127,5 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 GetMovementInput()
     {
         return change;
-=======
-        Vector2 targetPosition = myRigidBody.position + change * speed * Time.fixedDeltaTime;
-        myRigidBody.MovePosition(Vector2.MoveTowards(myRigidBody.position, targetPosition, speed * Time.fixedDeltaTime));
->>>>>>> gitlab/main
     }
 }

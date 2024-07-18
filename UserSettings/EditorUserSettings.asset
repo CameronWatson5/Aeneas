@@ -6,12 +6,9 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
-<<<<<<< HEAD
       value: 010707035d0d5f09090c5c2341705a4443164b797f797533282f4f35e7b0616d
       flags: 0
     RecentlyUsedSceneGuid-1:
-=======
->>>>>>> gitlab/main
       value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
       flags: 0
     vcSharedLogLevel:
