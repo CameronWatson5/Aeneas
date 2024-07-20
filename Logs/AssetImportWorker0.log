@@ -1,0 +1,325 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.19f1 (244b723c30a6) revision 2378610'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 16077 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.19f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/cswat/Aeneas
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+62688
+Successfully changed project path to: C:/Users/cswat/Aeneas
+C:/Users/cswat/Aeneas
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [27560] Host "[IP] 192.168.0.34 [Port] 0 [Flags] 2 [Guid] 4048187872 [EditorId] 4048187872 [Version] 1048832 [Id] WindowsEditor(7,Cameron_Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [27560] Host "[IP] 192.168.0.34 [Port] 0 [Flags] 2 [Guid] 4048187872 [EditorId] 4048187872 [Version] 1048832 [Id] WindowsEditor(7,Cameron_Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
+Refreshing native plugins compatible for Editor in 50.41 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.19f1 (244b723c30a6)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/cswat/Aeneas/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0x46aa)
+    Vendor:   Intel
+    VRAM:     8038 MB
+    Driver:   31.0.101.5186
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56212
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.025191 seconds.
+- Loaded All Assemblies, in  0.654 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.561 seconds
+Domain Reload Profiling: 1211ms
+	BeginReloadAssembly (206ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (110ms)
+	LoadAllAssembliesAndSetupDomain (262ms)
+		LoadAssemblies (193ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (259ms)
+			TypeCache.Refresh (256ms)
+				TypeCache.ScanAssembly (229ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (562ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (439ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (5ms)
+			ProcessInitializeOnLoadAttributes (313ms)
+			ProcessInitializeOnLoadMethodAttributes (95ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.340 seconds
+Refreshing native plugins compatible for Editor in 7.28 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.582 seconds
+Domain Reload Profiling: 2909ms
+	BeginReloadAssembly (285ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (33ms)
+	RebuildCommonClasses (62ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (115ms)
+	LoadAllAssembliesAndSetupDomain (848ms)
+		LoadAssemblies (687ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (336ms)
+			TypeCache.Refresh (286ms)
+				TypeCache.ScanAssembly (260ms)
+			ScanForSourceGeneratedMonoScriptInfo (40ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1583ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1199ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (29ms)
+			SetLoadedEditorAssemblies (11ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (217ms)
+			ProcessInitializeOnLoadAttributes (841ms)
+			ProcessInitializeOnLoadMethodAttributes (82ms)
+			AfterProcessingInitializeOnLoad (18ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (18ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.20 seconds
+Refreshing native plugins compatible for Editor in 9.51 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4094 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 64 unused Assets / (61.4 KB). Loaded Objects now: 4556.
+Memory consumption went from 155.0 MB to 154.9 MB.
+Total: 6.407400 ms (FindLiveObjects: 0.710900 ms CreateObjectMapping: 0.344900 ms MarkObjects: 4.937600 ms  DeleteObjects: 0.410400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 190496.106490 seconds.
+  path: Assets/Art/Aeneas/AeneasIdleRight.aseprite
+  artifactKey: Guid(b6218b29fb16095438e26a4b8a346385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasIdleRight.aseprite using Guid(b6218b29fb16095438e26a4b8a346385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6edb0deddc85d9db41eb88853afd13b8') in 0.274357 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Art/hyptosis_tile-art-batch-4.png
+  artifactKey: Guid(3cd7b2c75c16f734ab376be8a706865c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/hyptosis_tile-art-batch-4.png using Guid(3cd7b2c75c16f734ab376be8a706865c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '620c935e6204bcafb7d5dda5d415f5cf') in 0.035150 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000340 seconds.
+  path: Assets/Art/Inner.png
+  artifactKey: Guid(5e893b0d875455143a1f164f3c3cbea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Inner.png using Guid(5e893b0d875455143a1f164f3c3cbea8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2bc65b206d1a0e993f98142b43d44ab') in 1.385706 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 265
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Art/Fountain.png
+  artifactKey: Guid(8e44d3519f6076d40b145498cb440cba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Fountain.png using Guid(8e44d3519f6076d40b145498cb440cba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a4598c5245029026f69bea58b4d073f') in 0.054023 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000319 seconds.
+  path: Assets/Art/hyptosis_sprites-and-tiles-for-you.png
+  artifactKey: Guid(56ef05e91b566c3479bb31df667adc44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/hyptosis_sprites-and-tiles-for-you.png using Guid(56ef05e91b566c3479bb31df667adc44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd413e13cd8d19c23f1f2cc75e08180ea') in 9.846005 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1490
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Art/vegetation.png
+  artifactKey: Guid(072877124cd51ab469b62dc69b5e645f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/vegetation.png using Guid(072877124cd51ab469b62dc69b5e645f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0752f237b0e92d6d70df1d19bb8b7690') in 0.892016 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 155
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Art/Aeneas/AeneasIdleDown.aseprite
+  artifactKey: Guid(b722dd70d48aad2428d440133be5891b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasIdleDown.aseprite using Guid(b722dd70d48aad2428d440133be5891b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fe97ad6b768aafcd18830157ce71506') in 0.045388 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000461 seconds.
+  path: Assets/Art/Aeneas/AeneasIdleLeft.aseprite
+  artifactKey: Guid(c6c9a1af8db15ac44b9adf47c5a3f0d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasIdleLeft.aseprite using Guid(c6c9a1af8db15ac44b9adf47c5a3f0d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a25759737709089b946e4788a5f78836') in 0.037924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Art/Aeneas/AeneasRightAttack.aseprite
+  artifactKey: Guid(401910638e3feaa4b85a6401aec6f718) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasRightAttack.aseprite using Guid(401910638e3feaa4b85a6401aec6f718) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c343d9d8c17c38d316032a39eae2312c') in 0.052267 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000654 seconds.
+  path: Assets/Art/BombExploding.png
+  artifactKey: Guid(aa4bc2ff1f667014e8aa2b132d10bf51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/BombExploding.png using Guid(aa4bc2ff1f667014e8aa2b132d10bf51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c5359d965bf031ab92c0601fec493a0') in 0.032003 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000229 seconds.
+  path: Assets/Art/treasure_chests_32x32.png
+  artifactKey: Guid(979e76e0c61ae5c4d8dbf632e4bfd1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/treasure_chests_32x32.png using Guid(979e76e0c61ae5c4d8dbf632e4bfd1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '429e6786689ef64020e590ab47b921bb') in 0.637354 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 122
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Art/character.png
+  artifactKey: Guid(be533276b6087fd4fa81946f90b0179e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/character.png using Guid(be533276b6087fd4fa81946f90b0179e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc7eb4bc58aeb8f06bb5dab220cd9c5e') in 0.427368 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 80
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Art/Objects 1.png
+  artifactKey: Guid(31bbb9699aead1b49a204bf3997faf8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Objects 1.png using Guid(31bbb9699aead1b49a204bf3997faf8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa48895556cfbc87239eb7d2ad62991a') in 0.404510 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 66
+========================================================================
+Received Import Request.
+  Time since last request: 0.000443 seconds.
+  path: Assets/Art/Aeneas/AeneasDownAttack.aseprite
+  artifactKey: Guid(bb4d8ec29ebe6d6468185469fe5dd053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasDownAttack.aseprite using Guid(bb4d8ec29ebe6d6468185469fe5dd053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da8987c0c798bc2ed9a5d1b264070a6d') in 0.047806 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000608 seconds.
+  path: Assets/Art/sheet.png
+  artifactKey: Guid(d4ec03bc4a1975d4991bf23f15ac5fba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/sheet.png using Guid(d4ec03bc4a1975d4991bf23f15ac5fba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acd1f26b39b9ab4f58f5c0db9c15a556') in 0.076481 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000552 seconds.
+  path: Assets/Art/Houses.png
+  artifactKey: Guid(99f0a223c739fc942a3f42d7d76e9af8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Houses.png using Guid(99f0a223c739fc942a3f42d7d76e9af8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f1506d43fc88368d2eb3e6b19eef807') in 0.455766 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 86
+========================================================================
+Received Import Request.
+  Time since last request: 0.000249 seconds.
+  path: Assets/Art/Aeneas/AeneasAttackUp.aseprite
+  artifactKey: Guid(ee80812ea150e6b4d8e0a91d039d2fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Aeneas/AeneasAttackUp.aseprite using Guid(ee80812ea150e6b4d8e0a91d039d2fe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0f697473504657321bb9d5bf247d8d9') in 0.054932 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
