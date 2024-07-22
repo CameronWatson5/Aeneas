@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 1907860647650618894}
   - component: {fileID: 413400635321491513}
   - component: {fileID: 5213996779192813673}
-  - component: {fileID: 8899266324624060211}
   - component: {fileID: 9092358757801513329}
   - component: {fileID: 1623560711626557320}
   - component: {fileID: 8470182420197135761}
-  m_Layer: 8
+  - component: {fileID: 1375126402952210079}
+  - component: {fileID: 6491516058535176748}
+  m_Layer: 0
   m_Name: GreekWarrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,33 +111,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!50 &8899266324624060211
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6948980555492870342}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &9092358757801513329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004999995, y: 0.145}
+  m_Offset: {x: -0.004887581, y: 0.44895935}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.48387095, y: 0}
@@ -180,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.29}
+  m_Size: {x: 0.8835144, y: 0.8979187}
   m_EdgeRadius: 0
 --- !u!114 &1623560711626557320
 MonoBehaviour:
@@ -195,9 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 5
+  detectionRange: 500
   damageAmount: 10
   damageCooldown: 1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  avoidanceRadius: 0
 --- !u!114 &8470182420197135761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +189,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+--- !u!114 &1375126402952210079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948980555492870342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fc4fa43ae4c2f4794c6a7210d422cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed: 0.2
+--- !u!50 &6491516058535176748
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948980555492870342}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

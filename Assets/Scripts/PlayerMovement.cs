@@ -12,9 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private static PlayerMovement instance;
     private Rigidbody2D myRigidBody;
     private Vector2 change;
+    private Vector2 lastMovementDirection;
     private Animator animator;
     private AeneasAttributes aeneasAttributes;
-    
+
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
     private const string MOVE_X = "moveX";
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("AeneasAttributes component not found on the player object!");
         }
         PositionPlayer();
+        Debug.Log("PlayerMovement initialized.");
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             float x = PlayerPrefs.GetFloat("SpawnPositionX");
             float y = PlayerPrefs.GetFloat("SpawnPositionY");
             transform.position = new Vector2(x, y);
-        
+
             PlayerPrefs.DeleteKey("SpawnPositionX");
             PlayerPrefs.DeleteKey("SpawnPositionY");
         }
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (change != Vector2.zero)
         {
+            lastMovementDirection = change;
             MoveCharacter();
             animator.SetFloat(MOVE_X, change.x);
             animator.SetFloat(MOVE_Y, change.y);
@@ -110,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(MOVING, false);
         }
+
+        Debug.Log($"Movement updated: Change={change}, LastMovementDirection={lastMovementDirection}");
     }
 
     private void MoveCharacter()
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 GetLastMovementDirection()
     {
-        return new Vector2(animator.GetFloat(MOVE_X), animator.GetFloat(MOVE_Y)).normalized;
+        return lastMovementDirection.normalized;
     }
 
     public Vector2 GetMovementInput()
@@ -129,3 +134,4 @@ public class PlayerMovement : MonoBehaviour
         return change;
     }
 }
+

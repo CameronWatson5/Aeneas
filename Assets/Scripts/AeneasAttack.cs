@@ -1,40 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class AeneasAttack : MonoBehaviour
 {
-    public Animator animator;
-    public float attackCooldown = 0.5f;
-    [SerializeField] private float attackRange = 1f;
+    [Header("Attack Settings")]
+    [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private float attackRadius = 1f;
+    [SerializeField] private float attackOffset = 0.5f; // Distance from player center to attack center
+    [SerializeField] private int attackDamage = 10;
+
+    [Header("Character Center Adjustment")]
+    [SerializeField] private Vector2 characterCenterOffset = Vector2.zero; // Adjust this in the inspector
+
+    [Header("Visual Settings")]
+    [SerializeField] private float attackVisualDuration = 0.5f;
+    [SerializeField] private Color attackVisualColor = new Color(1, 0, 0, 0.5f);
 
     private float lastAttackTime;
-    private AeneasAttributes attributes;
+    private Animator animator;
     private PlayerMovement playerMovement;
+    private GameObject attackRangeVisual;
 
     private void Start()
     {
-        attributes = GetComponent<AeneasAttributes>();
+        animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        
-        if (attributes == null)
+
+        if (!animator || !playerMovement)
         {
-            Debug.LogError("AeneasAttributes component not found on the player!");
-        }
-        
-        if (playerMovement == null)
-        {
-            Debug.LogError("PlayerMovement component not found on the player!");
+            Debug.LogError("Required components missing on the player!");
+            enabled = false;
+            return;
         }
 
-        if (animator == null)
-        {
-            animator = GetComponent<Animator>();
-            if (animator == null)
-            {
-                Debug.LogError("Animator component not found on the player!");
-            }
-        }
+        CreateAttackRangeVisual();
+        Debug.Log("AeneasAttack initialized.");
     }
 
     private void Update()
@@ -53,64 +53,128 @@ public class AeneasAttack : MonoBehaviour
     private void Attack()
     {
         lastAttackTime = Time.time;
-        
-        string attackTrigger = DetermineAttackDirection();
-
+        Vector2 attackDirection = DetermineAttackDirection();
+        string attackTrigger = GetAttackTrigger(attackDirection);
         animator.SetTrigger(attackTrigger);
 
-        PerformAttack();
+        PerformAttack(attackDirection);
+        StartCoroutine(ShowAttackVisual(attackDirection));
+
+        Debug.Log($"Attack performed: Direction={attackTrigger}, Radius={attackRadius}");
     }
 
-    private string DetermineAttackDirection()
+    private Vector2 DetermineAttackDirection()
     {
-        Vector2 movement = playerMovement.GetLastMovementDirection();
-
-        if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
+        Vector2 lastDirection = playerMovement.GetLastMovementDirection();
+        
+        if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
         {
-            return (movement.x > 0) ? "AttackRight" : "AttackLeft";
+            return lastDirection.x > 0 ? Vector2.right : Vector2.left;
         }
-        else if (movement.y != 0)
+        else
         {
-            return (movement.y > 0) ? "AttackUp" : "AttackDown";
+            return lastDirection.y > 0 ? Vector2.up : Vector2.down;
         }
-
-        return "AttackDown"; // Default
     }
 
-    private void PerformAttack()
+    private string GetAttackTrigger(Vector2 direction)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        if (direction == Vector2.right) return "AttackRight";
+        if (direction == Vector2.left) return "AttackLeft";
+        if (direction == Vector2.up) return "AttackUp";
+        return "AttackDown";
+    }
 
-        bool hitEnemy = false;
+    private Vector2 GetCharacterCenter()
+    {
+        return (Vector2)transform.position + characterCenterOffset;
+    }
+
+    private void PerformAttack(Vector2 attackDirection)
+    {
+        Vector2 attackCenter = GetCharacterCenter() + attackDirection * attackOffset;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackCenter, attackRadius);
+
         foreach (Collider2D collider in hitColliders)
         {
-            EnemyHealth enemy = collider.GetComponent<EnemyHealth>();
-            if (enemy != null)
+            if (collider.TryGetComponent(out EnemyHealth enemy))
             {
-                enemy.TakeDamage(attributes.damage);
-                hitEnemy = true;
+                enemy.TakeDamage(attackDamage);
             }
         }
 
-        if (hitEnemy)
-        {
-            // Play hit sound or particle effect
-            // AudioManager.Instance.PlaySound("EnemyHit");
-            // ParticleSystem.Play();
-        }
+        Debug.Log($"Enemies hit: {hitColliders.Length}");
     }
 
-    public void TriggerAttack()
+    private IEnumerator ShowAttackVisual(Vector2 attackDirection)
     {
-        if (CanAttack())
+        UpdateAttackRangeVisual(attackDirection);
+        attackRangeVisual.SetActive(true);
+
+        yield return new WaitForSeconds(attackVisualDuration);
+
+        attackRangeVisual.SetActive(false);
+    }
+
+    private void CreateAttackRangeVisual()
+    {
+        attackRangeVisual = new GameObject("AttackRangeVisual");
+        attackRangeVisual.transform.SetParent(transform);
+
+        SpriteRenderer spriteRenderer = attackRangeVisual.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = CreateCircleSprite();
+        spriteRenderer.color = attackVisualColor;
+        spriteRenderer.sortingLayerName = "Aeneas";
+        spriteRenderer.sortingOrder = 1;
+
+        attackRangeVisual.SetActive(false);
+    }
+
+    private Sprite CreateCircleSprite()
+    {
+        int textureSize = 128;
+        Texture2D texture = new Texture2D(textureSize, textureSize);
+        Color[] colors = new Color[textureSize * textureSize];
+
+        for (int y = 0; y < textureSize; y++)
         {
-            Attack();
+            for (int x = 0; x < textureSize; x++)
+            {
+                float distance = Vector2.Distance(new Vector2(x, y), new Vector2(textureSize / 2, textureSize / 2));
+                colors[y * textureSize + x] = distance < textureSize / 2 ? Color.white : Color.clear;
+            }
+        }
+
+        texture.SetPixels(colors);
+        texture.Apply();
+
+        return Sprite.Create(texture, new Rect(0, 0, textureSize, textureSize), new Vector2(0.5f, 0.5f));
+    }
+
+    private void UpdateAttackRangeVisual(Vector2 attackDirection)
+    {
+        if (attackRangeVisual != null)
+        {
+            Vector2 visualPosition = GetCharacterCenter() + attackDirection * attackOffset;
+            attackRangeVisual.transform.position = visualPosition;
+            attackRangeVisual.transform.localScale = Vector3.one * (attackRadius * 2);
+
+            Debug.Log($"Attack visual: Position={visualPosition}, Scale={attackRangeVisual.transform.localScale}");
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Vector2 characterCenter = GetCharacterCenter();
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(characterCenter, 0.1f); // Draw character center
+
+        if (playerMovement != null)
+        {
+            Vector2 attackDirection = DetermineAttackDirection();
+            Vector2 attackCenter = characterCenter + attackDirection * attackOffset;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackCenter, attackRadius);
+        }
     }
 }

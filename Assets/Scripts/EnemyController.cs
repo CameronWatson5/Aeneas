@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -8,60 +6,103 @@ public class EnemyController : MonoBehaviour
     public float detectionRange = 5f;
     public int damageAmount = 10;
     public float damageCooldown = 1f;
-    public LayerMask obstacleLayer; 
+    public LayerMask obstacleLayer;
+    public float avoidanceRadius = 0.5f;
 
     private Transform player;
     private AeneasAttributes playerAttributes;
     private float lastDamageTime;
     private EnemyHealth health;
+    private Rigidbody2D rb;
     private Collider2D enemyCollider;
 
     void Start()
     {
         health = GetComponent<EnemyHealth>();
+        rb = GetComponent<Rigidbody2D>();
         enemyCollider = GetComponent<Collider2D>();
+
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0;
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            rb.freezeRotation = true;
+        }
+
+        if (enemyCollider == null)
+        {
+            Debug.LogError("No Collider2D found on the enemy. Please add a collider to the enemy prefab.");
+        }
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             player = playerObject.transform;
             playerAttributes = playerObject.GetComponent<AeneasAttributes>();
+            Debug.Log("Player found and assigned.");
         }
         else
         {
             Debug.LogError("Player not found in the scene!");
         }
+
+        // Ensure the obstacle layer includes the Collision layer
+        obstacleLayer |= (1 << LayerMask.NameToLayer("Collision"));
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (player != null && !health.IsDead)
+        if (player != null && health != null && !health.IsDead)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            
             if (distanceToPlayer <= detectionRange)
             {
-                MoveTowardsPlayer();
+                Vector2 moveDirection = CalculateMoveDirection();
+                MoveEnemy(moveDirection);
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
             }
         }
     }
 
-    void MoveTowardsPlayer()
+    Vector2 CalculateMoveDirection()
     {
         Vector2 direction = (player.position - transform.position).normalized;
-        Vector2 newPosition = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
+        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius);
+        Vector2 avoidanceVector = Vector2.zero;
 
-        // Check for collisions before moving
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, enemyCollider.bounds.extents.x, direction, moveSpeed * Time.deltaTime, obstacleLayer);
-
-        if (!hit)
+        foreach (Collider2D enemy in nearbyEnemies)
         {
-            transform.position = newPosition;
+            if (enemy != null && enemy.gameObject != gameObject)
+            {
+                Vector2 avoidDir = (transform.position - enemy.transform.position).normalized;
+                avoidanceVector += avoidDir;
+            }
         }
+
+        return (direction + avoidanceVector.normalized).normalized;
+    }
+
+    void MoveEnemy(Vector2 direction)
+    {
+        Vector2 newPosition = rb.position + direction * moveSpeed * Time.fixedDeltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, moveSpeed * Time.fixedDeltaTime, obstacleLayer);
+
+        if (hit.collider != null)
+        {
+            // If there's an obstacle, move as close as we can to it
+            newPosition = hit.point - direction * enemyCollider.bounds.extents.x;
+        }
+
+        rb.MovePosition(newPosition);
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (!health.IsDead && collision.gameObject.CompareTag("Player") && Time.time >= lastDamageTime + damageCooldown)
+        if (health != null && !health.IsDead && collision.gameObject.CompareTag("Player") && Time.time >= lastDamageTime + damageCooldown)
         {
             if (playerAttributes != null)
             {
