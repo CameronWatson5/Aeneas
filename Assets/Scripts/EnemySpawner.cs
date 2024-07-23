@@ -10,16 +10,26 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 5f;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
-    private float nextSpawnTime;
+
+    void Start()
+    {
+        StartCoroutine(SpawnEnemies());
+    }
 
     void Update()
     {
-        activeEnemies.RemoveAll(enemy => enemy == null);
+        CleanupEnemies();
+    }
 
-        if (activeEnemies.Count < maxEnemies && Time.time >= nextSpawnTime)
+    IEnumerator SpawnEnemies()
+    {
+        while (true)
         {
-            SpawnEnemy();
-            nextSpawnTime = Time.time + spawnInterval;
+            if (activeEnemies.Count < maxEnemies)
+            {
+                SpawnEnemy();
+            }
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
@@ -29,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         SetupEnemy(newEnemy);
         activeEnemies.Add(newEnemy);
+        EnemyManager.Instance.RegisterEnemy(newEnemy);
     }
 
     void SetupEnemy(GameObject enemy)
@@ -43,28 +54,30 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("EnemyHealth component not found on spawned enemy!");
         }
 
-        // Ensure other components are properly set up
-        EnemyController controller = enemy.GetComponent<EnemyController>();
-        if (controller == null)
+        if (enemy.GetComponent<EnemyController>() == null)
         {
             Debug.LogError("EnemyController component not found on spawned enemy!");
         }
 
-        Collider2D collider = enemy.GetComponent<Collider2D>();
-        if (collider == null)
+        if (enemy.GetComponent<Collider2D>() == null)
         {
             Debug.LogError("Collider2D component not found on spawned enemy!");
         }
 
-        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
-        if (rb == null)
+        if (enemy.GetComponent<Rigidbody2D>() == null)
         {
             Debug.LogError("Rigidbody2D component not found on spawned enemy!");
         }
     }
 
+    void CleanupEnemies()
+    {
+        activeEnemies.RemoveAll(enemy => enemy == null);
+    }
+
     void HandleEnemyDeath(GameObject enemy)
     {
         activeEnemies.Remove(enemy);
+        EnemyManager.Instance.UnregisterEnemy(enemy);
     }
 }

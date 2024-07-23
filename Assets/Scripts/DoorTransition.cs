@@ -14,6 +14,7 @@ public class DoorTransition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            EnemyManager.Instance.ClearEnemies();
             SceneTransitionManager.Instance.TransitionToScene(targetSceneName, spawnPointIdentifier);
         }
     }

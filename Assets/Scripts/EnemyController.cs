@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float damageCooldown = 1f;
     public LayerMask obstacleLayer;
     public float avoidanceRadius = 0.5f;
+    public float pushForce = 5f; // Added push force
 
     private Transform player;
     private AeneasAttributes playerAttributes;
@@ -108,6 +109,27 @@ public class EnemyController : MonoBehaviour
             {
                 playerAttributes.TakeDamage(damageAmount);
                 lastDamageTime = Time.time;
+            }
+
+            // Apply push force to the player while in contact
+            Rigidbody2D playerRigidbody = collision.collider.GetComponent<Rigidbody2D>();
+            if (playerRigidbody != null)
+            {
+                Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
+                playerRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Force);
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Stop the pushing force when the player is no longer in contact
+            Rigidbody2D playerRigidbody = collision.collider.GetComponent<Rigidbody2D>();
+            if (playerRigidbody != null)
+            {
+                playerRigidbody.velocity = Vector2.zero;
             }
         }
     }

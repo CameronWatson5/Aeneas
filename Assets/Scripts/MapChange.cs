@@ -22,6 +22,9 @@ public class MapChange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Clear enemies when the player enters a new area
+            EnemyManager.Instance.ClearEnemies();
+
             // Move the player
             other.transform.position += (Vector3)playerMove;
 
