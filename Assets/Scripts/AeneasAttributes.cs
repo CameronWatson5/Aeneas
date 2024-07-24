@@ -70,4 +70,3 @@ public class AeneasAttributes : MonoBehaviour
         Debug.Log("Player has died");
     }
 }
-

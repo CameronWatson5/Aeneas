@@ -10,10 +10,11 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 5f;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
+    private Coroutine spawnCoroutine;
 
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        StartSpawning();
     }
 
     void Update()
@@ -27,15 +28,18 @@ public class EnemySpawner : MonoBehaviour
         {
             if (activeEnemies.Count < maxEnemies)
             {
-                SpawnEnemy();
+                Transform spawnPoint = GetInvisibleSpawnPoint();
+                if (spawnPoint != null)
+                {
+                    SpawnEnemy(spawnPoint);
+                }
             }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(Transform spawnPoint)
     {
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         SetupEnemy(newEnemy);
         activeEnemies.Add(newEnemy);
@@ -79,5 +83,32 @@ public class EnemySpawner : MonoBehaviour
     {
         activeEnemies.Remove(enemy);
         EnemyManager.Instance.UnregisterEnemy(enemy);
+    }
+
+    Transform GetInvisibleSpawnPoint()
+    {
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            Renderer renderer = spawnPoint.GetComponent<Renderer>();
+            if (renderer != null && !renderer.isVisible)
+            {
+                return spawnPoint;
+            }
+        }
+        return null;
+    }
+
+    void StartSpawning()
+    {
+        spawnCoroutine = StartCoroutine(SpawnEnemies());
+    }
+
+    void StopSpawning()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
     }
 }

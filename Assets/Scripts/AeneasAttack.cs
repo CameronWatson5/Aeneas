@@ -8,6 +8,7 @@ public class AeneasAttack : MonoBehaviour
     [SerializeField] private float attackRadius = 1f;
     [SerializeField] private float attackOffset = 0.5f; // Distance from player center to attack center
     [SerializeField] private int attackDamage = 10;
+    [SerializeField] private float knockbackForce = 10f; // Increased knockback force
 
     [Header("Character Center Adjustment")]
     [SerializeField] private Vector2 characterCenterOffset = Vector2.zero; // Adjust this in the inspector
@@ -99,7 +100,8 @@ public class AeneasAttack : MonoBehaviour
         {
             if (collider.TryGetComponent(out EnemyHealth enemy))
             {
-                enemy.TakeDamage(attackDamage);
+                Debug.Log($"Damage dealt to {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
+                enemy.TakeDamage(attackDamage, attackDirection, knockbackForce);
             }
         }
 
