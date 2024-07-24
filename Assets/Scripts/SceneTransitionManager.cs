@@ -1,5 +1,3 @@
-// The purpose of this script is to create a fade to black when a player leaves a scene.
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,7 +6,7 @@ using System.Collections;
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance { get; private set; }
-    
+
     [SerializeField] private float fadeDuration = 1f;
     private CanvasGroup fadeCanvasGroup;
     private string targetSceneName;
@@ -35,14 +33,14 @@ public class SceneTransitionManager : MonoBehaviour
         Canvas canvas = fadeCanvas.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 999;
-        
+
         CanvasScaler scaler = fadeCanvas.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-        
+
         fadeCanvasGroup = fadeCanvas.AddComponent<CanvasGroup>();
-        
+
         GameObject fadeImage = new GameObject("Fade Image");
         fadeImage.transform.SetParent(fadeCanvas.transform);
         RectTransform rectTransform = fadeImage.AddComponent<RectTransform>();
@@ -50,7 +48,7 @@ public class SceneTransitionManager : MonoBehaviour
         rectTransform.anchorMax = Vector2.one;
         rectTransform.sizeDelta = Vector2.zero;
         rectTransform.anchoredPosition = Vector2.zero;
-        
+
         Image image = fadeImage.AddComponent<Image>();
         image.color = Color.black;
 
@@ -85,5 +83,16 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         fadeCanvasGroup.alpha = targetAlpha;
+    }
+
+    public void ResetChestStates()
+    {
+        PlayerPrefs.DeleteAll(); 
+    }
+
+    public void StartNewGame(string sceneName, string spawnPoint)
+    {
+        ResetChestStates();
+        TransitionToScene(sceneName, spawnPoint);
     }
 }

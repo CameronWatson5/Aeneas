@@ -15,12 +15,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lastMovementDirection;
     private Animator animator;
     private AeneasAttributes aeneasAttributes;
+    private bool canMove = true;  // New variable to control player movement
 
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
     private const string MOVE_X = "moveX";
     private const string MOVE_Y = "moveY";
     private const string MOVING = "moving";
+
+    public bool CanMove
+    {
+        get { return canMove; }
+        set { canMove = value; }
+    }
 
     private void Awake()
     {
@@ -88,6 +95,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canMove)
+        {
+            animator.SetBool(MOVING, false);
+            return;
+        }
+
         change.x = Input.GetAxisRaw(HORIZONTAL);
         change.y = Input.GetAxisRaw(VERTICAL);
 
@@ -134,4 +147,3 @@ public class PlayerMovement : MonoBehaviour
         return change;
     }
 }
-

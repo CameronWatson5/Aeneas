@@ -7,7 +7,7 @@ public class GateController : MonoBehaviour
     public Sprite openSprite;
     public TextMeshProUGUI interactionText;
     public GameObject interactionPromptCanvas;
-    public string promptText = "Press E to open the gate";
+    public string promptText = "Press E to interact";
     public float resetTime = 3.0f;
 
     private SpriteRenderer spriteRenderer;

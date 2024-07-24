@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
 
 public class PopUp : MonoBehaviour
 {
     public GameObject popupPanel;
     public Button closeButton;
     public TextMeshProUGUI instructionsText;
+    public float delayBeforePopup = 1f; // Delay before showing the popup
 
     // Static variable to track if the popup has been shown this game session
     private static bool hasShownThisSession = false;
@@ -19,7 +19,7 @@ public class PopUp : MonoBehaviour
 
         if (!hasShownThisSession)
         {
-            ShowPopup();
+            StartCoroutine(ShowPopupWithDelay());
         }
         else
         {
@@ -27,19 +27,34 @@ public class PopUp : MonoBehaviour
         }
     }
 
+    IEnumerator ShowPopupWithDelay()
+    {
+        Debug.Log("Starting delay before showing popup");
+        yield return new WaitForSecondsRealtime(delayBeforePopup);
+        ShowPopup();
+    }
+
     void ShowPopup()
     {
-        popupPanel.SetActive(true);
-        Time.timeScale = 0f;
+        if (!popupPanel.activeSelf) // Ensure the popup is not already active
+        {
+            Debug.Log("Showing popup");
+            popupPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     void ClosePopup()
     {
-        popupPanel.SetActive(false);
-        Time.timeScale = 1f;
-        
-        // Mark that popup has shown this session
-        hasShownThisSession = true;
+        if (popupPanel.activeSelf) // Ensure the popup is currently active
+        {
+            Debug.Log("Closing popup");
+            popupPanel.SetActive(false);
+            Time.timeScale = 1f;
+            
+            // Mark that popup has shown this session
+            hasShownThisSession = true;
+        }
     }
 
     public void SetPopupText(string text)
@@ -52,6 +67,7 @@ public class PopUp : MonoBehaviour
 
     public void ResetPopup()
     {
+        Debug.Log("Resetting popup for new session");
         hasShownThisSession = false;
     }
 }
