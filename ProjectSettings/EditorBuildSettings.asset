@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Indoor.unity
     guid: b63e8862db0a13e45a33313cef2fe055
+  - enabled: 1
+    path: Assets/Scenes/PauseMenu.unity
+    guid: 95a431f5c77ef60469ec04d49c689d0b
   m_configObjects: {}

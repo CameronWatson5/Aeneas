@@ -307,6 +307,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Troy
   spawnPointIdentifier: TroyHouse1Exit
+--- !u!1 &65029792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65029794}
+  - component: {fileID: 65029793}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &65029793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65029792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a9ee05ed8f3bf49a19250ba604f333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &65029794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65029792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 461.44623, y: 242.72745, z: 1.9419085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105365452
 GameObject:
   m_ObjectHideFlags: 0
@@ -24395,7 +24439,6 @@ GameObject:
   m_Component:
   - component: {fileID: 687798221}
   - component: {fileID: 687798220}
-  - component: {fileID: 687798219}
   - component: {fileID: 687798222}
   m_Layer: 0
   m_Name: Main Camera
@@ -24404,14 +24447,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &687798219
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687798218}
-  m_Enabled: 1
 --- !u!20 &687798220
 Camera:
   m_ObjectHideFlags: 0
@@ -36586,3 +36621,4 @@ SceneRoots:
   - {fileID: 839601258}
   - {fileID: 1470360921}
   - {fileID: 1339013613}
+  - {fileID: 65029794}

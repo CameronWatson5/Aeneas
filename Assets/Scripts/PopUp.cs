@@ -15,6 +15,12 @@ public class PopUp : MonoBehaviour
 
     void Start()
     {
+        if (closeButton == null || popupPanel == null || instructionsText == null)
+        {
+            Debug.LogError("PopUp UI elements are not assigned properly in the Inspector.");
+            return;
+        }
+
         closeButton.onClick.AddListener(ClosePopup);
 
         if (!hasShownThisSession)
@@ -36,24 +42,32 @@ public class PopUp : MonoBehaviour
 
     void ShowPopup()
     {
-        if (!popupPanel.activeSelf) // Ensure the popup is not already active
+        if (popupPanel != null && !popupPanel.activeSelf) // Ensure the popup is not already active
         {
             Debug.Log("Showing popup");
             popupPanel.SetActive(true);
             Time.timeScale = 0f;
         }
+        else
+        {
+            Debug.LogError("Popup panel is missing or already active.");
+        }
     }
 
     void ClosePopup()
     {
-        if (popupPanel.activeSelf) // Ensure the popup is currently active
+        if (popupPanel != null && popupPanel.activeSelf) // Ensure the popup is currently active
         {
             Debug.Log("Closing popup");
             popupPanel.SetActive(false);
             Time.timeScale = 1f;
-            
+
             // Mark that popup has shown this session
             hasShownThisSession = true;
+        }
+        else
+        {
+            Debug.LogError("Popup panel is missing or not active.");
         }
     }
 
@@ -62,6 +76,10 @@ public class PopUp : MonoBehaviour
         if (instructionsText != null)
         {
             instructionsText.text = text;
+        }
+        else
+        {
+            Debug.LogError("Instructions text is not assigned.");
         }
     }
 
