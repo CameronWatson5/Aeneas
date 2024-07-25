@@ -3,17 +3,19 @@ using UnityEngine.EventSystems;
 
 public class SingletonEventSystem : MonoBehaviour
 {
-    private static SingletonEventSystem _instance;
+    private static EventSystem _instance;
 
     void Awake()
     {
         if (_instance == null)
         {
-            _instance = this;
+            _instance = GetComponent<EventSystem>();
             DontDestroyOnLoad(gameObject);
+            Debug.Log("SingletonEventSystem created: " + gameObject.name);
         }
         else
         {
+            Debug.Log("Destroying duplicate EventSystem: " + gameObject.name);
             Destroy(gameObject);
         }
     }

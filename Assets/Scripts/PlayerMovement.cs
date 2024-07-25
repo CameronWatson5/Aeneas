@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lastMovementDirection;
     private Animator animator;
     private AeneasAttributes aeneasAttributes;
-    private bool canMove = true;  // New variable to control player movement
+    private bool canMove = true;
 
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
@@ -58,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("AeneasAttributes component not found on the player object!");
         }
         PositionPlayer();
+        ResetPlayerVelocity();
+        change = Vector2.zero;
+        lastMovementDirection = Vector2.zero;
         Debug.Log("PlayerMovement initialized.");
     }
 
@@ -75,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
             if (spawnPoint != null)
             {
                 transform.position = spawnPoint.transform.position;
+                ResetPlayerVelocity();
             }
             else
             {
@@ -87,9 +91,19 @@ public class PlayerMovement : MonoBehaviour
             float x = PlayerPrefs.GetFloat("SpawnPositionX");
             float y = PlayerPrefs.GetFloat("SpawnPositionY");
             transform.position = new Vector2(x, y);
+            ResetPlayerVelocity();
 
             PlayerPrefs.DeleteKey("SpawnPositionX");
             PlayerPrefs.DeleteKey("SpawnPositionY");
+        }
+    }
+
+    private void ResetPlayerVelocity()
+    {
+        if (myRigidBody != null)
+        {
+            myRigidBody.velocity = Vector2.zero;
+            myRigidBody.angularVelocity = 0f;
         }
     }
 

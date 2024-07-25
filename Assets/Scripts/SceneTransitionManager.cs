@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class SceneTransitionManager : MonoBehaviour
         SceneManager.LoadScene(targetSceneName);
         PlayerPrefs.SetString("SpawnPointIdentifier", spawnPointIdentifier);
         yield return StartCoroutine(Fade(0f));
+        CleanupDuplicateEventSystems();
     }
 
     private IEnumerator Fade(float targetAlpha)
@@ -85,9 +87,26 @@ public class SceneTransitionManager : MonoBehaviour
         fadeCanvasGroup.alpha = targetAlpha;
     }
 
+    private void CleanupDuplicateEventSystems()
+    {
+        var eventSystems = FindObjectsOfType<EventSystem>();
+        Debug.Log("Number of EventSystems found: " + eventSystems.Length);
+        if (eventSystems.Length > 1)
+        {
+            for (int i = 0; i < eventSystems.Length; i++)
+            {
+                if (eventSystems[i].gameObject.GetComponent<SingletonEventSystem>() == null)
+                {
+                    Debug.Log("Destroying non-singleton EventSystem: " + eventSystems[i].gameObject.name);
+                    Destroy(eventSystems[i].gameObject);
+                }
+            }
+        }
+    }
+
     public void ResetChestStates()
     {
-        PlayerPrefs.DeleteAll(); 
+        PlayerPrefs.DeleteAll();
     }
 
     public void StartNewGame(string sceneName, string spawnPoint)

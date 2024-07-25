@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AeneasAttributes : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class AeneasAttributes : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        ResetAttributes();
     }
 
     public void TakeDamage(int amount)
@@ -68,5 +69,16 @@ public class AeneasAttributes : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
+        // Load the Game Over scene
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void ResetAttributes()
+    {
+        currentHealth = maxHealth;
+        damage = 10;
+        armor = 0;
+        speed = 5.0f;
+        gold = 0;
     }
 }
