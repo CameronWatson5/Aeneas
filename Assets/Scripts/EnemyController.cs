@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class EnemyController : MonoBehaviour
     public float damageCooldown = 1f;
     public LayerMask obstacleLayer;
     public float avoidanceRadius = 0.5f;
-    public float pushForce = 5f; // Added push force
+    public float pushForce = 5f;
+    public float randomMoveDuration = 2f;
+    public float pauseDuration = 1f;
 
     private Transform player;
     private AeneasAttributes playerAttributes;
@@ -16,6 +19,8 @@ public class EnemyController : MonoBehaviour
     private EnemyHealth health;
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
+    private Vector2 randomMoveDirection;
+    private bool isMovingRandomly = false;
 
     void Start()
     {
@@ -48,8 +53,9 @@ public class EnemyController : MonoBehaviour
             Debug.LogError("Player not found in the scene!");
         }
 
-        // Ensure the obstacle layer includes the Collision layer
         obstacleLayer |= (1 << LayerMask.NameToLayer("Collision"));
+
+        StartCoroutine(RandomMovementCoroutine());
     }
 
     void FixedUpdate()
@@ -61,6 +67,11 @@ public class EnemyController : MonoBehaviour
             {
                 Vector2 moveDirection = CalculateMoveDirection();
                 MoveEnemy(moveDirection);
+                isMovingRandomly = false;
+            }
+            else if (isMovingRandomly)
+            {
+                MoveEnemy(randomMoveDirection);
             }
             else
             {
@@ -94,8 +105,11 @@ public class EnemyController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            // If there's an obstacle, move as close as we can to it
             newPosition = hit.point - direction * enemyCollider.bounds.extents.x;
+            if (isMovingRandomly)
+            {
+                randomMoveDirection = Vector2.Reflect(randomMoveDirection, hit.normal).normalized;
+            }
         }
 
         rb.MovePosition(newPosition);
@@ -111,7 +125,6 @@ public class EnemyController : MonoBehaviour
                 lastDamageTime = Time.time;
             }
 
-            // Apply push force to the player while in contact
             Rigidbody2D playerRigidbody = collision.collider.GetComponent<Rigidbody2D>();
             if (playerRigidbody != null)
             {
@@ -125,11 +138,31 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Stop the pushing force when the player is no longer in contact
             Rigidbody2D playerRigidbody = collision.collider.GetComponent<Rigidbody2D>();
             if (playerRigidbody != null)
             {
                 playerRigidbody.velocity = Vector2.zero;
+            }
+        }
+    }
+
+    IEnumerator RandomMovementCoroutine()
+    {
+        while (true)
+        {
+            if (player != null && Vector2.Distance(transform.position, player.position) > detectionRange)
+            {
+                randomMoveDirection = Random.insideUnitCircle.normalized;
+                isMovingRandomly = true;
+                yield return new WaitForSeconds(randomMoveDuration);
+
+                isMovingRandomly = false;
+                rb.velocity = Vector2.zero;
+                yield return new WaitForSeconds(pauseDuration);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }

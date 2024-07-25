@@ -1,62 +1,181 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    [Header("Main UI References")]
+    public Canvas pauseMenuCanvas;
     public Button resumeButton;
     public Button quitButton;
-    public Canvas pauseMenuCanvas;
+
+    [Header("Inventory")]
+    public Transform inventoryContent;
+    public GameObject inventoryItemPrefab;
+
+    [Header("Equipment Slots")]
+    public Image swordSlot;
+    public Image shieldSlot;
+    public Image helmetSlot;
+    public Image bootsSlot;
+    public TMP_Text swordText;
+    public TMP_Text shieldText;
+    public TMP_Text helmetText;
+    public TMP_Text bootsText;
+
+    private InventoryManager inventoryManager;
     private string previousScene;
 
     void Start()
     {
-        // Retrieve the previous scene name from PlayerPrefs
+        InitializePauseMenu();
+        SetupButtonListeners();
+        PopulateInventory();
+        UpdateEquipmentDisplay();
+    }
+
+    void InitializePauseMenu()
+    {
         previousScene = PlayerPrefs.GetString("PreviousScene");
 
-        // Ensure the pause menu canvas is active
-        if (pauseMenuCanvas != null)
-        {
-            pauseMenuCanvas.gameObject.SetActive(true);
-        }
-        else
-        {
+        if (pauseMenuCanvas == null)
             Debug.LogError("PauseMenuCanvas is not assigned in the Inspector.");
+
+        inventoryManager = InventoryManager.Instance;
+        if (inventoryManager == null)
+            Debug.LogError("InventoryManager not found. Ensure it exists in the scene and is marked DontDestroyOnLoad.");
+
+        if (inventoryContent == null)
+            Debug.LogError("Inventory Content is not assigned. This should be the Content of your Inventory Scroll View.");
+    }
+
+    void SetupButtonListeners()
+    {
+        SetupButton(resumeButton, ResumeGame, "ResumeButton");
+        SetupButton(quitButton, QuitGame, "QuitButton");
+
+        SetupEquipmentSlotButton(swordSlot, ItemType.Sword);
+        SetupEquipmentSlotButton(shieldSlot, ItemType.Shield);
+        SetupEquipmentSlotButton(helmetSlot, ItemType.Helmet);
+        SetupEquipmentSlotButton(bootsSlot, ItemType.Boots);
+    }
+
+    void SetupButton(Button button, UnityEngine.Events.UnityAction action, string buttonName)
+    {
+        if (button != null)
+            button.onClick.AddListener(action);
+        else
+            Debug.LogError($"{buttonName} is not assigned in the Inspector.");
+    }
+
+    void SetupEquipmentSlotButton(Image slotImage, ItemType itemType)
+    {
+        Button slotButton = slotImage.GetComponentInChildren<Button>();
+        if (slotButton != null)
+            slotButton.onClick.AddListener(() => UnequipItem(itemType));
+        else
+            Debug.LogError($"Button not found in {itemType} slot.");
+    }
+
+    void PopulateInventory()
+    {
+        if (inventoryManager == null || inventoryContent == null || inventoryItemPrefab == null)
+        {
+            Debug.LogError("Inventory components are not properly set up.");
+            return;
         }
 
-        // Assign button listeners
-        if (resumeButton != null)
+        // Clear the existing inventory items
+        foreach (Transform child in inventoryContent)
         {
-            resumeButton.onClick.AddListener(ResumeGame);
-        }
-        else
-        {
-            Debug.LogError("ResumeButton is not assigned in the Inspector.");
+            Destroy(child.gameObject);
         }
 
-        if (quitButton != null)
+        // Populate the inventory with unequipped items
+        foreach (InventoryItem item in inventoryManager.inventory)
         {
-            quitButton.onClick.AddListener(QuitGame);
+            Debug.Log($"Item in inventory: {item.itemName}, Equipped: {item.isEquipped}");
+
+            if (!item.isEquipped)
+            {
+                GameObject itemObj = Instantiate(inventoryItemPrefab, inventoryContent);
+                ItemUI itemUI = itemObj.GetComponent<ItemUI>();
+                if (itemUI != null)
+                {
+                    itemUI.SetupItem(item, OnItemClicked);
+                }
+                else
+                {
+                    Debug.LogError("ItemUI component not found on the instantiated prefab.");
+                }
+            }
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryContent.GetComponent<RectTransform>());
+    }
+
+
+    void OnItemClicked(InventoryItem item)
+    {
+        Debug.Log($"Item clicked: {item.itemName}, Equipped: {item.isEquipped}");
+
+        if (item.isEquipped)
+            inventoryManager.UnequipItem(item.itemType);
         else
+            inventoryManager.EquipItem(item);
+
+        UpdateEquipmentDisplay();
+        PopulateInventory();
+    }
+
+    void UnequipItem(ItemType itemType)
+    {
+        inventoryManager.UnequipItem(itemType);
+        UpdateEquipmentDisplay();
+        PopulateInventory();
+    }
+
+    void EquipItem(ItemType itemType)
+    {
+        InventoryItem itemToEquip = inventoryManager.inventory.Find(item => item.itemType == itemType && !item.isEquipped);
+        if (itemToEquip != null)
         {
-            Debug.LogError("QuitButton is not assigned in the Inspector.");
+            inventoryManager.EquipItem(itemToEquip);
+            UpdateEquipmentDisplay();
+            PopulateInventory();
         }
     }
 
-    void Update()
+    void UpdateEquipmentDisplay()
     {
-        // Handle Escape key to resume game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        UpdateEquipmentSlot(swordSlot, swordText, ItemType.Sword);
+        UpdateEquipmentSlot(shieldSlot, shieldText, ItemType.Shield);
+        UpdateEquipmentSlot(helmetSlot, helmetText, ItemType.Helmet);
+        UpdateEquipmentSlot(bootsSlot, bootsText, ItemType.Boots);
+    }
+
+    void UpdateEquipmentSlot(Image slotImage, TMP_Text slotText, ItemType itemType)
+    {
+        InventoryItem equippedItem = inventoryManager.GetEquippedItem(itemType);
+        if (equippedItem != null)
         {
-            ResumeGame();
+            slotImage.sprite = equippedItem.icon;
+            slotText.text = equippedItem.itemName;
+            slotImage.color = Color.white;
+        }
+        else
+        {
+            slotImage.sprite = null;
+            slotText.text = "Empty";
+            slotImage.color = new Color(1, 1, 1, 0);
         }
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        if (!string.IsNullOrEmpty(previousScene))
+        if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
             SceneManager.UnloadSceneAsync("PauseMenu");
         }

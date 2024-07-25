@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 500
+  detectionRange: 5
   damageAmount: 10
   damageCooldown: 1
   obstacleLayer:
@@ -177,6 +177,8 @@ MonoBehaviour:
     m_Bits: 128
   avoidanceRadius: 0
   pushForce: 5
+  randomMoveDuration: 2
+  pauseDuration: 1
 --- !u!114 &8470182420197135761
 MonoBehaviour:
   m_ObjectHideFlags: 0

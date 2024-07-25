@@ -1,0 +1,199 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
+
+public class ShopManager : MonoBehaviour
+{
+    [Header("Shop Items")]
+    public List<ShopItem> shopItems = new List<ShopItem>();
+
+    [Header("UI References")]
+    public Canvas shopCanvas;
+    public GameObject shopPanel;
+    public TextMeshProUGUI shopTitleText;
+    public Transform itemListContent;
+    public TextMeshProUGUI playerGoldText;
+    public Button exitButton;
+    public GameObject itemPrefab;
+
+    [Header("Player References")]
+    private AeneasAttributes playerAttributes;
+
+    [Header("Inventory")]
+    public InventoryManager inventoryManager;
+
+    private bool isShopOpen = false;
+
+    void Start()
+    {
+        FindPlayerAttributes();
+        InitializeShop();
+        AdjustContentSize();
+        if (itemListContent == null)
+        {
+            Debug.LogError("itemListContent is not assigned in ShopManager!");
+        }
+        else
+        {
+            Debug.Log($"itemListContent has {itemListContent.childCount} children");
+        }
+        if (inventoryManager == null)
+        {
+            inventoryManager = FindObjectOfType<InventoryManager>();
+            if (inventoryManager == null)
+            {
+                Debug.LogError("InventoryManager not found in the scene!");
+            }
+        }
+    }
+
+    void AdjustContentSize()
+    {
+        RectTransform contentRect = itemListContent.GetComponent<RectTransform>();
+        RectTransform itemRect = itemPrefab.GetComponent<RectTransform>();
+        float totalHeight = shopItems.Count * (itemRect.rect.height + 10); // 10 is the spacing
+        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, totalHeight);
+    }
+
+    void FindPlayerAttributes()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerAttributes = player.GetComponent<AeneasAttributes>();
+            if (playerAttributes == null)
+            {
+                Debug.LogError("AeneasAttributes component not found on the Player!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player not found in the scene!");
+        }
+    }
+
+    void InitializeShop()
+    {
+        if (playerAttributes == null)
+        {
+            playerAttributes = FindObjectOfType<AeneasAttributes>();
+            if (playerAttributes == null)
+            {
+                Debug.LogError("Player Attributes not found!");
+                return;
+            }
+        }
+
+        if (shopCanvas == null)
+        {
+            Debug.LogError("Shop Canvas is not assigned!");
+            return;
+        }
+
+        exitButton.onClick.AddListener(ToggleShop);
+        shopCanvas.enabled = false; // Ensure the canvas starts disabled
+        shopPanel.SetActive(false);
+        PopulateShop();
+        UpdatePlayerGoldDisplay();
+    }
+
+    public void ToggleShop()
+    {
+        isShopOpen = !isShopOpen;
+        shopCanvas.enabled = isShopOpen;
+        shopPanel.SetActive(isShopOpen);
+
+        Debug.Log($"Shop toggled. IsShopOpen: {isShopOpen}");
+
+        if (isShopOpen)
+        {
+            Time.timeScale = 0f; // Pause the game while shop is open
+            UpdatePlayerGoldDisplay();
+            Debug.Log("Shop opened and game paused");
+            Debug.Log($"Shop panel active: {shopPanel.activeSelf}, Shop panel in hierarchy: {shopPanel.activeInHierarchy}");
+            CheckItemVisibility();
+        }
+        else
+        {
+            Time.timeScale = 1f; // Resume the game when shop is closed
+            Debug.Log("Shop closed and game resumed");
+        }
+    }
+
+    void PopulateShop()
+    {
+        foreach (Transform child in itemListContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (ShopItem item in shopItems)
+        {
+            GameObject itemObj = Instantiate(itemPrefab, itemListContent);
+            EquippableItemUI itemUI = itemObj.GetComponent<EquippableItemUI>();
+            if (itemUI != null)
+            {
+                itemUI.SetupItem(item, BuyItem);
+                Debug.Log($"Added item: {item.itemName} to shop at position {itemObj.transform.position}");
+            }
+            else
+            {
+                Debug.LogError("EquippableItemUI component not found on the instantiated prefab.");
+            }
+        }
+
+        // Force layout update
+        LayoutRebuilder.ForceRebuildLayoutImmediate(itemListContent as RectTransform);
+    }
+
+    void CheckItemVisibility()
+    {
+        foreach (RectTransform child in itemListContent)
+        {
+            EquippableItemUI itemUI = child.GetComponent<EquippableItemUI>();
+            if (itemUI != null)
+            {
+                Vector3[] corners = new Vector3[4];
+                child.GetWorldCorners(corners);
+                bool isVisible = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(Camera.main), new Bounds(child.position, corners[2] - corners[0]));
+                Debug.Log($"Item {itemUI.itemNameText.text} is visible: {isVisible}");
+            }
+        }
+    }
+
+    void BuyItem(ShopItem item)
+    {
+        if (playerAttributes.SpendGold(item.price))
+        {
+            InventoryItem newItem = new InventoryItem
+            {
+                itemName = item.itemName,
+                quantity = 1,
+                itemType = item.itemType,
+                icon = item.icon,
+                isEquipped = false 
+            };
+
+            if (inventoryManager.AddItem(newItem))
+            {
+                UpdatePlayerGoldDisplay();
+                Debug.Log($"Bought {item.itemName} and added to inventory");
+            }
+            else
+            {
+                Debug.Log("Inventory is full");
+                playerAttributes.AddGold(item.price); // Refund the gold
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough gold");
+        }
+    }
+
+    void UpdatePlayerGoldDisplay()
+    {
+        playerGoldText.text = $"Gold: {playerAttributes.gold}";
+    }
+}

@@ -38,7 +38,8 @@ public class AeneasAttributes : MonoBehaviour
     public void IncreaseHealth(int amount)
     {
         maxHealth += amount;
-        currentHealth = maxHealth; 
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     public void IncreaseDamage(int amount)
