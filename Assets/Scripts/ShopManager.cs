@@ -20,14 +20,14 @@ public class ShopManager : MonoBehaviour
     [Header("Player References")]
     private AeneasAttributes playerAttributes;
 
-    [Header("Inventory")]
-    public InventoryManager inventoryManager;
+    private InventoryManager inventoryManager;
 
     private bool isShopOpen = false;
 
     void Start()
     {
         FindPlayerAttributes();
+        FindInventoryManager();
         InitializeShop();
         AdjustContentSize();
         if (itemListContent == null)
@@ -37,14 +37,6 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log($"itemListContent has {itemListContent.childCount} children");
-        }
-        if (inventoryManager == null)
-        {
-            inventoryManager = FindObjectOfType<InventoryManager>();
-            if (inventoryManager == null)
-            {
-                Debug.LogError("InventoryManager not found in the scene!");
-            }
         }
     }
 
@@ -70,6 +62,15 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.LogError("Player not found in the scene!");
+        }
+    }
+
+    void FindInventoryManager()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        if (inventoryManager == null)
+        {
+            Debug.LogError("InventoryManager not found in the scene!");
         }
     }
 
@@ -143,8 +144,7 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        // Force layout update
-        LayoutRebuilder.ForceRebuildLayoutImmediate(itemListContent as RectTransform);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(itemListContent.GetComponent<RectTransform>());
     }
 
     void CheckItemVisibility()
@@ -166,19 +166,16 @@ public class ShopManager : MonoBehaviour
     {
         if (playerAttributes.SpendGold(item.price))
         {
-            InventoryItem newItem = new InventoryItem
-            {
-                itemName = item.itemName,
-                quantity = 1,
-                itemType = item.itemType,
-                icon = item.icon,
-                isEquipped = false 
-            };
+            InventoryItem newItem = ConvertShopItemToInventoryItem(item);
 
             if (inventoryManager.AddItem(newItem))
             {
                 UpdatePlayerGoldDisplay();
                 Debug.Log($"Bought {item.itemName} and added to inventory");
+
+                // Remove the item from the shop inventory
+                shopItems.Remove(item);
+                PopulateShop(); // Refresh the shop UI
             }
             else
             {
@@ -190,6 +187,20 @@ public class ShopManager : MonoBehaviour
         {
             Debug.Log("Not enough gold");
         }
+    }
+
+    InventoryItem ConvertShopItemToInventoryItem(ShopItem shopItem)
+    {
+        return new InventoryItem
+        {
+            itemName = shopItem.itemName,
+            icon = shopItem.icon,
+            itemType = shopItem.itemType,
+            damageBonus = shopItem.damageBonus,
+            armorBonus = shopItem.armorBonus,
+            healthBonus = shopItem.healthBonus,
+            isEquipped = false // By default, newly bought items are not equipped
+        };
     }
 
     void UpdatePlayerGoldDisplay()

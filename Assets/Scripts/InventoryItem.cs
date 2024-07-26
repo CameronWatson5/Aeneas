@@ -4,7 +4,6 @@ using UnityEngine;
 public class InventoryItem
 {
     public string itemName;
-    public int quantity;
     public ItemType itemType;
     public bool isEquipped;
     public Sprite icon;

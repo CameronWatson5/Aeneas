@@ -15,6 +15,7 @@ public class AeneasAttributes : MonoBehaviour
     void Start()
     {
         ResetAttributes();
+        InventoryManager.Instance?.ReapplyEquippedItemEffects();
     }
 
     public void TakeDamage(int amount)
@@ -38,8 +39,7 @@ public class AeneasAttributes : MonoBehaviour
     public void IncreaseHealth(int amount)
     {
         maxHealth += amount;
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
     }
 
     public void IncreaseDamage(int amount)
@@ -70,7 +70,6 @@ public class AeneasAttributes : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
-        // Load the Game Over scene
         SceneManager.LoadScene("GameOver");
     }
 

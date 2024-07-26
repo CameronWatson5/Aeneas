@@ -38008,6 +38008,14 @@ MonoBehaviour:
     damageBonus: 10
     armorBonus: 0
     healthBonus: 0
+    itemType: 0
+  - itemName: Heroic Shield
+    icon: {fileID: 1595307397, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 30
+    damageBonus: 0
+    armorBonus: 1
+    healthBonus: 20
+    itemType: 1
   shopCanvas: {fileID: 704047461}
   shopPanel: {fileID: 725461021}
   shopTitleText: {fileID: 392793195}

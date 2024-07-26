@@ -15,6 +15,8 @@ public class InventoryManager : MonoBehaviour
     private InventoryItem equippedBoots;
     private AeneasAttributes playerAttributes;
 
+    private bool startingItemsEquipped = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -31,6 +33,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         AddStartingItems();
+        InvokeRepeating(nameof(TryEquipStartingItems), 0f, 1f); // Check every second
     }
 
     void AddStartingItems()
@@ -38,6 +41,20 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in startingItems)
         {
             AddItem(item);
+        }
+    }
+
+    void TryEquipStartingItems()
+    {
+        EnsurePlayerAttributes();
+        if (playerAttributes != null && !startingItemsEquipped)
+        {
+            foreach (var item in startingItems)
+            {
+                EquipItem(item);
+            }
+            startingItemsEquipped = true;
+            CancelInvoke(nameof(TryEquipStartingItems)); 
         }
     }
 
@@ -74,6 +91,12 @@ public class InventoryManager : MonoBehaviour
     public void EquipItem(InventoryItem item)
     {
         EnsurePlayerAttributes();
+        if (playerAttributes == null)
+        {
+            Debug.LogWarning("Player attributes not found, cannot equip item.");
+            return;
+        }
+
         InventoryItem currentItem = GetEquippedItem(item.itemType);
         if (currentItem != null)
         {
@@ -104,6 +127,12 @@ public class InventoryManager : MonoBehaviour
     public void UnequipItem(ItemType itemType)
     {
         EnsurePlayerAttributes();
+        if (playerAttributes == null)
+        {
+            Debug.LogWarning("Player attributes not found, cannot unequip item.");
+            return;
+        }
+
         InventoryItem itemToUnequip = GetEquippedItem(itemType);
         if (itemToUnequip != null)
         {
@@ -131,15 +160,21 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-
     private void ApplyItemEffects(InventoryItem item, bool apply)
     {
         EnsurePlayerAttributes();
+        if (playerAttributes == null)
+        {
+            Debug.LogWarning("Player attributes not found, cannot apply item effects.");
+            return;
+        }
+
         int multiplier = apply ? 1 : -1;
+        Debug.Log($"Applying item effects: {item.itemName}, Damage: {item.damageBonus * multiplier}, Armor: {item.armorBonus * multiplier}, Health: {item.healthBonus * multiplier}");
         playerAttributes.IncreaseDamage(item.damageBonus * multiplier);
         playerAttributes.IncreaseArmor(item.armorBonus * multiplier);
         playerAttributes.IncreaseHealth(item.healthBonus * multiplier);
+        Debug.Log($"Player stats after applying item: Damage={playerAttributes.damage}, Armor={playerAttributes.armor}, Health={playerAttributes.maxHealth}");
     }
 
     private void EnsurePlayerAttributes()
@@ -157,7 +192,25 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Player not found in the scene!");
+                Debug.LogWarning("Player not found in the scene!");
+            }
+        }
+    }
+
+    public void ReapplyEquippedItemEffects()
+    {
+        EnsurePlayerAttributes();
+        if (playerAttributes == null)
+        {
+            Debug.LogWarning("Player attributes not found, cannot reapply item effects.");
+            return;
+        }
+
+        foreach (var item in inventory)
+        {
+            if (item.isEquipped)
+            {
+                ApplyItemEffects(item, true);
             }
         }
     }

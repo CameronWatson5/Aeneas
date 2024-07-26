@@ -651,25 +651,33 @@ MonoBehaviour:
   inventorySize: 20
   startingItems:
   - itemName: Wooden Sword
-    quantity: 1
     itemType: 0
     isEquipped: 1
     icon: {fileID: 938328706, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    damageBonus: 1
+    armorBonus: 0
+    healthBonus: 0
   - itemName: Wooden Shield
-    quantity: 1
     itemType: 1
     isEquipped: 1
     icon: {fileID: 716287721, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    damageBonus: 0
+    armorBonus: 1
+    healthBonus: 0
   - itemName: Leather Helmet
-    quantity: 1
     itemType: 2
     isEquipped: 1
     icon: {fileID: 603669163, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 1
   - itemName: Leather Boots
-    quantity: 1
     itemType: 3
     isEquipped: 1
     icon: {fileID: -287281759, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    damageBonus: 0
+    armorBonus: 1
+    healthBonus: 0
 --- !u!1 &933556659
 GameObject:
   m_ObjectHideFlags: 0
