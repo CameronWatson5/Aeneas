@@ -14,6 +14,13 @@ public class DroppableItem : MonoBehaviour
 
     public ItemType itemType;
     public int amount;
+    public float lifetime = 10f; // Time in seconds before the item is destroyed if not collected
+
+    private void Start()
+    {
+        // Start the coroutine to destroy the item after a set time
+        StartCoroutine(DestroyAfterTime());
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,7 +40,7 @@ public class DroppableItem : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Health:
-                playerAttributes.IncreaseHealth(amount);
+                playerAttributes.Heal(amount);
                 break;
             case ItemType.Damage:
                 playerAttributes.IncreaseDamage(amount);
@@ -45,5 +52,11 @@ public class DroppableItem : MonoBehaviour
                 playerAttributes.AddGold(amount);
                 break;
         }
+    }
+
+    private IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Destroy(gameObject);
     }
 }

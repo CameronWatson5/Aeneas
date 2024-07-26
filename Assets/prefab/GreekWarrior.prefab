@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1623560711626557320}
   - component: {fileID: 8470182420197135761}
   - component: {fileID: 1375126402952210079}
-  - component: {fileID: 6491516058535176748}
+  - component: {fileID: 5425136016045237743}
   m_Layer: 0
   m_Name: GreekWarrior
   m_TagString: Untagged
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 5
+  detectionRange: 30
   damageAmount: 10
   damageCooldown: 1
   obstacleLayer:
@@ -191,10 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9da2e58d005b34892bfe4dac28b1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 20
   knockbackDuration: 0.3
   droppableItems:
-  - {fileID: 8529358552149506596, guid: 66fd66059caa7864384991e99d625c60, type: 3}
+  - {fileID: 5452933889556848228, guid: 12bb2a9a4797b6d4e8ba8da945b3f7da, type: 3}
+  - {fileID: 4219909597450169019, guid: f88e6c970677b144eb90c5604e136179, type: 3}
   dropChance: 0.2
 --- !u!114 &1375126402952210079
 MonoBehaviour:
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSpeed: 0.2
---- !u!50 &6491516058535176748
+--- !u!50 &5425136016045237743
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

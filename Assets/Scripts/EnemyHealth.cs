@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject[] droppableItems; // Array of possible droppable items
     public float dropChance = 0.2f; // 20% chance to drop an item
 
-    public event Action<GameObject> OnEnemyDeath;
+    public event System.Action<GameObject> OnEnemyDeath;
 
     public int CurrentHealth
     {
@@ -22,10 +19,19 @@ public class EnemyHealth : MonoBehaviour
 
     public bool IsDead { get; private set; }
 
+    private Rigidbody2D rb;
+
     void Start()
     {
         CurrentHealth = maxHealth;
         IsDead = false;
+        rb = GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+        {
+            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+            rb.drag = 0; // Ensure drag is not too high
+        }
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection, float knockbackForce)
@@ -95,19 +101,17 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator ApplyKnockback(Vector2 direction, float force)
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        EnemyController controller = GetComponent<EnemyController>();
-        
         if (rb != null)
         {
+            rb.velocity = Vector2.zero; // Reset velocity before applying knockback
+            rb.AddForce(direction * force, ForceMode2D.Impulse);
+            Debug.Log($"Knockback applied with direction {direction} and force {force}");
+
+            EnemyController controller = GetComponent<EnemyController>();
             if (controller != null)
             {
                 controller.enabled = false; // Temporarily disable enemy movement
             }
-            
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
-            Debug.Log($"Knockback applied with direction {direction} and force {force}");
-            Debug.Log($"Enemy velocity after knockback: {rb.velocity}");
 
             yield return new WaitForSeconds(knockbackDuration); // Wait for knockback duration
 

@@ -11,6 +11,7 @@ public class AeneasAttributes : MonoBehaviour
     public int armor = 0;
     public float speed = 5.0f;
     public int gold = 0;
+    private const int maxGold = 999; 
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class AeneasAttributes : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
+        gold = Mathf.Clamp(gold, 0, maxGold); // Ensure gold does not exceed maxGold
     }
 
     public bool SpendGold(int amount)
