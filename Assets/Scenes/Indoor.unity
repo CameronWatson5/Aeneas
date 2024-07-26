@@ -157,10 +157,10 @@ RectTransform:
   - {fileID: 1370383726}
   m_Father: {fileID: 861624064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -145.66667}
-  m_SizeDelta: {x: 20, y: -17}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 395, y: 0}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &18007881
 MonoBehaviour:
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1053644063}
   m_HandleRect: {fileID: 1053644062}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -26033,7 +26033,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 1769813736}
+  m_Viewport: {fileID: 1143104934}
   m_HorizontalScrollbar: {fileID: 2118315673}
   m_VerticalScrollbar: {fileID: 18007881}
   m_HorizontalScrollbarVisibility: 2
@@ -27030,10 +27030,10 @@ RectTransform:
   - {fileID: 1769813736}
   m_Father: {fileID: 861624064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23, y: -24}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1143104935
 MonoBehaviour:
@@ -28093,7 +28093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: 0}
+  m_AnchoredPosition: {x: 0.00002969104, y: -0.000015258789}
   m_SizeDelta: {x: -300, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1769813737
@@ -28123,15 +28123,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -38002,20 +38002,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItems:
-  - itemName: Heroic Sword
+  - itemName: Neptune's Sword
     icon: {fileID: -958423545, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     price: 5
     damageBonus: 10
     armorBonus: 0
     healthBonus: 0
     itemType: 0
-  - itemName: Heroic Shield
+  - itemName: Mars' Fury
+    icon: {fileID: -603337871, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 200
+    damageBonus: 20
+    armorBonus: 0
+    healthBonus: 0
+    itemType: 0
+  - itemName: Vulcan's Forge
+    icon: {fileID: -1285625222, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 300
+    damageBonus: 30
+    armorBonus: 0
+    healthBonus: 0
+    itemType: 0
+  - itemName: Juno's Guard
     icon: {fileID: 1595307397, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
-    price: 30
+    price: 100
     damageBonus: 0
-    armorBonus: 1
-    healthBonus: 20
+    armorBonus: 3
+    healthBonus: 0
     itemType: 1
+  - itemName: Fortuna's Bulwark
+    icon: {fileID: -1804769310, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 200
+    damageBonus: 0
+    armorBonus: 4
+    healthBonus: 0
+    itemType: 1
+  - itemName: Aegis of Minerva
+    icon: {fileID: -578339240, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 300
+    damageBonus: 0
+    armorBonus: 5
+    healthBonus: 0
+    itemType: 1
+  - itemName: Virtus' Helm
+    icon: {fileID: 1498722044, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 100
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 10
+    itemType: 2
+  - itemName: Bacchus' Helmet
+    icon: {fileID: 1695249902, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 200
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 30
+    itemType: 2
+  - itemName: Crown of Jupiter
+    icon: {fileID: -1504415375, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 300
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 50
+    itemType: 2
+  - itemName: Mercury's Boots
+    icon: {fileID: -1504415375, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 20
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 5
+    itemType: 3
+  - itemName: Volturnus' Boots
+    icon: {fileID: -1504415375, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 50
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 25
+    itemType: 3
+  - itemName: Hermes' Boots
+    icon: {fileID: -1504415375, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    price: 100
+    damageBonus: 0
+    armorBonus: 0
+    healthBonus: 40
+    itemType: 3
   shopCanvas: {fileID: 704047461}
   shopPanel: {fileID: 725461021}
   shopTitleText: {fileID: 392793195}
@@ -38059,8 +38129,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -74.333336}
-  m_SizeDelta: {x: -17, y: 20}
+  m_AnchoredPosition: {x: 0, y: -229}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2118315673
 MonoBehaviour:
@@ -38105,8 +38175,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 148153539}
   m_HandleRect: {fileID: 148153538}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999813
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
