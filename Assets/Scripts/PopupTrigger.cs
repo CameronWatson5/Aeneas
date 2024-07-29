@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PopupTrigger : MonoBehaviour
 {
+    public string popupId; // Unique identifier for this popup
     public string popupText;
     public float popupDelay = 1f;
 
@@ -12,7 +13,7 @@ public class PopupTrigger : MonoBehaviour
             PopUp popup = FindObjectOfType<PopUp>();
             if (popup != null)
             {
-                StartCoroutine(popup.ShowPopupWithDelay(popupDelay, popupText));
+                StartCoroutine(popup.ShowPopupWithDelay(popupDelay, popupText, popupId));
             }
         }
     }

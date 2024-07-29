@@ -33,6 +33,14 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
         SceneManager.UnloadSceneAsync("PauseMenu");
+
+        CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        if (cameraFollow != null)
+        {
+            cameraFollow.FindPlayer();
+            cameraFollow.CalculateBounds();
+            cameraFollow.isNewScene = true; // Force camera to center on player
+        }
     }
 
     void Pause()

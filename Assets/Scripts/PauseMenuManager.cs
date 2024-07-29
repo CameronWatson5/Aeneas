@@ -29,6 +29,11 @@ public class PauseMenuManager : MonoBehaviour
     public Transform logContent; // The Transform that will hold log entries
     public GameObject logEntryPrefab; // Prefab for log entries
 
+    [Header("Button Colors")]
+    public Color normalColor = Color.white;
+    public Color pressedColor = Color.gray;
+    public Color highlightedColor = Color.gray; // Added highlight color
+
     private InventoryManager inventoryManager;
     private string previousScene;
 
@@ -49,6 +54,10 @@ public class PauseMenuManager : MonoBehaviour
         {
             Debug.LogWarning("Side Navigation Bar reference is missing.");
         }
+
+        // Set the resume and quit buttons to match the normal panel button color
+        SetButtonColors(resumeButton, normalColor);
+        SetButtonColors(quitButton, normalColor);
     }
 
     void InitializePauseMenu()
@@ -91,7 +100,10 @@ public class PauseMenuManager : MonoBehaviour
     void SetupButton(Button button, UnityEngine.Events.UnityAction action, string buttonName)
     {
         if (button != null)
+        {
             button.onClick.AddListener(action);
+            SetButtonColors(button, normalColor);
+        }
         else
             Debug.LogError($"{buttonName} is not assigned in the Inspector.");
     }
@@ -205,11 +217,30 @@ public class PauseMenuManager : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("PauseMenu");
         }
+
+        // Ensure the player and tilemap are correctly set after resuming
+        CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        if (cameraFollow != null)
+        {
+            cameraFollow.FindPlayer();
+            cameraFollow.FindTilemap();
+            cameraFollow.CalculateBounds();
+            cameraFollow.isNewScene = true; // Force camera to center on player
+        }
     }
 
     public void QuitGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void SetButtonColors(Button button, Color color)
+    {
+        ColorBlock colorBlock = button.colors;
+        colorBlock.normalColor = color;
+        colorBlock.highlightedColor = highlightedColor; // Set the highlighted color
+        colorBlock.pressedColor = pressedColor;
+        button.colors = colorBlock;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,8 +11,7 @@ public class PopUp : MonoBehaviour
     public TextMeshProUGUI instructionsText;
     public float defaultDelayBeforePopup = 1f; // Default delay before showing the popup
 
-    // Static variable to track if the popup has been shown this game session
-    private static bool hasShownThisSession = false;
+    private static Dictionary<string, bool> shownPopups = new Dictionary<string, bool>();
 
     void Start()
     {
@@ -22,49 +22,45 @@ public class PopUp : MonoBehaviour
         }
 
         closeButton.onClick.AddListener(ClosePopup);
-
-        if (!hasShownThisSession)
-        {
-            StartCoroutine(ShowPopupWithDelay(defaultDelayBeforePopup, instructionsText.text));
-        }
-        else
-        {
-            popupPanel.SetActive(false);
-        }
+        popupPanel.SetActive(false);
     }
 
-    public IEnumerator ShowPopupWithDelay(float delay, string text)
+    public IEnumerator ShowPopupWithDelay(float delay, string text, string popupId)
     {
-        Debug.Log("Starting delay before showing popup");
-        yield return new WaitForSecondsRealtime(delay);
-        ShowPopup(text);
+        if (!HasShownPopup(popupId))
+        {
+            Debug.Log("Starting delay before showing popup");
+            yield return new WaitForSecondsRealtime(delay);
+            ShowPopup(text, popupId);
+        }
     }
 
-    public void ShowPopup(string text)
+    public void ShowPopup(string text, string popupId)
     {
-        if (popupPanel != null && !popupPanel.activeSelf) // Ensure the popup is not already active
+        if (!HasShownPopup(popupId))
         {
-            instructionsText.text = text;
-            Debug.Log("Showing popup");
-            popupPanel.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Debug.LogError("Popup panel is missing or already active.");
+            if (popupPanel != null && !popupPanel.activeSelf) // Ensure the popup is not already active
+            {
+                instructionsText.text = text;
+                Debug.Log("Showing popup");
+                popupPanel.SetActive(true);
+                Time.timeScale = 0f;
+                MarkPopupAsShown(popupId);
+            }
+            else
+            {
+                Debug.LogError("Popup panel is missing or already active.");
+            }
         }
     }
 
-    void ClosePopup()
+    private void ClosePopup()
     {
         if (popupPanel != null && popupPanel.activeSelf) // Ensure the popup is currently active
         {
             Debug.Log("Closing popup");
             popupPanel.SetActive(false);
             Time.timeScale = 1f;
-
-            // Mark that popup has shown this session
-            hasShownThisSession = true;
 
             // Add the popup text to the log
             if (LogManager.Instance != null)
@@ -82,9 +78,27 @@ public class PopUp : MonoBehaviour
         }
     }
 
+    private bool HasShownPopup(string popupId)
+    {
+        return shownPopups.ContainsKey(popupId) && shownPopups[popupId];
+    }
+
+    private void MarkPopupAsShown(string popupId)
+    {
+        if (!shownPopups.ContainsKey(popupId))
+        {
+            shownPopups.Add(popupId, true);
+        }
+    }
+
     public void ResetPopup()
     {
+        shownPopups.Clear();
         Debug.Log("Resetting popup for new session");
-        hasShownThisSession = false;
+    }
+
+    public void ShowPopupOnSceneLoad(string popupId, string popupText, float popupDelay)
+    {
+        StartCoroutine(ShowPopupWithDelay(popupDelay, popupText, popupId));
     }
 }

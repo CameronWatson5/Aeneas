@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PauseMenuNavigation : MonoBehaviour
 {
     public GameObject backgroundPanel;
-    public GameObject sideNavigationBar; 
+    public GameObject sideNavigationBar;
     public GameObject mapPanel;
     public GameObject inventoryPanel;
     public GameObject controlsPanel;
@@ -18,21 +19,38 @@ public class PauseMenuNavigation : MonoBehaviour
     public Button helpButton;
     public Button logButton;
     public Button missionButton;
+    public Button resumeButton; 
+    public Button quitButton;   
+
+    public Color normalColor = Color.white;
+    public Color pressedColor = Color.gray;
+    public Color highlightedColor = Color.gray; // Added highlight color
+
+    private Dictionary<Button, GameObject> buttonPanelPairs;
+    private Button activeButton;
 
     void Start()
     {
-        mapButton.onClick.AddListener(() => SwitchPanel(mapPanel));
-        inventoryButton.onClick.AddListener(() => SwitchPanel(inventoryPanel));
-        controlsButton.onClick.AddListener(() => SwitchPanel(controlsPanel));
-        helpButton.onClick.AddListener(() => SwitchPanel(helpPanel));
-        logButton.onClick.AddListener(() => SwitchPanel(logPanel));
-        missionButton.onClick.AddListener(() => SwitchPanel(missionPanel));
-        
-        // Show the first panel by default
-        SwitchPanel(inventoryPanel);
+        buttonPanelPairs = new Dictionary<Button, GameObject>
+        {
+            { mapButton, mapPanel },
+            { inventoryButton, inventoryPanel },
+            { controlsButton, controlsPanel },
+            { helpButton, helpPanel },
+            { logButton, logPanel },
+            { missionButton, missionPanel }
+        };
+
+        foreach (var pair in buttonPanelPairs)
+        {
+            pair.Key.onClick.AddListener(() => SwitchPanel(pair.Value, pair.Key));
+        }
+
+        // Show the inventory panel by default and hide the inventory button
+        SwitchPanel(inventoryPanel, inventoryButton);
     }
 
-    void SwitchPanel(GameObject panelToShow)
+    void SwitchPanel(GameObject panelToShow, Button buttonToRemove)
     {
         // Ensure the side navigation bar remains active
         if (sideNavigationBar != null)
@@ -51,5 +69,33 @@ public class PauseMenuNavigation : MonoBehaviour
 
         // Show the selected panel
         panelToShow.SetActive(true);
+
+        // Hide the selected button and show all others
+        foreach (var pair in buttonPanelPairs)
+        {
+            pair.Key.gameObject.SetActive(pair.Key != buttonToRemove);
+        }
+
+        // Update the colors of the buttons
+        if (activeButton != null)
+        {
+            SetButtonColors(activeButton, normalColor);
+        }
+
+        SetButtonColors(buttonToRemove, pressedColor);
+        activeButton = buttonToRemove;
+
+        // Make sure resume and quit buttons match the normal color and highlighted color
+        SetButtonColors(resumeButton, normalColor);
+        SetButtonColors(quitButton, normalColor);
+    }
+
+    void SetButtonColors(Button button, Color color)
+    {
+        ColorBlock colorBlock = button.colors;
+        colorBlock.normalColor = color;
+        colorBlock.highlightedColor = highlightedColor; // Set the highlighted color
+        colorBlock.pressedColor = pressedColor;
+        button.colors = colorBlock;
     }
 }

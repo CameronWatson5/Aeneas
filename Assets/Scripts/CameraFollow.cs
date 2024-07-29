@@ -4,6 +4,7 @@
 // FollowSpeed determines how quickly the target is followed (This can be edited in Unity too)
 // The tilemap variable is a reference to the tilemap that Aeneas is on,
 // this prevents the camera from going out of bounds.
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
@@ -14,18 +15,20 @@ public class CameraFollow : MonoBehaviour
     public float followSpeed = 2f; // This is used to determine how quickly the camera follows the player
     public Tilemap tilemap; // Tilemap is the 2D map
     
-    private Transform target; // Target = player (Aeneas)
+    public Transform target; // Target = player (Aeneas)
     private Camera cam;
     private Vector3 minBounds;
     private Vector3 maxBounds;
-    private bool isNewScene = true; // New variable to track scene changes
+    public bool isNewScene = true; // Make this public
 
     void Start()
     {
         cam = GetComponent<Camera>();
         SceneManager.sceneLoaded += OnSceneLoaded;
         FindPlayer();
+        FindTilemap(); // Ensure Tilemap is found at the start
         CalculateBounds();
+        Debug.Log("CameraFollow Start: Camera initialized.");
     }
 
     void OnDestroy()
@@ -39,27 +42,37 @@ public class CameraFollow : MonoBehaviour
         FindTilemap();
         CalculateBounds();
         isNewScene = true; // Set to true when a new scene is loaded
+        Debug.Log($"OnSceneLoaded: New scene loaded - {scene.name}");
     }
 
-    void FindPlayer()
+    public void FindPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             target = player.transform;
+            Debug.Log($"FindPlayer: Player found - {player.name}");
         }
         else
         {
-            Debug.LogWarning("Player not found in the scene.");
+            Debug.LogWarning("FindPlayer: Player not found in the scene.");
         }
     }
 
-    void FindTilemap()
+    public void FindTilemap()
     {
-        tilemap = FindObjectOfType<Tilemap>();
         if (tilemap == null)
         {
-            Debug.LogWarning("Tilemap not found in the scene.");
+            tilemap = FindObjectOfType<Tilemap>();
+        }
+
+        if (tilemap == null)
+        {
+            Debug.LogWarning("FindTilemap: Tilemap not found in the scene.");
+        }
+        else
+        {
+            Debug.Log($"FindTilemap: Tilemap found - {tilemap.name}");
         }
     }
 
@@ -67,7 +80,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (tilemap == null)
         {
-            Debug.LogWarning("Tilemap is not set in CameraFollow script.");
+            Debug.LogWarning("CalculateBounds: Tilemap is not set in CameraFollow script.");
             return;
         }
 
@@ -82,12 +95,15 @@ public class CameraFollow : MonoBehaviour
         // Adjust bounds to keep the camera within the tilemap
         minBounds = tilemapMin + new Vector3(camHalfWidth, camHalfHeight, 0);
         maxBounds = tilemapMax - new Vector3(camHalfWidth, camHalfHeight, 0);
+
+        Debug.Log($"CalculateBounds: minBounds={minBounds}, maxBounds={maxBounds}");
     }
 
     public void SetNewTilemap(Tilemap newTilemap)
     {
         tilemap = newTilemap;
         CalculateBounds();
+        Debug.Log($"SetNewTilemap: New tilemap set - {newTilemap.name}");
     }
 
     void LateUpdate()
@@ -105,23 +121,25 @@ public class CameraFollow : MonoBehaviour
         }
 
         Vector3 targetPosition = target.position + offset;
-        
+
         if (isNewScene)
         {
             // Instantly center camera on player when entering a new scene
             Vector3 instantPosition = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
             transform.position = ClampCamera(instantPosition);
             isNewScene = false; // Reset the flag
+            Debug.Log($"LateUpdate: Instantly centered on player - {target.position}");
         }
         else
         {
             // Normal smooth camera movement during gameplay
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
             transform.position = ClampCamera(smoothedPosition);
+            Debug.Log($"LateUpdate: Smoothed position - {smoothedPosition}");
         }
     }
 
-    Vector3 ClampCamera(Vector3 position)
+    public Vector3 ClampCamera(Vector3 position)
     {
         // Ensures camera stays in bounds
         float clampedX = Mathf.Clamp(position.x, minBounds.x, maxBounds.x);
@@ -129,3 +147,4 @@ public class CameraFollow : MonoBehaviour
         return new Vector3(clampedX, clampedY, position.z);
     }
 }
+
