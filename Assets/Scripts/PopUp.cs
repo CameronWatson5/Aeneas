@@ -8,7 +8,7 @@ public class PopUp : MonoBehaviour
     public GameObject popupPanel;
     public Button closeButton;
     public TextMeshProUGUI instructionsText;
-    public float delayBeforePopup = 1f; // Delay before showing the popup
+    public float defaultDelayBeforePopup = 1f; // Default delay before showing the popup
 
     // Static variable to track if the popup has been shown this game session
     private static bool hasShownThisSession = false;
@@ -25,7 +25,7 @@ public class PopUp : MonoBehaviour
 
         if (!hasShownThisSession)
         {
-            StartCoroutine(ShowPopupWithDelay());
+            StartCoroutine(ShowPopupWithDelay(defaultDelayBeforePopup, instructionsText.text));
         }
         else
         {
@@ -33,17 +33,18 @@ public class PopUp : MonoBehaviour
         }
     }
 
-    IEnumerator ShowPopupWithDelay()
+    public IEnumerator ShowPopupWithDelay(float delay, string text)
     {
         Debug.Log("Starting delay before showing popup");
-        yield return new WaitForSecondsRealtime(delayBeforePopup);
-        ShowPopup();
+        yield return new WaitForSecondsRealtime(delay);
+        ShowPopup(text);
     }
 
-    void ShowPopup()
+    public void ShowPopup(string text)
     {
         if (popupPanel != null && !popupPanel.activeSelf) // Ensure the popup is not already active
         {
+            instructionsText.text = text;
             Debug.Log("Showing popup");
             popupPanel.SetActive(true);
             Time.timeScale = 0f;
@@ -64,22 +65,20 @@ public class PopUp : MonoBehaviour
 
             // Mark that popup has shown this session
             hasShownThisSession = true;
+
+            // Add the popup text to the log
+            if (LogManager.Instance != null)
+            {
+                LogManager.Instance.AddLogEntry(instructionsText.text);
+            }
+            else
+            {
+                Debug.LogError("LogManager instance not found.");
+            }
         }
         else
         {
             Debug.LogError("Popup panel is missing or not active.");
-        }
-    }
-
-    public void SetPopupText(string text)
-    {
-        if (instructionsText != null)
-        {
-            instructionsText.text = text;
-        }
-        else
-        {
-            Debug.LogError("Instructions text is not assigned.");
         }
     }
 

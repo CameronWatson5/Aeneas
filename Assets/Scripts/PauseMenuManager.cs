@@ -7,6 +7,7 @@ public class PauseMenuManager : MonoBehaviour
 {
     [Header("Main UI References")]
     public Canvas pauseMenuCanvas;
+    public GameObject sideNavigationBar; // Reference to the side navigation bar
     public Button resumeButton;
     public Button quitButton;
 
@@ -24,6 +25,10 @@ public class PauseMenuManager : MonoBehaviour
     public TMP_Text helmetText;
     public TMP_Text bootsText;
 
+    [Header("Log Management")]
+    public Transform logContent; // The Transform that will hold log entries
+    public GameObject logEntryPrefab; // Prefab for log entries
+
     private InventoryManager inventoryManager;
     private string previousScene;
 
@@ -33,6 +38,17 @@ public class PauseMenuManager : MonoBehaviour
         SetupButtonListeners();
         PopulateInventory();
         UpdateEquipmentDisplay();
+
+        // Ensure side navigation bar is active
+        if (sideNavigationBar != null)
+        {
+            sideNavigationBar.SetActive(true);
+            Debug.Log("Side Navigation Bar is active.");
+        }
+        else
+        {
+            Debug.LogWarning("Side Navigation Bar reference is missing.");
+        }
     }
 
     void InitializePauseMenu()
@@ -48,6 +64,17 @@ public class PauseMenuManager : MonoBehaviour
 
         if (inventoryContent == null)
             Debug.LogError("Inventory Content is not assigned. This should be the Content of your Inventory Scroll View.");
+
+        // Initialize LogManager with log content and prefab
+        if (LogManager.Instance != null)
+        {
+            LogManager.Instance.SetLogContent(logContent);
+            LogManager.Instance.SetLogEntryPrefab(logEntryPrefab);
+        }
+        else
+        {
+            Debug.LogError("LogManager instance not found.");
+        }
     }
 
     void SetupButtonListeners()
@@ -114,7 +141,6 @@ public class PauseMenuManager : MonoBehaviour
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryContent.GetComponent<RectTransform>());
     }
-
 
     void OnItemClicked(InventoryItem item)
     {
