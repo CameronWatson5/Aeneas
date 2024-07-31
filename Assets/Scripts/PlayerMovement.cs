@@ -1,7 +1,7 @@
 // This is the player movement script.
 // This is used so that the player (Aeneas) can move.
 // Furthermore, it triggers the animation.
-// The default speed is 5, however, this can be changed in Unity.
+// The default speed is 5, however, this can be changed in Unity.using UnityEngine
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -142,6 +142,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log($"Movement updated: Change={change}, LastMovementDirection={lastMovementDirection}");
+
+        // Save player position
+        PlayerPrefs.SetFloat("PlayerPosX", transform.position.x);
+        PlayerPrefs.SetFloat("PlayerPosY", transform.position.y);
+        PlayerPrefs.SetFloat("PlayerPosZ", transform.position.z);
     }
 
     private void MoveCharacter()

@@ -647,8 +647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef4520eba51d8141b5c9e1b866429cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logContent: {fileID: 0}
-  logEntryPrefab: {fileID: 0}
 --- !u!1 &864654368
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
     private static bool GameIsPaused = false;
     private string currentSceneName;
+    private MapManager mapManager;
 
     void Start()
     {
@@ -32,7 +34,12 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Resuming game from PauseMenu");
         GameIsPaused = false;
         Time.timeScale = 1f;
-        SceneManager.UnloadSceneAsync("PauseMenu");
+
+        // Only unload if the scene is actually loaded
+        if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("PauseMenu");
+        }
 
         CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
         if (cameraFollow != null)
@@ -50,6 +57,31 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         // Save the current scene name to PlayerPrefs
         PlayerPrefs.SetString("PreviousScene", currentSceneName);
-        SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+        StartCoroutine(LoadPauseMenuScene());
+    }
+
+    IEnumerator LoadPauseMenuScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        InitializeMap();
+    }
+
+    void InitializeMap()
+    {
+        mapManager = FindObjectOfType<MapManager>();
+        if (mapManager != null)
+        {
+            mapManager.SetupMapForScene(currentSceneName);
+        }
+        else
+        {
+            Debug.LogError("MapManager not found in the scene.");
+        }
     }
 }

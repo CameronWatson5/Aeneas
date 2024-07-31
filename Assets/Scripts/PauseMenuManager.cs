@@ -29,10 +29,9 @@ public class PauseMenuManager : MonoBehaviour
     public Transform logContent; // The Transform that will hold log entries
     public GameObject logEntryPrefab; // Prefab for log entries
 
-    [Header("Button Colors")]
-    public Color normalColor = Color.white;
-    public Color pressedColor = Color.gray;
-    public Color highlightedColor = Color.gray; // Added highlight color
+    [Header("Map Management")]
+    public Image mapImage;
+    public Sprite defaultMapSprite;
 
     private InventoryManager inventoryManager;
     private string previousScene;
@@ -55,9 +54,8 @@ public class PauseMenuManager : MonoBehaviour
             Debug.LogWarning("Side Navigation Bar reference is missing.");
         }
 
-        // Set the resume and quit buttons to match the normal panel button color
-        SetButtonColors(resumeButton, normalColor);
-        SetButtonColors(quitButton, normalColor);
+        // Initialize the map image
+        LoadMapImage();
     }
 
     void InitializePauseMenu()
@@ -100,10 +98,7 @@ public class PauseMenuManager : MonoBehaviour
     void SetupButton(Button button, UnityEngine.Events.UnityAction action, string buttonName)
     {
         if (button != null)
-        {
             button.onClick.AddListener(action);
-            SetButtonColors(button, normalColor);
-        }
         else
             Debug.LogError($"{buttonName} is not assigned in the Inspector.");
     }
@@ -235,12 +230,17 @@ public class PauseMenuManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    void SetButtonColors(Button button, Color color)
+    void LoadMapImage()
     {
-        ColorBlock colorBlock = button.colors;
-        colorBlock.normalColor = color;
-        colorBlock.highlightedColor = highlightedColor; // Set the highlighted color
-        colorBlock.pressedColor = pressedColor;
-        button.colors = colorBlock;
+        string sceneName = PlayerPrefs.GetString("PreviousScene");
+        MapManager mapManager = FindObjectOfType<MapManager>();
+        if (mapManager != null)
+        {
+            mapManager.SetupMapForScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("MapManager not found in the scene.");
+        }
     }
 }
