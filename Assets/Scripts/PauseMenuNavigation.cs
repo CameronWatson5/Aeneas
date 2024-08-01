@@ -12,6 +12,8 @@ public class PauseMenuNavigation : MonoBehaviour
     public GameObject helpPanel;
     public GameObject logPanel;
     public GameObject missionPanel;
+    public GameObject savePanel;
+    public GameObject loadPanel;
 
     public Button mapButton;
     public Button inventoryButton;
@@ -20,7 +22,9 @@ public class PauseMenuNavigation : MonoBehaviour
     public Button logButton;
     public Button missionButton;
     public Button resumeButton; 
-    public Button quitButton;   
+    public Button quitButton;
+    public Button saveButton;
+    public Button loadButton;
 
     public Color normalColor = Color.white;
     public Color pressedColor = Color.gray;
@@ -38,7 +42,9 @@ public class PauseMenuNavigation : MonoBehaviour
             { controlsButton, controlsPanel },
             { helpButton, helpPanel },
             { logButton, logPanel },
-            { missionButton, missionPanel }
+            { missionButton, missionPanel },
+            { saveButton, savePanel },
+            { loadButton, loadPanel }
         };
 
         foreach (var pair in buttonPanelPairs)

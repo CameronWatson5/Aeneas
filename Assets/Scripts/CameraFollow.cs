@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
     private Camera cam;
     private Vector3 minBounds;
     private Vector3 maxBounds;
-    public bool isNewScene = true; // Make this public
+    public bool isNewScene = true; 
 
     void Start()
     {
@@ -135,7 +135,7 @@ public class CameraFollow : MonoBehaviour
             // Normal smooth camera movement during gameplay
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
             transform.position = ClampCamera(smoothedPosition);
-            Debug.Log($"LateUpdate: Smoothed position - {smoothedPosition}");
+            //Debug.Log($"LateUpdate: Smoothed position - {smoothedPosition}");
         }
     }
 

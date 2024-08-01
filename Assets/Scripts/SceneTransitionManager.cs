@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class SceneTransitionManager : MonoBehaviour
         fadeCanvas.transform.SetParent(transform);
         Canvas canvas = fadeCanvas.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 999;
+        canvas.sortingOrder = 999;  // High sorting order to ensure it's on top
 
         CanvasScaler scaler = fadeCanvas.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
@@ -90,16 +90,11 @@ public class SceneTransitionManager : MonoBehaviour
     private void CleanupDuplicateEventSystems()
     {
         var eventSystems = FindObjectsOfType<EventSystem>();
-        Debug.Log("Number of EventSystems found: " + eventSystems.Length);
         if (eventSystems.Length > 1)
         {
-            for (int i = 0; i < eventSystems.Length; i++)
+            for (int i = 1; i < eventSystems.Length; i++)
             {
-                if (eventSystems[i].gameObject.GetComponent<SingletonEventSystem>() == null)
-                {
-                    Debug.Log("Destroying non-singleton EventSystem: " + eventSystems[i].gameObject.name);
-                    Destroy(eventSystems[i].gameObject);
-                }
+                Destroy(eventSystems[i].gameObject);
             }
         }
     }

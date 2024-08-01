@@ -11,6 +11,14 @@ public class PauseMenuManager : MonoBehaviour
     public Button resumeButton;
     public Button quitButton;
 
+    [Header("Panels")]
+    public GameObject savePanel;
+    public GameObject loadPanel;
+
+    [Header("Save/Load Slots")]
+    public Button[] saveSlots; // Buttons for save slots
+    public Button[] loadSlots; // Buttons for load slots
+
     [Header("Inventory")]
     public Transform inventoryContent;
     public GameObject inventoryItemPrefab;
@@ -30,7 +38,7 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject logEntryPrefab; // Prefab for log entries
 
     [Header("Map Management")]
-    public Image mapImage;
+    public Image mapImage; 
     public Sprite defaultMapSprite;
 
     private InventoryManager inventoryManager;
@@ -82,6 +90,10 @@ public class PauseMenuManager : MonoBehaviour
         {
             Debug.LogError("LogManager instance not found.");
         }
+
+        // Hide save/load panels initially
+        savePanel.SetActive(false);
+        loadPanel.SetActive(false);
     }
 
     void SetupButtonListeners()
@@ -89,10 +101,12 @@ public class PauseMenuManager : MonoBehaviour
         SetupButton(resumeButton, ResumeGame, "ResumeButton");
         SetupButton(quitButton, QuitGame, "QuitButton");
 
-        SetupEquipmentSlotButton(swordSlot, ItemType.Sword);
-        SetupEquipmentSlotButton(shieldSlot, ItemType.Shield);
-        SetupEquipmentSlotButton(helmetSlot, ItemType.Helmet);
-        SetupEquipmentSlotButton(bootsSlot, ItemType.Boots);
+        for (int i = 0; i < saveSlots.Length; i++)
+        {
+            int slot = i; // Slots are 0-based
+            saveSlots[i].onClick.AddListener(() => SaveGame(slot));
+            loadSlots[i].onClick.AddListener(() => LoadGame(slot));
+        }
     }
 
     void SetupButton(Button button, UnityEngine.Events.UnityAction action, string buttonName)
@@ -101,15 +115,6 @@ public class PauseMenuManager : MonoBehaviour
             button.onClick.AddListener(action);
         else
             Debug.LogError($"{buttonName} is not assigned in the Inspector.");
-    }
-
-    void SetupEquipmentSlotButton(Image slotImage, ItemType itemType)
-    {
-        Button slotButton = slotImage.GetComponentInChildren<Button>();
-        if (slotButton != null)
-            slotButton.onClick.AddListener(() => UnequipItem(itemType));
-        else
-            Debug.LogError($"Button not found in {itemType} slot.");
     }
 
     void PopulateInventory()
@@ -241,6 +246,54 @@ public class PauseMenuManager : MonoBehaviour
         else
         {
             Debug.LogError("MapManager not found in the scene.");
+        }
+    }
+
+    void SaveGame(int slot)
+    {
+        SaveManager.Instance.SaveGame(slot);
+        UpdateSlotInteractability();
+    }
+
+    void LoadGame(int slot)
+    {
+        SaveData data = SaveManager.Instance.LoadGame(slot);
+        if (data != null)
+        {
+            // Apply loaded data to the game state
+            ApplySaveData(data);
+            ResumeGame();
+        }
+    }
+
+    void UpdateSlotInteractability()
+    {
+        for (int i = 0; i < saveSlots.Length; i++)
+        {
+            int slot = i;
+            saveSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
+            loadSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
+        }
+    }
+
+    void ApplySaveData(SaveData data)
+    {
+        // Apply the loaded data to the game objects
+        var player = FindObjectOfType<AeneasAttributes>();
+        if (player != null)
+        {
+            player.transform.position = data.playerPosition;
+            player.currentHealth = data.health;
+            player.gold = data.gold;
+            // Apply other saved attributes as needed
+
+            // Update inventory
+            inventoryManager.inventory = data.inventory;
+            // Update quests or other game state data
+        }
+        else
+        {
+            Debug.LogError("Player object not found when trying to apply save data.");
         }
     }
 }

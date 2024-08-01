@@ -10,10 +10,13 @@ public class PopupTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PopUp popup = FindObjectOfType<PopUp>();
-            if (popup != null)
+            if (PopUpManager.Instance != null)
             {
-                StartCoroutine(popup.ShowPopupWithDelay(popupDelay, popupText, popupId));
+                PopUpManager.Instance.ShowPopupWithDelay(popupDelay, popupText, popupId);
+            }
+            else
+            {
+                Debug.LogError("PopUpManager instance not found.");
             }
         }
     }

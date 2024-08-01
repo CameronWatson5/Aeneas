@@ -1,22 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneLoadPopupTrigger : MonoBehaviour
 {
-    public string popupId; // Unique identifier for this popup
+    public string popupId;
     public string popupText;
-    public float popupDelay = 1f;
+    public float popupDelay = 0f;
 
     void Start()
     {
-        PopUp popup = FindObjectOfType<PopUp>();
-        if (popup != null)
+        // Trigger the popup only if the scene is in the list of scenesToShowPopup
+        if (PopUpManager.Instance != null && PopUpManager.Instance.scenesToShowPopup.Contains(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name))
         {
-            popup.ShowPopupOnSceneLoad(popupId, popupText, popupDelay);
-        }
-        else
-        {
-            Debug.LogError("PopUp instance not found in the scene.");
+            PopUpManager.Instance.ShowPopupOnSceneLoad(popupId, popupText, popupDelay);
         }
     }
 }

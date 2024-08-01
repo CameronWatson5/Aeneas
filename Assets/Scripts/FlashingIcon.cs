@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class FlashingIcon : MonoBehaviour
 {
     public float flashDuration = 1f;
-    private Image image;
+    private Image image; 
     private bool isVisible = true;
     private float nextToggleTime;
 
     void Start()
     {
-        image = GetComponent<Image>();
+        image = GetComponent<Image>(); 
         if (image == null)
         {
             Debug.LogError("Image component not found on the FlashingIcon object.");

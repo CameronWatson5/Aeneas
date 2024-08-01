@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2312554304320149511}
   - component: {fileID: 892868879765414354}
-  - component: {fileID: 7484236921277048975}
   - component: {fileID: 1116971312724939502}
+  - component: {fileID: 4105414877452436371}
   m_Layer: 5
   m_Name: Player Icon Image
   m_TagString: Untagged
@@ -46,7 +46,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996767861512221068}
   m_CullTransparentMesh: 1
---- !u!114 &7484236921277048975
+--- !u!114 &1116971312724939502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996767861512221068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9785c035f2993248ba8d239e9a2d6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.5
+--- !u!114 &4105414877452436371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +79,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7877877283684313497, guid: b722dd70d48aad2428d440133be5891b, type: 3}
+  m_Sprite: {fileID: -4451509318842807027, guid: e474cacf189017944a3f047e08d006c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,16 +89,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1116971312724939502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996767861512221068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9785c035f2993248ba8d239e9a2d6bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.5

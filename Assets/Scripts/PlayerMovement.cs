@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool(MOVING, false);
         }
 
-        Debug.Log($"Movement updated: Change={change}, LastMovementDirection={lastMovementDirection}");
+        //Debug.Log($"Movement updated: Change={change}, LastMovementDirection={lastMovementDirection}");
 
         // Save player position
         PlayerPrefs.SetFloat("PlayerPosX", transform.position.x);
