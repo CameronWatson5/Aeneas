@@ -12,12 +12,12 @@ public class PauseMenuManager : MonoBehaviour
     public Button quitButton;
 
     [Header("Panels")]
-    public GameObject savePanel;
-    public GameObject loadPanel;
+    //public GameObject savePanel;
+    //public GameObject loadPanel;
 
     [Header("Save/Load Slots")]
-    public Button[] saveSlots; // Buttons for save slots
-    public Button[] loadSlots; // Buttons for load slots
+    //public Button[] saveSlots; // Buttons for save slots
+    //public Button[] loadSlots; // Buttons for load slots
 
     [Header("Inventory")]
     public Transform inventoryContent;
@@ -92,8 +92,8 @@ public class PauseMenuManager : MonoBehaviour
         }
 
         // Hide save/load panels initially
-        savePanel.SetActive(false);
-        loadPanel.SetActive(false);
+        //savePanel.SetActive(false);
+        //loadPanel.SetActive(false);
     }
 
     void SetupButtonListeners()
@@ -101,12 +101,12 @@ public class PauseMenuManager : MonoBehaviour
         SetupButton(resumeButton, ResumeGame, "ResumeButton");
         SetupButton(quitButton, QuitGame, "QuitButton");
 
-        for (int i = 0; i < saveSlots.Length; i++)
-        {
-            int slot = i; // Slots are 0-based
-            saveSlots[i].onClick.AddListener(() => SaveGame(slot));
-            loadSlots[i].onClick.AddListener(() => LoadGame(slot));
-        }
+        // for (int i = 0; i < saveSlots.Length; i++)
+        // {
+        //     int slot = i; // Slots are 0-based
+        //     saveSlots[i].onClick.AddListener(() => SaveGame(slot));
+        //     loadSlots[i].onClick.AddListener(() => LoadGame(slot));
+        // }
     }
 
     void SetupButton(Button button, UnityEngine.Events.UnityAction action, string buttonName)
@@ -268,12 +268,12 @@ public class PauseMenuManager : MonoBehaviour
 
     void UpdateSlotInteractability()
     {
-        for (int i = 0; i < saveSlots.Length; i++)
-        {
-            int slot = i;
-            saveSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
-            loadSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
-        }
+        // for (int i = 0; i < saveSlots.Length; i++)
+        // {
+        //     int slot = i;
+        //     saveSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
+        //     loadSlots[i].interactable = SaveManager.Instance.SaveFileExists(slot);
+        // }
     }
 
     void ApplySaveData(SaveData data)

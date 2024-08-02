@@ -664,7 +664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &159765234
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2853,16 +2853,6 @@ MonoBehaviour:
   sideNavigationBar: {fileID: 1238087028}
   resumeButton: {fileID: 830912426}
   quitButton: {fileID: 629190529}
-  savePanel: {fileID: 528454972}
-  loadPanel: {fileID: 1948807596}
-  saveSlots:
-  - {fileID: 257929399}
-  - {fileID: 1850109183}
-  - {fileID: 422897977}
-  loadSlots:
-  - {fileID: 150068358}
-  - {fileID: 2014919636}
-  - {fileID: 315404120}
   inventoryContent: {fileID: 485647745}
   inventoryItemPrefab: {fileID: 7931135059247805744, guid: a9457513354ad86439173f4ff148050e, type: 3}
   swordSlot: {fileID: 1280281654}
@@ -5123,7 +5113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1308475023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8030,7 +8020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1948807597
 RectTransform:
   m_ObjectHideFlags: 0
