@@ -32,6 +32,18 @@ public class EnemyHealth : MonoBehaviour
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
             rb.drag = 0; // Ensure drag is not too high
         }
+
+        // Register with the EnemyManager
+        EnemyManager.Instance.RegisterEnemy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        // Unregister from the EnemyManager
+        if (EnemyManager.Instance != null)
+        {
+            EnemyManager.Instance.UnregisterEnemy(gameObject);
+        }
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection, float knockbackForce)

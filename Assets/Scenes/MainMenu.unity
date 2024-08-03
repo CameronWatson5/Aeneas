@@ -481,8 +481,8 @@ GameObject:
   - component: {fileID: 581026953}
   - component: {fileID: 581026956}
   - component: {fileID: 581026955}
-  - component: {fileID: 581026954}
   - component: {fileID: 581026957}
+  - component: {fileID: 581026958}
   m_Layer: 5
   m_Name: Cutscene Panel
   m_TagString: Untagged
@@ -510,27 +510,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &581026954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581026952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134955d4ccc7da644b8d6997416c35f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutsceneText: {fileID: 1169679443}
-  typingSpeed: 0.05
-  cutsceneLines:
-  - 1200 BC. The ancient city of Troy still stands on the coast of modern-day Turkey.
-  - Greek armies surround us, claiming Paris stole Helen.
-  - Hector has fallen. Achilles rages. Our fate hangs in balance.
-  - You are Aeneas, Trojan prince. Your choices will shape our future.
-  - The gods watch. Destiny awaits.
-  nextSceneName: Troy
 --- !u!114 &581026955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +560,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &581026958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581026952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14578f0d40a2a1f449eacf0060da17b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneText: {fileID: 1169679443}
+  typingSpeed: 0.05
+  cutsceneLines:
+  - 1200 BC. The ancient city of Troy still stands on the coast of modern-day Turkey.
+  - Greek armies surround us, claiming Paris stole Helen.
+  - Hector has fallen. Achilles rages. Our fate hangs in balance.
+  - You are Aeneas, Trojan prince. Your choices will shape our future.
+  - The gods watch. Destiny awaits.
+  nextSceneName: Troy
 --- !u!1 &654710541
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +984,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720121940}
   m_CullTransparentMesh: 1
+--- !u!1 &789203182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 789203183}
+  - component: {fileID: 789203184}
+  m_Layer: 0
+  m_Name: MissionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &789203183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789203182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 661.5, y: 382.12927, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &789203184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789203182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee0b94591520914baa742e17974784c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionText: {fileID: 0}
 --- !u!1 &861897279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1148,59 @@ MonoBehaviour:
     damageBonus: 0
     armorBonus: 1
     healthBonus: 0
+--- !u!1 &910368883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910368884}
+  - component: {fileID: 910368885}
+  m_Layer: 0
+  m_Name: IndoorCutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &910368884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910368883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.495394, y: -52.9133, z: -0.30042264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910368885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910368883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cb920e10901c64199a3dcaf5221f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutscenePanel: {fileID: 0}
+  cutsceneText: {fileID: 0}
+  skipButton: {fileID: 0}
+  typingSpeed: 0.05
+  cutsceneLines:
+  - Test
+  - Test
+  - Test
+  nextSceneName: IndoorSack
 --- !u!1 &933556659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1248,8 @@ MonoBehaviour:
   startButton: {fileID: 654710543}
   quitButton: {fileID: 1253063581}
   mainMenuElements: {fileID: 1624913420}
-  cutscenePanel: {fileID: 581026952}
+  mainMenuCutscenePanel: {fileID: 581026952}
+  indoorCutscenePrefab: {fileID: 6327708829726505843, guid: d9ab03539b2f1704db224ea6dfb1ded3, type: 3}
 --- !u!1 &1140598874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2116,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2241,6 +2340,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852601894}
   m_CullTransparentMesh: 1
+--- !u!1 &1880852265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880852266}
+  - component: {fileID: 1880852267}
+  m_Layer: 0
+  m_Name: SpecialPopUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1880852266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880852265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.495394, y: -52.9133, z: -0.30042264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880852267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880852265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016b87bca122e984989dfbd0f595c118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialPopUpPrefab: {fileID: 8754276183787310868, guid: 6deec8b34c3f38442b848cfb8de79d8c, type: 3}
+  scenesToShowPopup:
+  - Indoor
 --- !u!1 &2071440382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,10 +2648,13 @@ SceneRoots:
   m_Roots:
   - {fileID: 933556660}
   - {fileID: 1588830530}
+  - {fileID: 789203183}
   - {fileID: 1812274311}
+  - {fileID: 1880852266}
   - {fileID: 1759512182}
   - {fileID: 1424920561}
   - {fileID: 1140598877}
   - {fileID: 1509964932}
   - {fileID: 864654369}
   - {fileID: 861897280}
+  - {fileID: 910368884}

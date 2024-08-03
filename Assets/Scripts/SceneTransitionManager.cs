@@ -15,25 +15,50 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("SceneTransitionManager: Awake called");
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
             SetupFadeCanvas();
+
+            InitializeManagers();
         }
         else
         {
+            Debug.Log("SceneTransitionManager: Instance already exists, destroying duplicate");
             Destroy(gameObject);
+        }
+    }
+
+    private void InitializeManagers()
+    {
+        if (MissionManager.Instance == null)
+        {
+            Debug.Log("SceneTransitionManager: Creating MissionManager");
+            GameObject missionManager = new GameObject("MissionManager");
+            missionManager.AddComponent<MissionManager>();
+            DontDestroyOnLoad(missionManager);
+        }
+
+        if (IndoorCutsceneManager.Instance == null)
+        {
+            Debug.Log("SceneTransitionManager: Creating IndoorCutsceneManager");
+            GameObject indoorCutsceneManager = new GameObject("IndoorCutsceneManager");
+            IndoorCutsceneManager manager = indoorCutsceneManager.AddComponent<IndoorCutsceneManager>();
+           
+            DontDestroyOnLoad(indoorCutsceneManager);
         }
     }
 
     private void SetupFadeCanvas()
     {
+        Debug.Log("SceneTransitionManager: Setting up fade canvas");
         GameObject fadeCanvas = new GameObject("Fade Canvas");
         fadeCanvas.transform.SetParent(transform);
         Canvas canvas = fadeCanvas.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 999;  // High sorting order to ensure it's on top
+        canvas.sortingOrder = 999;
 
         CanvasScaler scaler = fadeCanvas.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
@@ -58,6 +83,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void TransitionToScene(string sceneName, string spawnPoint)
     {
+        Debug.Log($"SceneTransitionManager: Transitioning to scene {sceneName} with spawn point {spawnPoint}");
         targetSceneName = sceneName;
         spawnPointIdentifier = spawnPoint;
         StartCoroutine(FadeAndLoadScene());
@@ -89,6 +115,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void CleanupDuplicateEventSystems()
     {
+        Debug.Log("SceneTransitionManager: Cleaning up duplicate EventSystems");
         var eventSystems = FindObjectsOfType<EventSystem>();
         if (eventSystems.Length > 1)
         {
@@ -101,11 +128,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void ResetChestStates()
     {
+        Debug.Log("SceneTransitionManager: Resetting chest states");
         PlayerPrefs.DeleteAll();
     }
 
     public void StartNewGame(string sceneName, string spawnPoint)
     {
+        Debug.Log($"SceneTransitionManager: Starting new game, scene: {sceneName}, spawn: {spawnPoint}");
         ResetChestStates();
         TransitionToScene(sceneName, spawnPoint);
     }

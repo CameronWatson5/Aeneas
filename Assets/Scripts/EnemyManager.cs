@@ -37,13 +37,20 @@ public class EnemyManager : MonoBehaviour
 
     public void ClearEnemies()
     {
-        foreach (GameObject enemy in activeEnemies)
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
         {
+            GameObject enemy = activeEnemies[i];
             if (enemy != null)
             {
+                // Skip clearing if the enemy is tagged as Boss
+                if (enemy.CompareTag("Boss"))
+                {
+                    continue;
+                }
+
                 Destroy(enemy);
+                activeEnemies.RemoveAt(i);
             }
         }
-        activeEnemies.Clear();
     }
 }

@@ -2602,8 +2602,6 @@ MonoBehaviour:
   missionButton: {fileID: 1193836325}
   resumeButton: {fileID: 830912426}
   quitButton: {fileID: 629190529}
-  saveButton: {fileID: 1308475024}
-  loadButton: {fileID: 159765235}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   pressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   highlightedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

@@ -67,7 +67,7 @@ public class AeneasAttack : MonoBehaviour
     private Vector2 DetermineAttackDirection()
     {
         Vector2 lastDirection = playerMovement.GetLastMovementDirection();
-        
+
         if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
         {
             return lastDirection.x > 0 ? Vector2.right : Vector2.left;
@@ -98,10 +98,15 @@ public class AeneasAttack : MonoBehaviour
 
         foreach (Collider2D collider in hitColliders)
         {
-            if (collider.TryGetComponent(out EnemyHealth enemy))
+            if (collider.TryGetComponent(out GreekHero hero))
             {
-                Debug.Log($"Damage dealt to {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
+                hero.TakeDamage(attackDamage);
+                Debug.Log($"Damage dealt to GreekHero {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
+            }
+            else if (collider.TryGetComponent(out EnemyHealth enemy))
+            {
                 enemy.TakeDamage(attackDamage, attackDirection, knockbackForce);
+                Debug.Log($"Damage dealt to {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
             }
         }
 

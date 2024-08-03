@@ -1,17 +1,89 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu Instance { get; private set; }
+
     public Button startButton;
     public Button quitButton;
-    public GameObject mainMenuElements; 
-    public GameObject cutscenePanel;
+    public GameObject mainMenuElements;
+    public GameObject mainMenuCutscenePanel;
+    
+    [Header("Global Cutscene Components")]
+    public GameObject indoorCutscenePrefab;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            InitializeGlobalCutsceneComponents();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         Debug.Log("MainMenu: Start called");
-        
+        InitializeMissionManager();
+        SetupButtons();
+        SetupMainMenuCutscenePanel();
+    }
+
+    private void InitializeGlobalCutsceneComponents()
+    {
+        if (indoorCutscenePrefab != null)
+        {
+            Canvas mainCanvas = FindObjectOfType<Canvas>();
+            if (mainCanvas == null)
+            {
+                Debug.LogError("MainMenu: No Canvas found in the scene");
+                return;
+            }
+
+            GameObject cutsceneInstance = Instantiate(indoorCutscenePrefab, mainCanvas.transform);
+            cutsceneInstance.SetActive(false);
+            DontDestroyOnLoad(cutsceneInstance);
+            Debug.Log("MainMenu: Indoor Cutscene prefab instantiated, set inactive, and parented to Canvas");
+
+            IndoorCutsceneManager manager = cutsceneInstance.GetComponent<IndoorCutsceneManager>();
+            if (manager != null)
+            {
+                // Assuming that the prefab has the necessary child objects named appropriately
+                manager.cutscenePanel = cutsceneInstance.transform.Find("CutscenePanel").gameObject;
+                manager.cutsceneText = cutsceneInstance.transform.Find("CutscenePanel/CutsceneText").GetComponent<TMP_Text>();
+                manager.skipButton = cutsceneInstance.transform.Find("CutscenePanel/SkipButton").GetComponent<Button>();
+            }
+            else
+            {
+                Debug.LogError("MainMenu: IndoorCutsceneManager component not found on prefab");
+            }
+        }
+        else
+        {
+            Debug.LogError("MainMenu: Indoor Cutscene prefab is not assigned");
+        }
+    }
+
+
+    private void InitializeMissionManager()
+    {
+        if (MissionManager.Instance == null)
+        {
+            GameObject missionManager = new GameObject("MissionManager");
+            missionManager.AddComponent<MissionManager>();
+            DontDestroyOnLoad(missionManager);
+        }
+    }
+
+    private void SetupButtons()
+    {
         if (startButton != null)
         {
             startButton.onClick.AddListener(StartGame);
@@ -25,13 +97,16 @@ public class MainMenu : MonoBehaviour
             Debug.Log("MainMenu: Quit button listener added");
         }
         else Debug.LogError("MainMenu: QuitButton reference is missing");
+    }
 
-        if (cutscenePanel != null)
+    private void SetupMainMenuCutscenePanel()
+    {
+        if (mainMenuCutscenePanel != null)
         {
-            cutscenePanel.SetActive(false);
-            Debug.Log("MainMenu: Cutscene panel set to inactive");
+            mainMenuCutscenePanel.SetActive(false);
+            Debug.Log("MainMenu: Main menu cutscene panel set to inactive");
         }
-        else Debug.LogError("MainMenu: CutscenePanel reference is missing");
+        else Debug.LogError("MainMenu: MainMenuCutscenePanel reference is missing");
     }
 
     public void StartGame()
@@ -45,20 +120,20 @@ public class MainMenu : MonoBehaviour
         }
         else Debug.LogError("MainMenu: mainMenuElements reference is missing");
 
-        if (cutscenePanel != null)
+        if (mainMenuCutscenePanel != null)
         {
-            cutscenePanel.SetActive(true);
-            Debug.Log("MainMenu: Cutscene panel activated");
+            mainMenuCutscenePanel.SetActive(true);
+            Debug.Log("MainMenu: Main menu cutscene panel activated");
 
-            CutsceneManager cutsceneManager = cutscenePanel.GetComponent<CutsceneManager>();
+            MainMenuCutsceneManager cutsceneManager = mainMenuCutscenePanel.GetComponent<MainMenuCutsceneManager>();
             if (cutsceneManager != null)
             {
                 cutsceneManager.enabled = true;
-                Debug.Log("MainMenu: CutsceneManager enabled");
+                Debug.Log("MainMenu: MainMenuCutsceneManager enabled");
             }
-            else Debug.LogError("MainMenu: CutsceneManager component is missing on the CutscenePanel");
+            else Debug.LogError("MainMenu: MainMenuCutsceneManager component is missing on the CutscenePanel");
         }
-        else Debug.LogError("MainMenu: CutscenePanel reference is missing");
+        else Debug.LogError("MainMenu: MainMenuCutscenePanel reference is missing");
     }
 
     public void QuitGame()

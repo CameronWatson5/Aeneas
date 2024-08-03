@@ -93,8 +93,7 @@ public class ShopManager : MonoBehaviour
         }
 
         exitButton.onClick.AddListener(ToggleShop);
-        shopCanvas.enabled = false; // Ensure the canvas starts disabled
-        shopPanel.SetActive(false);
+        shopPanel.SetActive(false); // Ensure the panel starts disabled
         PopulateShop();
         UpdatePlayerGoldDisplay();
     }
@@ -102,7 +101,6 @@ public class ShopManager : MonoBehaviour
     public void ToggleShop()
     {
         isShopOpen = !isShopOpen;
-        shopCanvas.enabled = isShopOpen;
         shopPanel.SetActive(isShopOpen);
 
         Debug.Log($"Shop toggled. IsShopOpen: {isShopOpen}");
