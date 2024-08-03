@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class GreekHero : MonoBehaviour
 {
-    public string heroName; 
-    public int health = 100; 
+    public string heroName;
+    public int health = 100;
+    public string popupMessage; 
 
     private void Start()
     {
@@ -27,5 +28,11 @@ public class GreekHero : MonoBehaviour
     private void OnDefeated()
     {
         MissionManager.Instance.SetMissionTargetStatus(heroName, true);
+
+        // Trigger the popup
+        if (PopUpManager.Instance != null)
+        {
+            PopUpManager.Instance.ShowPopup(popupMessage, heroName);
+        }
     }
 }

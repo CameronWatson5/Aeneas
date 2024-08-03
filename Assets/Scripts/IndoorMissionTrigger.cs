@@ -17,7 +17,8 @@ public class IndoorMissionTrigger : MonoBehaviour
                 Debug.Log($"Current mission index: {MissionManager.Instance.CurrentMissionIndex}");
                 if (MissionManager.Instance.IsCurrentMission(1)) 
                 {
-                    Debug.Log("IndoorMissionTrigger: Correct mission, showing special popup");
+                    Debug.Log("IndoorMissionTrigger: Correct mission, completing mission and showing special popup");
+                    MissionManager.Instance.CompleteCurrentMission(); // Explicitly complete the mission
                     if (SpecialPopUpManager.Instance != null)
                     {
                         SpecialPopUpManager.Instance.ShowPopupWithDelay(popupDelay, popupMessage, nextSceneName, popupId);

@@ -72,7 +72,8 @@ public class AeneasAttributes : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
-        SceneManager.LoadScene("GameOver");
+        // Instead of loading the GameOver scene directly, use the MissionManager to handle the transition
+        MissionManager.Instance.TransitionToGameOver();
     }
 
     public void ResetAttributes()

@@ -35,6 +35,8 @@ public class MissionManager : MonoBehaviour
         {
             "Find and defeat 3 Greek heroes.",
             "Go back home to sleep.",
+            "Find your son, wife, and father in Troy.",
+            "Escape from Troy."
         };
         Debug.Log($"MissionManager: Initialized {missions.Count} missions");
     }
@@ -46,6 +48,9 @@ public class MissionManager : MonoBehaviour
             { "GreekHero1", false },
             { "GreekHero2", false },
             { "GreekHero3", false },
+            { "Son", false },
+            { "Wife", false },
+            { "Father", false }
         };
         Debug.Log($"MissionManager: Initialized {missionTargets.Count} mission targets");
     }
@@ -76,16 +81,19 @@ public class MissionManager : MonoBehaviour
                 }
                 break;
             case 1:
-                // Ensure the cutscene is triggered for the indoor mission
-                Debug.Log("MissionManager: Mission 1 completion check");
-                if (IndoorCutsceneManager.Instance != null)
+                CompleteCurrentMission();
+                break;
+            case 2:
+                if (missionTargets["Son"] && missionTargets["Wife"] && missionTargets["Father"])
                 {
-                    IndoorCutsceneManager.Instance.TriggerCutsceneWithDelay(0.5f);
+                    CompleteCurrentMission();
                 }
+                break;
+            case 3:
+                CompleteCurrentMission();
                 break;
         }
     }
-
 
     public void CompleteCurrentMission()
     {
@@ -99,6 +107,14 @@ public class MissionManager : MonoBehaviour
             {
                 SetCompassTargetForMission2();
             }
+            else if (currentMissionIndex == 2)
+            {
+                SetCompassTargetForMission3();
+            }
+            else if (currentMissionIndex == 3)
+            {
+                SetCompassTargetForMission4();
+            }
         }
         else
         {
@@ -111,6 +127,13 @@ public class MissionManager : MonoBehaviour
                 Debug.LogError("MissionManager: MissionText is not assigned or all missions are completed.");
             }
         }
+    }
+
+    public void ResetMissionIndex()
+    {
+        currentMissionIndex = 0;
+        UpdateMissionText();
+        Debug.Log("MissionManager: Mission index reset to 0");
     }
 
     private void SetCompassTargetForMission2()
@@ -139,10 +162,61 @@ public class MissionManager : MonoBehaviour
             Debug.LogError("MissionManager: Compass not found in the scene.");
         }
     }
-    public bool IsCurrentMission(int missionIndex)
+
+    private void SetCompassTargetForMission3()
     {
-        return currentMissionIndex == missionIndex;
+        Debug.Log("MissionManager: Setting compass target for mission 3");
+        if (compass == null)
+        {
+            compass = FindObjectOfType<Compass>();
+        }
+
+        if (compass != null)
+        {
+            GameObject familyLocation = GameObject.Find("FamilyLocation");
+            if (familyLocation != null)
+            {
+                compass.SetTarget(familyLocation.transform);
+                Debug.Log("MissionManager: Compass target set to FamilyLocation");
+            }
+            else
+            {
+                Debug.LogError("MissionManager: FamilyLocation not found in the scene.");
+            }
+        }
+        else
+        {
+            Debug.LogError("MissionManager: Compass not found in the scene.");
+        }
     }
+
+    private void SetCompassTargetForMission4()
+    {
+        Debug.Log("MissionManager: Setting compass target for mission 4");
+        if (compass == null)
+        {
+            compass = FindObjectOfType<Compass>();
+        }
+
+        if (compass != null)
+        {
+            GameObject escapePoint = GameObject.Find("EscapePoint");
+            if (escapePoint != null)
+            {
+                compass.SetTarget(escapePoint.transform);
+                Debug.Log("MissionManager: Compass target set to EscapePoint");
+            }
+            else
+            {
+                Debug.LogError("MissionManager: EscapePoint not found in the scene.");
+            }
+        }
+        else
+        {
+            Debug.LogError("MissionManager: Compass not found in the scene.");
+        }
+    }
+
     private void UpdateMissionText()
     {
         if (missionText != null && currentMissionIndex < missions.Count)
@@ -152,8 +226,19 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("MissionManager: MissionText is not assigned or all missions are completed.");
+            Debug.LogError("MissionManager: MissionText is not assigned or mission index is out of range.");
         }
+    }
+
+    public bool IsCurrentMission(int missionIndex)
+    {
+        return currentMissionIndex == missionIndex;
+    }
+
+    public void TransitionToGameOver()
+    {
+        Debug.Log("MissionManager: Transitioning to GameOver scene");
+        SceneManager.LoadScene("GameOver");
     }
 
     private void OnEnable()
@@ -169,15 +254,74 @@ public class MissionManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log($"MissionManager: Scene loaded - {scene.name}");
-        if (scene.name == "Troy")
+        if (scene.name == "MainMenu")
         {
-            SetupTroyScene();
+            // Reset missions and targets when returning to the main menu
+            ResetMissionIndex();
+            InitializeMissionTargets();
+        }
+        else
+        {
+            AssignMissionText();
+            UpdateMissionText();
+
+            if (scene.name == "Troy")
+            {
+                SetupTroyScene();
+            }
+            else if (scene.name == "Indoor")
+            {
+                SetupIndoorScene();
+            }
+            else if (scene.name == "TroySack")
+            {
+                SetupTroySackScene();
+            }
+            else if (scene.name == "Cave")
+            {
+                SetupCaveScene();
+            }
         }
     }
 
     private void SetupTroyScene()
     {
         Debug.Log("MissionManager: Setting up Troy scene");
+        UpdateMissionText();
+        if (currentMissionIndex == 1)
+        {
+            SetCompassTargetForMission2();
+        }
+    }
+
+    private void SetupIndoorScene()
+    {
+        Debug.Log("MissionManager: Setting up Indoor scene");
+        UpdateMissionText();
+        if (currentMissionIndex == 2)
+        {
+            SetCompassTargetForMission3();
+        }
+    }
+
+    private void SetupTroySackScene()
+    {
+        Debug.Log("MissionManager: Setting up TroySack scene");
+        UpdateMissionText();
+        if (currentMissionIndex == 2)
+        {
+            SetCompassTargetForMission3();
+        }
+    }
+
+    private void SetupCaveScene()
+    {
+        Debug.Log("MissionManager: Setting up Cave scene");
+        UpdateMissionText();
+    }
+
+    private void AssignMissionText()
+    {
         var missionPanel = GameObject.Find("MissionPanel");
         if (missionPanel != null)
         {
@@ -185,7 +329,6 @@ public class MissionManager : MonoBehaviour
             if (missionText != null)
             {
                 Debug.Log("MissionManager: MissionText found and assigned.");
-                UpdateMissionText();
             }
             else
             {
@@ -196,12 +339,5 @@ public class MissionManager : MonoBehaviour
         {
             Debug.LogError("MissionManager: MissionPanel not found in the scene.");
         }
-
-        if (currentMissionIndex == 1)
-        {
-            SetCompassTargetForMission2();
-        }
     }
-
-    
 }

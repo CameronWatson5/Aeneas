@@ -13,6 +13,7 @@ public class SpecialPopUpManager : MonoBehaviour
     public List<string> scenesToShowPopup;
     private HashSet<string> shownPopups; // To track shown popups
     private string nextSceneName;
+    private bool isGameOverPopup = false;
 
     private void Awake()
     {
@@ -109,6 +110,7 @@ public class SpecialPopUpManager : MonoBehaviour
             specialPopUp.ShowPopup(text);
             Debug.Log($"Popup panel active state after ShowPopup: {specialPopUp.gameObject.activeSelf}");
             nextSceneName = nextScene;
+            isGameOverPopup = nextScene == "GameOver";
         }
         else
         {
@@ -146,7 +148,14 @@ public class SpecialPopUpManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nextSceneName))
         {
-            SceneManager.LoadScene(nextSceneName);
+            if (isGameOverPopup)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                SceneManager.LoadScene(nextSceneName);
+            }
         }
     }
 }

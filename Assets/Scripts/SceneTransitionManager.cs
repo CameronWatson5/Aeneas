@@ -41,14 +41,14 @@ public class SceneTransitionManager : MonoBehaviour
             DontDestroyOnLoad(missionManager);
         }
 
-        if (IndoorCutsceneManager.Instance == null)
-        {
-            Debug.Log("SceneTransitionManager: Creating IndoorCutsceneManager");
-            GameObject indoorCutsceneManager = new GameObject("IndoorCutsceneManager");
-            IndoorCutsceneManager manager = indoorCutsceneManager.AddComponent<IndoorCutsceneManager>();
-           
-            DontDestroyOnLoad(indoorCutsceneManager);
-        }
+        // if (IndoorCutsceneManager.Instance == null)
+        // {
+        //     Debug.Log("SceneTransitionManager: Creating IndoorCutsceneManager");
+        //     GameObject indoorCutsceneManager = new GameObject("IndoorCutsceneManager");
+        //     IndoorCutsceneManager manager = indoorCutsceneManager.AddComponent<IndoorCutsceneManager>();
+        //    
+        //     DontDestroyOnLoad(indoorCutsceneManager);
+        // }
     }
 
     private void SetupFadeCanvas()

@@ -10,9 +10,6 @@ public class MainMenu : MonoBehaviour
     public Button quitButton;
     public GameObject mainMenuElements;
     public GameObject mainMenuCutscenePanel;
-    
-    [Header("Global Cutscene Components")]
-    public GameObject indoorCutscenePrefab;
 
     private void Awake()
     {
@@ -20,7 +17,6 @@ public class MainMenu : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitializeGlobalCutsceneComponents();
         }
         else
         {
@@ -36,42 +32,6 @@ public class MainMenu : MonoBehaviour
         SetupMainMenuCutscenePanel();
     }
 
-    private void InitializeGlobalCutsceneComponents()
-    {
-        if (indoorCutscenePrefab != null)
-        {
-            Canvas mainCanvas = FindObjectOfType<Canvas>();
-            if (mainCanvas == null)
-            {
-                Debug.LogError("MainMenu: No Canvas found in the scene");
-                return;
-            }
-
-            GameObject cutsceneInstance = Instantiate(indoorCutscenePrefab, mainCanvas.transform);
-            cutsceneInstance.SetActive(false);
-            DontDestroyOnLoad(cutsceneInstance);
-            Debug.Log("MainMenu: Indoor Cutscene prefab instantiated, set inactive, and parented to Canvas");
-
-            IndoorCutsceneManager manager = cutsceneInstance.GetComponent<IndoorCutsceneManager>();
-            if (manager != null)
-            {
-                // Assuming that the prefab has the necessary child objects named appropriately
-                manager.cutscenePanel = cutsceneInstance.transform.Find("CutscenePanel").gameObject;
-                manager.cutsceneText = cutsceneInstance.transform.Find("CutscenePanel/CutsceneText").GetComponent<TMP_Text>();
-                manager.skipButton = cutsceneInstance.transform.Find("CutscenePanel/SkipButton").GetComponent<Button>();
-            }
-            else
-            {
-                Debug.LogError("MainMenu: IndoorCutsceneManager component not found on prefab");
-            }
-        }
-        else
-        {
-            Debug.LogError("MainMenu: Indoor Cutscene prefab is not assigned");
-        }
-    }
-
-
     private void InitializeMissionManager()
     {
         if (MissionManager.Instance == null)
@@ -79,6 +39,10 @@ public class MainMenu : MonoBehaviour
             GameObject missionManager = new GameObject("MissionManager");
             missionManager.AddComponent<MissionManager>();
             DontDestroyOnLoad(missionManager);
+        }
+        else
+        {
+            MissionManager.Instance.ResetMissionIndex(); // Ensure the mission index is reset
         }
     }
 
@@ -112,7 +76,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("MainMenu: StartGame called");
-        
+
         if (mainMenuElements != null)
         {
             mainMenuElements.SetActive(false);

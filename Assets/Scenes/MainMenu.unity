@@ -1148,59 +1148,6 @@ MonoBehaviour:
     damageBonus: 0
     armorBonus: 1
     healthBonus: 0
---- !u!1 &910368883
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 910368884}
-  - component: {fileID: 910368885}
-  m_Layer: 0
-  m_Name: IndoorCutsceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &910368884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910368883}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.495394, y: -52.9133, z: -0.30042264}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &910368885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910368883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7cb920e10901c64199a3dcaf5221f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutscenePanel: {fileID: 0}
-  cutsceneText: {fileID: 0}
-  skipButton: {fileID: 0}
-  typingSpeed: 0.05
-  cutsceneLines:
-  - Test
-  - Test
-  - Test
-  nextSceneName: IndoorSack
 --- !u!1 &933556659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1196,6 @@ MonoBehaviour:
   quitButton: {fileID: 1253063581}
   mainMenuElements: {fileID: 1624913420}
   mainMenuCutscenePanel: {fileID: 581026952}
-  indoorCutscenePrefab: {fileID: 6327708829726505843, guid: d9ab03539b2f1704db224ea6dfb1ded3, type: 3}
 --- !u!1 &1140598874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2150,7 @@ MonoBehaviour:
   popUpPrefab: {fileID: 6563021311291101345, guid: 8ec4d2d36b61c524392d48e759b44423, type: 3}
   scenesToShowPopup:
   - Troy
+  - TroySack
 --- !u!4 &1812274311
 Transform:
   m_ObjectHideFlags: 0
@@ -2657,4 +2604,3 @@ SceneRoots:
   - {fileID: 1509964932}
   - {fileID: 864654369}
   - {fileID: 861897280}
-  - {fileID: 910368884}
