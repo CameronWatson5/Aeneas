@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public float knockbackDuration = 0.2f; // Duration to disable movement
     public GameObject[] droppableItems; // Array of possible droppable items
     public float dropChance = 0.2f; // 20% chance to drop an item
+    public AudioClip hurtSound; // Sound to play when the enemy is hurt
+    public AudioClip deathSound; // Sound to play when the enemy dies
 
     public event System.Action<GameObject> OnEnemyDeath;
 
@@ -20,17 +22,24 @@ public class EnemyHealth : MonoBehaviour
     public bool IsDead { get; private set; }
 
     private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     void Start()
     {
         CurrentHealth = maxHealth;
         IsDead = false;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         if (rb != null)
         {
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
             rb.drag = 0; // Ensure drag is not too high
+        }
+
+        if (audioSource == null)
+        {
+            Debug.LogError("EnemyHealth: AudioSource component missing on the enemy!");
         }
 
         // Register with the EnemyManager
@@ -59,6 +68,10 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
+            if (hurtSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(hurtSound);
+            }
             Debug.Log("Enemy should be knocked back");
             StartCoroutine(ApplyKnockback(knockbackDirection, knockbackForce));
         }
@@ -98,6 +111,9 @@ public class EnemyHealth : MonoBehaviour
         // Drop an item
         DropItem();
 
+        // Play the death sound
+        PlayDeathSound();
+
         // Destroy the game object immediately
         Destroy(gameObject);
     }
@@ -135,6 +151,19 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             Debug.LogError("Rigidbody2D not found on enemy for knockback");
+        }
+    }
+
+    private void PlayDeathSound()
+    {
+        if (deathSound != null)
+        {
+            GameObject deathSoundObject = new GameObject("DeathSound");
+            AudioSource deathAudioSource = deathSoundObject.AddComponent<AudioSource>();
+            deathAudioSource.clip = deathSound;
+            deathAudioSource.Play();
+
+            Destroy(deathSoundObject, deathSound.length);
         }
     }
 }

@@ -16,10 +16,14 @@ public class AeneasAttack : MonoBehaviour
     [SerializeField] private float attackVisualDuration = 0.5f;
     [SerializeField] private Color attackVisualColor = new Color(1, 0, 0, 0.5f);
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip attackSound; // Sound to play on attack
+
     private float lastAttackTime;
     private Animator animator;
     private PlayerMovement playerMovement;
     private AeneasAttributes aeneasAttributes;
+    private AudioSource audioSource; // AudioSource component
     private GameObject attackRangeVisual;
 
     private void Start()
@@ -27,8 +31,9 @@ public class AeneasAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         aeneasAttributes = GetComponent<AeneasAttributes>();
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
 
-        if (!animator || !playerMovement || !aeneasAttributes)
+        if (!animator || !playerMovement || !aeneasAttributes || !audioSource)
         {
             Debug.LogError("Required components missing on the player!");
             enabled = false;
@@ -60,6 +65,7 @@ public class AeneasAttack : MonoBehaviour
         animator.SetTrigger(attackTrigger);
 
         PerformAttack(attackDirection);
+        PlayAttackSound(); // Play the attack sound effect
         StartCoroutine(ShowAttackVisual(attackDirection));
 
         Debug.Log($"Attack performed: Direction={attackTrigger}, Radius={attackRadius}");
@@ -113,6 +119,15 @@ public class AeneasAttack : MonoBehaviour
         }
 
         Debug.Log($"Enemies hit: {hitColliders.Length}");
+    }
+
+    private void PlayAttackSound()
+    {
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+            Debug.Log("Attack sound played.");
+        }
     }
 
     private IEnumerator ShowAttackVisual(Vector2 attackDirection)

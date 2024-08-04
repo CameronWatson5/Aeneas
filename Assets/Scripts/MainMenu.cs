@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject mainMenuElements;
     [SerializeField] private GameObject mainMenuCutscenePanel;
 
+    private bool isStartButtonClicked = false;
+    private bool isQuitButtonClicked = false;
+
     private void Awake()
     {
         Debug.Log("MainMenu: Awake called");
@@ -18,7 +21,7 @@ public class MainMenu : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        
+
             // Ensure mainMenuElements and mainMenuCutscenePanel are set correctly
             if (mainMenuElements != null) mainMenuElements.transform.SetParent(transform);
             if (mainMenuCutscenePanel != null) mainMenuCutscenePanel.transform.SetParent(transform);
@@ -165,7 +168,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    
+
     private void InitializeManagers()
     {
         if (MissionManager.Instance == null)
@@ -191,10 +194,10 @@ public class MainMenu : MonoBehaviour
         if (startButton != null)
         {
             startButton.onClick.RemoveAllListeners();
-            startButton.onClick.AddListener(StartGame);
+            startButton.onClick.AddListener(OnStartButtonClick);
             Debug.Log("MainMenu: Start button listener added");
         }
-        else 
+        else
         {
             Debug.LogWarning("MainMenu: StartButton reference is missing");
         }
@@ -202,12 +205,32 @@ public class MainMenu : MonoBehaviour
         if (quitButton != null)
         {
             quitButton.onClick.RemoveAllListeners();
-            quitButton.onClick.AddListener(QuitGame);
+            quitButton.onClick.AddListener(OnQuitButtonClick);
             Debug.Log("MainMenu: Quit button listener added");
         }
-        else 
+        else
         {
             Debug.LogWarning("MainMenu: QuitButton reference is missing");
+        }
+    }
+
+    private void OnStartButtonClick()
+    {
+        if (!isStartButtonClicked)
+        {
+            isStartButtonClicked = true;
+            AudioManager.Instance.PlayButtonClickSound();
+            StartGame();
+        }
+    }
+
+    private void OnQuitButtonClick()
+    {
+        if (!isQuitButtonClicked)
+        {
+            isQuitButtonClicked = true;
+            AudioManager.Instance.PlayButtonClickSound();
+            QuitGame();
         }
     }
 
@@ -228,7 +251,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("MainMenu: StartGame called");
         Debug.Log($"MainMenuElements position: {mainMenuElements.GetComponent<RectTransform>().position}, size: {mainMenuElements.GetComponent<RectTransform>().sizeDelta}");
-    
+
         if (startButton != null)
         {
             Debug.Log($"StartButton position: {startButton.GetComponent<RectTransform>().position}, size: {startButton.GetComponent<RectTransform>().sizeDelta}");
@@ -291,7 +314,7 @@ public class MainMenu : MonoBehaviour
             mainMenuElements = transform.Find("MainMenuElements")?.gameObject;
             if (mainMenuElements == null) Debug.LogError("MainMenuElements not found as a child of MainMenu.");
         }
-    
+
         if (mainMenuCutscenePanel == null)
         {
             mainMenuCutscenePanel = transform.Find("MainMenuCutscenePanel")?.gameObject;
@@ -312,5 +335,7 @@ public class MainMenu : MonoBehaviour
             }
         }
         SetupButtons();
+        isStartButtonClicked = false;
+        isQuitButtonClicked = false;
     }
 }
