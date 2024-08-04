@@ -7,7 +7,6 @@ public class AeneasAttack : MonoBehaviour
     [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private float attackRadius = 1f;
     [SerializeField] private float attackOffset = 0.5f; // Distance from player center to attack center
-    [SerializeField] private int attackDamage = 10;
     [SerializeField] private float knockbackForce = 10f; // Increased knockback force
 
     [Header("Character Center Adjustment")]
@@ -20,14 +19,16 @@ public class AeneasAttack : MonoBehaviour
     private float lastAttackTime;
     private Animator animator;
     private PlayerMovement playerMovement;
+    private AeneasAttributes aeneasAttributes;
     private GameObject attackRangeVisual;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        aeneasAttributes = GetComponent<AeneasAttributes>();
 
-        if (!animator || !playerMovement)
+        if (!animator || !playerMovement || !aeneasAttributes)
         {
             Debug.LogError("Required components missing on the player!");
             enabled = false;
@@ -95,6 +96,7 @@ public class AeneasAttack : MonoBehaviour
     {
         Vector2 attackCenter = GetCharacterCenter() + attackDirection * attackOffset;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackCenter, attackRadius);
+        int attackDamage = aeneasAttributes.damage;
 
         foreach (Collider2D collider in hitColliders)
         {
