@@ -1,8 +1,3 @@
-// This is the player movement script.
-// This is used so that the player (Aeneas) can move.
-// Furthermore, it triggers the animation.
-// The default speed is 5, however, this can be changed in Unity.using UnityEngine
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -66,36 +61,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PositionPlayer();
+        if (scene.name == "Troy")
+        {
+            PositionPlayer();
+        }
     }
 
     private void PositionPlayer()
     {
-        if (PlayerPrefs.HasKey("SpawnPointIdentifier"))
+        string spawnPointId = PlayerPrefs.GetString("SpawnPointIdentifier", "DefaultSpawnPoint");
+        GameObject spawnPoint = GameObject.Find(spawnPointId);
+        if (spawnPoint != null)
         {
-            string spawnPointId = PlayerPrefs.GetString("SpawnPointIdentifier");
-            GameObject spawnPoint = GameObject.Find(spawnPointId);
-            if (spawnPoint != null)
-            {
-                transform.position = spawnPoint.transform.position;
-                ResetPlayerVelocity();
-            }
-            else
-            {
-                Debug.LogWarning($"Spawn point '{spawnPointId}' not found in the scene.");
-            }
-            PlayerPrefs.DeleteKey("SpawnPointIdentifier");
-        }
-        else if (PlayerPrefs.HasKey("SpawnPositionX") && PlayerPrefs.HasKey("SpawnPositionY"))
-        {
-            float x = PlayerPrefs.GetFloat("SpawnPositionX");
-            float y = PlayerPrefs.GetFloat("SpawnPositionY");
-            transform.position = new Vector2(x, y);
+            transform.position = spawnPoint.transform.position;
             ResetPlayerVelocity();
-
-            PlayerPrefs.DeleteKey("SpawnPositionX");
-            PlayerPrefs.DeleteKey("SpawnPositionY");
         }
+        else
+        {
+            Debug.LogWarning($"Spawn point '{spawnPointId}' not found in the scene.");
+        }
+        PlayerPrefs.DeleteKey("SpawnPointIdentifier");
     }
 
     private void ResetPlayerVelocity()
@@ -141,9 +126,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool(MOVING, false);
         }
 
-        //Debug.Log($"Movement updated: Change={change}, LastMovementDirection={lastMovementDirection}");
-
-        // Save player position
         PlayerPrefs.SetFloat("PlayerPosX", transform.position.x);
         PlayerPrefs.SetFloat("PlayerPosY", transform.position.y);
         PlayerPrefs.SetFloat("PlayerPosZ", transform.position.z);

@@ -124,7 +124,7 @@ public class MissionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("MissionManager: MissionText is not assigned or all missions are completed.");
+                Debug.LogWarning("MissionManager: MissionText is not assigned or all missions are completed.");
             }
         }
     }
@@ -132,6 +132,7 @@ public class MissionManager : MonoBehaviour
     public void ResetMissionIndex()
     {
         currentMissionIndex = 0;
+        InitializeMissionTargets();
         UpdateMissionText();
         Debug.Log("MissionManager: Mission index reset to 0");
     }
@@ -154,12 +155,12 @@ public class MissionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("MissionManager: TroyHouse2Exit not found in the scene.");
+                Debug.LogWarning("MissionManager: TroyHouse2Exit not found in the scene.");
             }
         }
         else
         {
-            Debug.LogError("MissionManager: Compass not found in the scene.");
+            Debug.LogWarning("MissionManager: Compass not found in the scene.");
         }
     }
 
@@ -177,18 +178,19 @@ public class MissionManager : MonoBehaviour
             if (familyLocation != null)
             {
                 compass.SetTarget(familyLocation.transform);
-                Debug.Log("MissionManager: Compass target set to FamilyLocation");
+                Debug.Log($"MissionManager: Compass target set to FamilyLocation at position {familyLocation.transform.position}");
             }
             else
             {
-                Debug.LogError("MissionManager: FamilyLocation not found in the scene.");
+                Debug.LogWarning("MissionManager: FamilyLocation not found in the scene.");
             }
         }
         else
         {
-            Debug.LogError("MissionManager: Compass not found in the scene.");
+            Debug.LogWarning("MissionManager: Compass not found in the scene.");
         }
     }
+
 
     private void SetCompassTargetForMission4()
     {
@@ -208,17 +210,27 @@ public class MissionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("MissionManager: EscapePoint not found in the scene.");
+                Debug.LogWarning("MissionManager: EscapePoint not found in the scene.");
             }
         }
         else
         {
-            Debug.LogError("MissionManager: Compass not found in the scene.");
+            Debug.LogWarning("MissionManager: Compass not found in the scene.");
         }
     }
 
     private void UpdateMissionText()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            return; // Don't update mission text in MainMenu
+        }
+
+        if (missionText == null)
+        {
+            FindAndAssignMissionText();
+        }
+
         if (missionText != null && currentMissionIndex < missions.Count)
         {
             missionText.text = missions[currentMissionIndex];
@@ -226,7 +238,28 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("MissionManager: MissionText is not assigned or mission index is out of range.");
+            Debug.LogWarning("MissionManager: Unable to update mission text.");
+        }
+    }
+
+    private void FindAndAssignMissionText()
+    {
+        GameObject missionPanel = GameObject.Find("MissionPanel");
+        if (missionPanel != null)
+        {
+            missionText = missionPanel.GetComponentInChildren<TextMeshProUGUI>();
+            if (missionText != null)
+            {
+                Debug.Log("MissionManager: MissionText found and assigned.");
+            }
+            else
+            {
+                Debug.LogWarning("MissionManager: MissionText component not found in MissionPanel.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("MissionManager: MissionPanel not found in the scene.");
         }
     }
 
@@ -256,13 +289,11 @@ public class MissionManager : MonoBehaviour
         Debug.Log($"MissionManager: Scene loaded - {scene.name}");
         if (scene.name == "MainMenu")
         {
-            // Reset missions and targets when returning to the main menu
             ResetMissionIndex();
-            InitializeMissionTargets();
         }
         else
         {
-            AssignMissionText();
+            FindAndAssignMissionText();
             UpdateMissionText();
 
             if (scene.name == "Troy")
@@ -286,9 +317,19 @@ public class MissionManager : MonoBehaviour
 
     private void SetupTroyScene()
     {
-        Debug.Log("MissionManager: Setting up Troy scene");
         UpdateMissionText();
-        if (currentMissionIndex == 1)
+        if (currentMissionIndex == 0)
+        {
+            if (compass == null)
+            {
+                compass = FindObjectOfType<Compass>();
+            }
+            if (compass != null)
+            {
+                compass.FindGreekHeroes();
+            }
+        }
+        else
         {
             SetCompassTargetForMission2();
         }
@@ -296,48 +337,19 @@ public class MissionManager : MonoBehaviour
 
     private void SetupIndoorScene()
     {
-        Debug.Log("MissionManager: Setting up Indoor scene");
         UpdateMissionText();
-        if (currentMissionIndex == 2)
-        {
-            SetCompassTargetForMission3();
-        }
+        SetCompassTargetForMission3();
     }
 
     private void SetupTroySackScene()
     {
-        Debug.Log("MissionManager: Setting up TroySack scene");
         UpdateMissionText();
-        if (currentMissionIndex == 2)
-        {
-            SetCompassTargetForMission3();
-        }
+        SetCompassTargetForMission3();
     }
 
     private void SetupCaveScene()
     {
-        Debug.Log("MissionManager: Setting up Cave scene");
         UpdateMissionText();
-    }
-
-    private void AssignMissionText()
-    {
-        var missionPanel = GameObject.Find("MissionPanel");
-        if (missionPanel != null)
-        {
-            missionText = missionPanel.GetComponentInChildren<TextMeshProUGUI>();
-            if (missionText != null)
-            {
-                Debug.Log("MissionManager: MissionText found and assigned.");
-            }
-            else
-            {
-                Debug.LogError("MissionManager: MissionText component not found in MissionPanel.");
-            }
-        }
-        else
-        {
-            Debug.LogError("MissionManager: MissionPanel not found in the scene.");
-        }
+        SetCompassTargetForMission4();
     }
 }

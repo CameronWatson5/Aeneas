@@ -1,10 +1,3 @@
-// This script is for the camera object.
-// The camera object has a target (Aeneas, the main character)
-// The camera then follows this target.
-// FollowSpeed determines how quickly the target is followed (This can be edited in Unity too)
-// The tilemap variable is a reference to the tilemap that Aeneas is on,
-// this prevents the camera from going out of bounds.
-
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
@@ -108,6 +101,12 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "GameOver")
+        {
+            // Don't try to follow the player in these scenes
+            return;
+        }
+
         if (target == null)
         {
             FindPlayer();
@@ -147,4 +146,3 @@ public class CameraFollow : MonoBehaviour
         return new Vector3(clampedX, clampedY, position.z);
     }
 }
-

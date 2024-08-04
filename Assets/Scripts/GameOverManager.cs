@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
@@ -30,15 +29,23 @@ public class GameOverManager : MonoBehaviour
 
     void GoToMainMenu()
     {
-        Time.timeScale = 1f; 
-        ResetPlayerAttributes();
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.ResetMissionIndex();
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RestartGame();
+        }
+
         if (SceneTransitionManager.Instance != null)
         {
-            SceneTransitionManager.Instance.TransitionToScene("MainMenu", "DefaultSpawnPoint");
+            SceneTransitionManager.Instance.TransitionToScene("MainMenu", "");
         }
         else
         {
-            Debug.LogError("SceneTransitionManager instance is not set.");
+            Debug.LogError("GameOverManager: SceneTransitionManager not found");
         }
     }
 
@@ -46,26 +53,5 @@ public class GameOverManager : MonoBehaviour
     {
         Debug.Log("Exiting game...");
         Application.Quit();
-    }
-
-    void ResetPlayerAttributes()
-    {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            AeneasAttributes attributes = player.GetComponent<AeneasAttributes>();
-            if (attributes != null)
-            {
-                attributes.ResetAttributes();
-            }
-            else
-            {
-                Debug.LogError("AeneasAttributes component not found on Player.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Player GameObject not found.");
-        }
     }
 }

@@ -21,7 +21,6 @@ public class SceneTransitionManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             SetupFadeCanvas();
-
             InitializeManagers();
         }
         else
@@ -40,15 +39,6 @@ public class SceneTransitionManager : MonoBehaviour
             missionManager.AddComponent<MissionManager>();
             DontDestroyOnLoad(missionManager);
         }
-
-        // if (IndoorCutsceneManager.Instance == null)
-        // {
-        //     Debug.Log("SceneTransitionManager: Creating IndoorCutsceneManager");
-        //     GameObject indoorCutsceneManager = new GameObject("IndoorCutsceneManager");
-        //     IndoorCutsceneManager manager = indoorCutsceneManager.AddComponent<IndoorCutsceneManager>();
-        //    
-        //     DontDestroyOnLoad(indoorCutsceneManager);
-        // }
     }
 
     private void SetupFadeCanvas()
@@ -83,7 +73,12 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void TransitionToScene(string sceneName, string spawnPoint)
     {
-        Debug.Log($"SceneTransitionManager: Transitioning to scene {sceneName} with spawn point {spawnPoint}");
+        Debug.Log($"SceneTransitionManager: Starting transition to {sceneName} with spawn point {spawnPoint}");
+        if (sceneName == "Troy")
+        {
+            CleanupMainMenuObjects();
+        }
+
         targetSceneName = sceneName;
         spawnPointIdentifier = spawnPoint;
         StartCoroutine(FadeAndLoadScene());
@@ -92,10 +87,60 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator FadeAndLoadScene()
     {
         yield return StartCoroutine(Fade(1f));
+
+        if (targetSceneName == "MainMenu" || targetSceneName == "GameOver")
+        {
+            CleanupPersistentObjects();
+        }
+
         SceneManager.LoadScene(targetSceneName);
         PlayerPrefs.SetString("SpawnPointIdentifier", spawnPointIdentifier);
+        SceneManager.sceneLoaded += OnSceneLoaded; // Add sceneLoaded event handler
         yield return StartCoroutine(Fade(0f));
         CleanupDuplicateEventSystems();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"SceneTransitionManager: Scene {scene.name} loaded. Looking for spawn point {spawnPointIdentifier}");
+
+        GameObject spawnPoint = GameObject.Find(spawnPointIdentifier);
+        if (spawnPoint != null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                player.transform.position = spawnPoint.transform.position;
+                Debug.Log($"SceneTransitionManager: Player moved to spawn point {spawnPointIdentifier} at position {spawnPoint.transform.position}");
+            }
+            else
+            {
+                Debug.LogWarning("SceneTransitionManager: Player not found in the scene.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"SceneTransitionManager: Spawn point {spawnPointIdentifier} not found in the scene.");
+        }
+
+        // Unsubscribe from the event to avoid repeated calls
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void CleanupPersistentObjects()
+    {
+        Debug.Log("SceneTransitionManager: Cleaning up persistent objects");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Destroy(player);  // Ensure the player is properly destroyed
+        }
+
+        GameObject inventoryManager = GameObject.Find("InventoryManager");
+        if (inventoryManager != null)
+        {
+            DontDestroyOnLoad(inventoryManager);
+        }
     }
 
     private IEnumerator Fade(float targetAlpha)
@@ -137,5 +182,19 @@ public class SceneTransitionManager : MonoBehaviour
         Debug.Log($"SceneTransitionManager: Starting new game, scene: {sceneName}, spawn: {spawnPoint}");
         ResetChestStates();
         TransitionToScene(sceneName, spawnPoint);
+    }
+
+    public void CleanupMainMenuObjects()
+    {
+        GameObject mainMenu = GameObject.Find("MainMenu");
+        if (mainMenu != null)
+        {
+            Debug.Log("Destroying MainMenu object");
+            Destroy(mainMenu);
+        }
+        else
+        {
+            Debug.Log("MainMenu object not found for cleanup");
+        }
     }
 }

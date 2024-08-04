@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TroySack.unity
     guid: ec8a669fa93557342a6843fa18c2e8a0
+  - enabled: 1
+    path: Assets/Scenes/PersistentManagers.unity
+    guid: 04a7bf1fc2c63b8449d825d8352c9d87
   m_configObjects: {}

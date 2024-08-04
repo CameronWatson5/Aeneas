@@ -30,10 +30,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         AddStartingItems();
-        InvokeRepeating(nameof(TryEquipStartingItems), 0f, 1f); // Check every second
+        ApplyAllEquippedItemEffects();
     }
 
     void AddStartingItems()
@@ -54,7 +54,7 @@ public class InventoryManager : MonoBehaviour
                 EquipItem(item);
             }
             startingItemsEquipped = true;
-            CancelInvoke(nameof(TryEquipStartingItems)); 
+            CancelInvoke(nameof(TryEquipStartingItems));
         }
     }
 
@@ -155,7 +155,6 @@ public class InventoryManager : MonoBehaviour
                     break;
             }
 
-            // Debugging logs
             Debug.Log($"Unequipped item: {itemToUnequip.itemName}");
         }
     }
@@ -175,6 +174,17 @@ public class InventoryManager : MonoBehaviour
         playerAttributes.IncreaseArmor(item.armorBonus * multiplier);
         playerAttributes.IncreaseHealth(item.healthBonus * multiplier);
         Debug.Log($"Player stats after applying item: Damage={playerAttributes.damage}, Armor={playerAttributes.armor}, Health={playerAttributes.maxHealth}");
+    }
+
+    public void ApplyAllEquippedItemEffects()
+    {
+        foreach (var item in inventory)
+        {
+            if (item.isEquipped)
+            {
+                ApplyItemEffects(item, true);
+            }
+        }
     }
 
     private void EnsurePlayerAttributes()

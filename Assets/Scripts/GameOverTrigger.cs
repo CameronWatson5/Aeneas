@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class GameOverTrigger : MonoBehaviour
@@ -12,24 +11,30 @@ public class GameOverTrigger : MonoBehaviour
             isTriggered = true;
             Debug.Log("GameOverTrigger: Player entered trigger");
 
-            if (MissionManager.Instance.IsCurrentMission(3)) 
+            if (MissionManager.Instance.IsCurrentMission(3))
             {
-                Debug.Log("GameOverTrigger: Correct mission, showing normal popup and applying damage");
-                PopUpManager.Instance.ShowPopup("Game Over", "You have been defeated by the enemies.");
-                
-                // Damage the player significantly after a short delay
-                StartCoroutine(ApplyDamageToPlayer());
+                Debug.Log("GameOverTrigger: Correct mission, transitioning to GameOver scene");
+                TransitionToGameOver();
             }
         }
     }
 
-    private IEnumerator ApplyDamageToPlayer()
+    private void TransitionToGameOver()
     {
-        yield return new WaitForSeconds(2); // Adjust the delay as needed
-        AeneasAttributes playerAttributes = FindObjectOfType<AeneasAttributes>();
-        if (playerAttributes != null)
+        // Show popup if needed
+        if (PopUpManager.Instance != null)
         {
-            playerAttributes.TakeDamage(1000); // Apply significant damage to trigger GameOver
+            PopUpManager.Instance.ShowPopup("Game Over", "You have been defeated by the enemies.");
+        }
+
+        // Transition to GameOver scene
+        if (SceneTransitionManager.Instance != null)
+        {
+            SceneTransitionManager.Instance.TransitionToScene("GameOver", "");
+        }
+        else
+        {
+            Debug.LogError("GameOverTrigger: SceneTransitionManager not found");
         }
     }
 }

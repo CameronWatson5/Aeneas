@@ -110,11 +110,28 @@ public class MainMenuCutsceneManager : MonoBehaviour
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             Debug.Log($"MainMenuCutsceneManager: Transitioning to scene: {nextSceneName}");
+            // Don't destroy the cutscene panel
+            transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);
             SceneManager.LoadScene(nextSceneName);
         }
         else
         {
             Debug.Log("MainMenuCutsceneManager: No next scene specified");
+        }
+    }
+    public void ResetCutscene()
+    {
+        StopAllCoroutines();
+        currentLineIndex = 0;
+        isTyping = false;
+        if (cutsceneText != null)
+        {
+            cutsceneText.text = "";
+        }
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 0;
         }
     }
 }

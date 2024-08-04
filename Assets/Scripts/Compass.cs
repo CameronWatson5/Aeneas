@@ -18,6 +18,7 @@ public class Compass : MonoBehaviour
 
     private void Start()
     {
+        FindPlayer();
         FindGreekHeroes();
         FindFamilyMembers();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -25,56 +26,94 @@ public class Compass : MonoBehaviour
 
     private void Update()
     {
-        if (IsInTroyScene() || IsInTroySackScene())
+        if (player == null)
+        {
+            FindPlayer();
+        }
+        if (player != null && (IsInTroyScene() || IsInTroySackScene()))
         {
             if (missionComplete)
             {
-                if (target != null)
-                {
-                    Vector3 direction = target.position - player.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    arrowImage.rectTransform.localRotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for arrow orientation
-                    arrowImage.enabled = true;
-                }
-                else
-                {
-                    arrowImage.enabled = false;
-                }
+                UpdateArrowToTarget();
             }
             else if (IsInTroySackScene())
             {
-                FindNearestFamilyMember();
-                if (nearestFamilyMember != null)
-                {
-                    Vector3 direction = nearestFamilyMember.position - player.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    arrowImage.rectTransform.localRotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for arrow orientation
-                    arrowImage.enabled = true;
-                }
-                else
-                {
-                    arrowImage.enabled = false;
-                }
+                UpdateArrowToNearestFamilyMember();
             }
             else
             {
-                FindNearestHero();
-                if (nearestHero != null)
-                {
-                    Vector3 direction = nearestHero.position - player.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    arrowImage.rectTransform.localRotation = Quaternion.Euler(0, 0, angle - 90); // Adjust for arrow orientation
-                    arrowImage.enabled = true;
-                }
-                else
-                {
-                    arrowImage.enabled = false;
-                }
+                UpdateArrowToNearestHero();
             }
         }
         else
         {
             arrowImage.enabled = false;
+        }
+    }
+
+    private void FindPlayer()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Compass: Player not found");
+        }
+    }
+
+    private void UpdateArrowToTarget()
+    {
+        if (target != null)
+        {
+            UpdateArrowDirection(target.position);
+        }
+        else
+        {
+            arrowImage.enabled = false;
+        }
+    }
+
+    private void UpdateArrowToNearestFamilyMember()
+    {
+        FindNearestFamilyMember();
+        if (nearestFamilyMember != null)
+        {
+            UpdateArrowDirection(nearestFamilyMember.position);
+        }
+        else
+        {
+            arrowImage.enabled = false;
+        }
+    }
+
+    private void UpdateArrowToNearestHero()
+    {
+        FindNearestHero();
+        if (nearestHero != null)
+        {
+            UpdateArrowDirection(nearestHero.position);
+        }
+        else
+        {
+            arrowImage.enabled = false;
+        }
+    }
+
+    private void UpdateArrowDirection(Vector3 targetPosition)
+    {
+        if (player == null)
+        {
+            FindPlayer();
+        }
+        if (player != null)
+        {
+            Vector3 direction = targetPosition - player.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            arrowImage.rectTransform.localRotation = Quaternion.Euler(0, 0, angle - 90);
+            arrowImage.enabled = true;
         }
     }
 
@@ -100,7 +139,7 @@ public class Compass : MonoBehaviour
         return SceneManager.GetActiveScene().name == troySackSceneName;
     }
 
-    private void FindGreekHeroes()
+    public void FindGreekHeroes()
     {
         GameObject[] heroes = GameObject.FindGameObjectsWithTag("Boss");
         greekHeroes = new Transform[heroes.Length];
@@ -108,9 +147,10 @@ public class Compass : MonoBehaviour
         {
             greekHeroes[i] = heroes[i].transform;
         }
+        missionComplete = false;
     }
 
-    private void FindFamilyMembers()
+    public void FindFamilyMembers()
     {
         GameObject[] family = GameObject.FindGameObjectsWithTag("Family");
         familyMembers = new Transform[family.Length];
@@ -118,6 +158,7 @@ public class Compass : MonoBehaviour
         {
             familyMembers[i] = family[i].transform;
         }
+        missionComplete = false;
     }
 
     private void FindNearestHero()
@@ -158,7 +199,9 @@ public class Compass : MonoBehaviour
 
     public void SetTarget(Transform newTarget)
     {
+        Debug.Log($"Compass: New target set to {newTarget.name} at position {newTarget.position}");
         target = newTarget;
-        CompleteMission(); 
+        CompleteMission();
     }
+
 }

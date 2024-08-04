@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AeneasAttributes : MonoBehaviour
 {
@@ -11,12 +10,19 @@ public class AeneasAttributes : MonoBehaviour
     public int armor = 0;
     public float speed = 5.0f;
     public int gold = 0;
-    private const int maxGold = 999; 
+    private const int maxGold = 999;
 
-    void Start()
+    private void Start()
     {
         ResetAttributes();
-        InventoryManager.Instance?.ReapplyEquippedItemEffects();
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.ApplyAllEquippedItemEffects();
+        }
+        else
+        {
+            Debug.LogError("InventoryManager not found!");
+        }
     }
 
     public void TakeDamage(int amount)
@@ -56,7 +62,7 @@ public class AeneasAttributes : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
-        gold = Mathf.Clamp(gold, 0, maxGold); // Ensure gold does not exceed maxGold
+        gold = Mathf.Clamp(gold, 0, maxGold);
     }
 
     public bool SpendGold(int amount)
@@ -69,11 +75,10 @@ public class AeneasAttributes : MonoBehaviour
         return false;
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("Player has died");
-        // Instead of loading the GameOver scene directly, use the MissionManager to handle the transition
-        MissionManager.Instance.TransitionToGameOver();
+        GameManager.Instance.PlayerDied();
     }
 
     public void ResetAttributes()
@@ -83,5 +88,6 @@ public class AeneasAttributes : MonoBehaviour
         armor = 0;
         speed = 5.0f;
         gold = 0;
+        Debug.Log("Player attributes have been reset.");
     }
 }

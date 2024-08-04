@@ -28095,7 +28095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000025312906, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0.00008593925, y: -0.000015258789}
   m_SizeDelta: {x: -300, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1769813737
@@ -28546,51 +28546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d442bcc2b98badf48a9515c94785977e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1926134457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1926134458}
-  - component: {fileID: 1926134459}
-  m_Layer: 0
-  m_Name: IndoorCutscene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1926134458
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926134457}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.495394, y: -52.9133, z: -0.30042264}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1926134459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926134457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa2ee22ff5c5424585c88aee267da6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutscenePrefab: {fileID: 6327708829726505843, guid: d9ab03539b2f1704db224ea6dfb1ded3, type: 3}
 --- !u!1 &1948190095
 GameObject:
   m_ObjectHideFlags: 0
@@ -28775,51 +28730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Troy
   spawnPointIdentifier: TroyHouse10Exit
---- !u!1 &1975400221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1975400222}
-  - component: {fileID: 1975400223}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1975400222
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975400221}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.495394, y: -52.9133, z: -0.30042264}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1975400223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975400221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7e25507848cd5541a8056f2e2a1ad0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indoorCutsceneManagerPrefab: {fileID: 6327708829726505843, guid: d9ab03539b2f1704db224ea6dfb1ded3, type: 3}
 --- !u!1 &1991623411
 GameObject:
   m_ObjectHideFlags: 0
@@ -38403,7 +38313,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 148153538}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99997544
+  m_Size: 0.9999486
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -38721,7 +38631,5 @@ SceneRoots:
   - {fileID: 1339013613}
   - {fileID: 65029794}
   - {fileID: 704047462}
-  - {fileID: 1975400222}
   - {fileID: 2085495518}
   - {fileID: 1895978396}
-  - {fileID: 1926134458}

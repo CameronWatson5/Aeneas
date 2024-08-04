@@ -1,5 +1,3 @@
-// The purpose of this script is to transition from one scene to another.
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +12,7 @@ public class DoorTransition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log($"DoorTransition: Player entered trigger, transitioning to {targetSceneName} at {spawnPointIdentifier}");
             EnemyManager.Instance.ClearEnemies();
             SceneTransitionManager.Instance.TransitionToScene(targetSceneName, spawnPointIdentifier);
         }
