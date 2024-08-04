@@ -108,14 +108,16 @@ public class SceneTransitionManager : MonoBehaviour
         if (spawnPoint != null)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            if (player == null)
             {
-                player.transform.position = spawnPoint.transform.position;
-                Debug.Log($"SceneTransitionManager: Player moved to spawn point {spawnPointIdentifier} at position {spawnPoint.transform.position}");
+                Debug.LogWarning("SceneTransitionManager: Player not found in the scene. Instantiating new player.");
+                player = Instantiate(GameManager.Instance.playerPrefab, spawnPoint.transform.position, Quaternion.identity);
+                DontDestroyOnLoad(player);
             }
             else
             {
-                Debug.LogWarning("SceneTransitionManager: Player not found in the scene.");
+                player.transform.position = spawnPoint.transform.position;
+                Debug.Log($"SceneTransitionManager: Player moved to spawn point {spawnPointIdentifier} at position {spawnPoint.transform.position}");
             }
         }
         else
@@ -123,9 +125,9 @@ public class SceneTransitionManager : MonoBehaviour
             Debug.LogWarning($"SceneTransitionManager: Spawn point {spawnPointIdentifier} not found in the scene.");
         }
 
-        // Unsubscribe from the event to avoid repeated calls
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
 
     private void CleanupPersistentObjects()
     {

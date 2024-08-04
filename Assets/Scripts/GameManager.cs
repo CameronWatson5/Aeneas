@@ -13,15 +13,14 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializePlayer();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        InitializePlayer();
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
@@ -35,9 +34,9 @@ public class GameManager : MonoBehaviour
         {
             DestroyPlayerInstance();
         }
-        else if (scene.name == "Troy")
+        else
         {
-            InitializePlayer();
+            EnsurePlayerInScene(scene.name);
         }
     }
 
@@ -49,16 +48,46 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        DestroyPlayerInstance();
-
-        playerInstance = Instantiate(playerPrefab);
-        DontDestroyOnLoad(playerInstance);
-        Debug.Log("GameManager: New player instance created");
-
-        AeneasAttributes playerAttributes = playerInstance.GetComponent<AeneasAttributes>();
-        if (playerAttributes != null)
+        if (playerInstance == null)
         {
-            playerAttributes.ResetAttributes();
+            playerInstance = Instantiate(playerPrefab);
+            DontDestroyOnLoad(playerInstance);
+            Debug.Log("GameManager: New player instance created");
+
+            AeneasAttributes playerAttributes = playerInstance.GetComponent<AeneasAttributes>();
+            if (playerAttributes != null)
+            {
+                playerAttributes.ResetAttributes();
+            }
+        }
+    }
+
+    private void EnsurePlayerInScene(string sceneName)
+    {
+        if (playerInstance == null)
+        {
+            Debug.LogWarning("GameManager: Player instance not found, reinitializing player.");
+            InitializePlayer();
+        }
+        else
+        {
+            MovePlayerToSpawnPoint(sceneName);
+        }
+    }
+
+    private void MovePlayerToSpawnPoint(string sceneName)
+    {
+        string spawnPointName = sceneName + "SpawnPoint";
+        GameObject spawnPoint = GameObject.Find(spawnPointName);
+
+        if (spawnPoint != null)
+        {
+            playerInstance.transform.position = spawnPoint.transform.position;
+            Debug.Log($"GameManager: Player moved to spawn point {spawnPointName} at position {spawnPoint.transform.position}");
+        }
+        else
+        {
+            Debug.LogWarning($"GameManager: Spawn point {spawnPointName} not found in the scene.");
         }
     }
 
