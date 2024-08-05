@@ -20,6 +20,7 @@ public class ShopkeeperNPC : MonoBehaviour
         {
             playerNearby = true;
             Debug.Log("Player entered shop area");
+            UIManager.Instance.ShowInteractionPrompt("Press E to interact");
         }
     }
 
@@ -29,12 +30,13 @@ public class ShopkeeperNPC : MonoBehaviour
         {
             playerNearby = false;
             Debug.Log("Player left shop area");
+            UIManager.Instance.HideInteractionPrompt();
         }
     }
 
     void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.R))
+        if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
             if (shopManager != null)
             {

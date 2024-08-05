@@ -147,7 +147,7 @@ public class MissionManager : MonoBehaviour
 
         if (compass != null)
         {
-            GameObject troyHouse2Exit = GameObject.Find("TroyHouse2Exit");
+            GameObject troyHouse2Exit = GameObject.Find("TroyHouse2");
             if (troyHouse2Exit != null)
             {
                 compass.SetTarget(troyHouse2Exit.transform);

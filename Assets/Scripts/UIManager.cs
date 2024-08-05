@@ -23,4 +23,24 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void ShowInteractionPrompt(string message)
+    {
+        if (interactionText != null)
+        {
+            interactionText.text = message;
+        }
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(true);
+        }
+    }
+
+    public void HideInteractionPrompt()
+    {
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+        }
+    }
 }

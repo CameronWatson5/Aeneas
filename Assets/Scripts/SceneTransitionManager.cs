@@ -30,6 +30,24 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        MainMenuCutsceneManager cutsceneManager = FindObjectOfType<MainMenuCutsceneManager>();
+        if (cutsceneManager != null)
+        {
+            cutsceneManager.OnCutsceneComplete += HandleCutsceneComplete;
+        }
+    }
+
+    private void OnDisable()
+    {
+        MainMenuCutsceneManager cutsceneManager = FindObjectOfType<MainMenuCutsceneManager>();
+        if (cutsceneManager != null)
+        {
+            cutsceneManager.OnCutsceneComplete -= HandleCutsceneComplete;
+        }
+    }
+
     private void InitializeManagers()
     {
         if (MissionManager.Instance == null)
@@ -177,13 +195,21 @@ public class SceneTransitionManager : MonoBehaviour
     {
         Debug.Log("SceneTransitionManager: Resetting chest states");
         PlayerPrefs.DeleteAll();
+
+        Chest[] chests = FindObjectsOfType<Chest>();
+        foreach (Chest chest in chests)
+        {
+            chest.ResetChestState();
+        }
     }
 
     public void StartNewGame(string sceneName, string spawnPoint)
     {
         Debug.Log($"SceneTransitionManager: Starting new game, scene: {sceneName}, spawn: {spawnPoint}");
         ResetChestStates();
-        TransitionToScene(sceneName, spawnPoint);
+        // Do not call TransitionToScene here, wait for cutscene to end.
+        targetSceneName = sceneName;
+        spawnPointIdentifier = spawnPoint;
     }
 
     public void CleanupMainMenuObjects()
@@ -197,6 +223,15 @@ public class SceneTransitionManager : MonoBehaviour
         else
         {
             Debug.Log("MainMenu object not found for cleanup");
+        }
+    }
+
+    private void HandleCutsceneComplete()
+    {
+        // The cutscene has ended, so start the fade and load the next scene
+        if (!string.IsNullOrEmpty(targetSceneName))
+        {
+            StartCoroutine(FadeAndLoadScene());
         }
     }
 }

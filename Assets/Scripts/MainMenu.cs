@@ -220,7 +220,7 @@ public class MainMenu : MonoBehaviour
         {
             isStartButtonClicked = true;
             AudioManager.Instance.PlayButtonClickSound();
-            StartGame();
+            StartCutscene();
         }
     }
 
@@ -247,9 +247,9 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    private void StartCutscene()
     {
-        Debug.Log("MainMenu: StartGame called");
+        Debug.Log("MainMenu: StartCutscene called");
         Debug.Log($"MainMenuElements position: {mainMenuElements.GetComponent<RectTransform>().position}, size: {mainMenuElements.GetComponent<RectTransform>().sizeDelta}");
 
         if (startButton != null)
@@ -275,6 +275,7 @@ public class MainMenu : MonoBehaviour
             MainMenuCutsceneManager cutsceneManager = mainMenuCutscenePanel.GetComponent<MainMenuCutsceneManager>();
             if (cutsceneManager != null)
             {
+                cutsceneManager.OnCutsceneComplete += HandleCutsceneComplete; // Subscribe to the event
                 cutsceneManager.enabled = true;
                 Debug.Log("MainMenu: MainMenuCutsceneManager enabled");
             }
@@ -299,6 +300,20 @@ public class MainMenu : MonoBehaviour
         {
             Debug.LogError("No Canvas found in parent hierarchy!");
         }
+    }
+
+    private void HandleCutsceneComplete()
+    {
+        Debug.Log("MainMenu: Cutscene complete, starting game");
+        // Unsubscribe from the cutscene complete event to avoid potential memory leaks
+        MainMenuCutsceneManager cutsceneManager = mainMenuCutscenePanel.GetComponent<MainMenuCutsceneManager>();
+        if (cutsceneManager != null)
+        {
+            cutsceneManager.OnCutsceneComplete -= HandleCutsceneComplete; // Unsubscribe from the event
+        }
+
+        // Start the new game through the SceneTransitionManager
+        SceneTransitionManager.Instance.StartNewGame("GameSceneName", "SpawnPointName"); // Replace with actual scene and spawn point names
     }
 
     public void QuitGame()

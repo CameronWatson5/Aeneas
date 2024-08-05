@@ -10,6 +10,9 @@ public class MainMenuCutsceneManager : MonoBehaviour
     public string[] cutsceneLines;
     public string nextSceneName;
 
+    public delegate void CutsceneCompleteHandler();
+    public event CutsceneCompleteHandler OnCutsceneComplete;
+
     private CanvasGroup canvasGroup;
     private Coroutine typingCoroutine;
     private bool isTyping = false;
@@ -55,7 +58,7 @@ public class MainMenuCutsceneManager : MonoBehaviour
             yield return StartCoroutine(TypeLine(cutsceneLines[currentLineIndex]));
             currentLineIndex++;
             yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.touchCount > 0);
-            yield return new WaitForEndOfFrame(); 
+            yield return new WaitForEndOfFrame();
         }
 
         EndCutscene();
@@ -107,6 +110,11 @@ public class MainMenuCutsceneManager : MonoBehaviour
         Debug.Log("MainMenuCutsceneManager: Cutscene finished");
         canvasGroup.alpha = 0;
 
+        if (OnCutsceneComplete != null)
+        {
+            OnCutsceneComplete.Invoke();
+        }
+
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             Debug.Log($"MainMenuCutsceneManager: Transitioning to scene: {nextSceneName}");
@@ -120,6 +128,7 @@ public class MainMenuCutsceneManager : MonoBehaviour
             Debug.Log("MainMenuCutsceneManager: No next scene specified");
         }
     }
+
     public void ResetCutscene()
     {
         StopAllCoroutines();

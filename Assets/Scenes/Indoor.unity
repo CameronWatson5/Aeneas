@@ -26214,7 +26214,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885587229}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac9a48761ebad542911570c11cc771a, type: 3}
   m_Name: 
@@ -26225,7 +26225,7 @@ MonoBehaviour:
   objectName: Shopkeeper
   typingSpeed: 0.05
   useTypewriterEffect: 1
-  promptText: Press E to interact
+  promptText: Press R to buy
   showDebugLogs: 1
 --- !u!61 &885587235
 BoxCollider2D:
@@ -28095,7 +28095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00008593925, y: -0.000015258789}
+  m_AnchoredPosition: {x: -0.000026377498, y: -0.000015258789}
   m_SizeDelta: {x: -300, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1769813737
@@ -38312,8 +38312,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 148153539}
   m_HandleRect: {fileID: 148153538}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999486
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
