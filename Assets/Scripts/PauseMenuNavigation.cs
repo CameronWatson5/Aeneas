@@ -11,7 +11,7 @@ public class PauseMenuNavigation : MonoBehaviour
     public GameObject controlsPanel;
     public GameObject helpPanel;
     public GameObject logPanel;
-    public GameObject missionPanel;
+    //public GameObject missionPanel;
     public GameObject savePanel;
     public GameObject loadPanel;
 
@@ -20,7 +20,7 @@ public class PauseMenuNavigation : MonoBehaviour
     public Button controlsButton;
     public Button helpButton;
     public Button logButton;
-    public Button missionButton;
+    //public Button missionButton;
     public Button resumeButton; 
     public Button quitButton;
     //public Button saveButton;
@@ -42,7 +42,7 @@ public class PauseMenuNavigation : MonoBehaviour
             { controlsButton, controlsPanel },
             { helpButton, helpPanel },
             { logButton, logPanel },
-            { missionButton, missionPanel },
+            //{ missionButton, missionPanel },
             //{ saveButton, savePanel },
             //{ loadButton, loadPanel }
         };
