@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -36,8 +37,8 @@ public class SpecialPopUp : MonoBehaviour
             return;
         }
 
-        instructionsText.text = text;
-        instructionsText.fontSize = 14; // Adjust font size
+        instructionsText.text = "";
+        instructionsText.fontSize = 14; 
         popupPanel.SetActive(true);
 
         RectTransform rectTransform = popupPanel.GetComponent<RectTransform>();
@@ -45,7 +46,7 @@ public class SpecialPopUp : MonoBehaviour
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchoredPosition = Vector2.zero;
-        rectTransform.sizeDelta = new Vector2(300, 150); // Adjust size to fit within the screen
+        rectTransform.sizeDelta = new Vector2(300, 150); 
 
         // Center the text
         RectTransform textRectTransform = instructionsText.GetComponent<RectTransform>();
@@ -64,6 +65,18 @@ public class SpecialPopUp : MonoBehaviour
         buttonRectTransform.sizeDelta = new Vector2(30, 30);
 
         Time.timeScale = 0; // Pause the game
+
+        StartCoroutine(TypeText(text));
+    }
+
+    private IEnumerator TypeText(string text)
+    {
+        instructionsText.text = "";
+        foreach (char letter in text.ToCharArray())
+        {
+            instructionsText.text += letter;
+            yield return new WaitForSecondsRealtime(0.05f); // Adjust the typing speed here
+        }
     }
 
     public void ClosePopup()
