@@ -253,31 +253,31 @@ MonoBehaviour:
   inventory: []
   inventorySize: 20
   startingItems:
-  - itemName: sword
+  - itemName: Trojan Sword
     itemType: 0
     isEquipped: 1
-    icon: {fileID: 938328706, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
-    damageBonus: 2
+    icon: {fileID: 1710054285, guid: 119e15d425fd70142a519b5bd9f3ee07, type: 3}
+    damageBonus: 5
     armorBonus: 0
     healthBonus: 0
-  - itemName: g
+  - itemName: Trojan Shield
     itemType: 1
     isEquipped: 1
     icon: {fileID: 716287721, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     damageBonus: 0
     armorBonus: 2
     healthBonus: 0
-  - itemName: gg
+  - itemName: Trojan Helmet
     itemType: 2
     isEquipped: 1
     icon: {fileID: 603669163, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     damageBonus: 0
     armorBonus: 0
     healthBonus: 4
-  - itemName: gg
+  - itemName: Trojan Boots
     itemType: 3
     isEquipped: 1
-    icon: {fileID: 142807906, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
+    icon: {fileID: 21300000, guid: e4da5087a6b2ae441ba4a3eb0df43712, type: 3}
     damageBonus: 0
     armorBonus: 1
     healthBonus: 4
