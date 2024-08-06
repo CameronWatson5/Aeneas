@@ -15,6 +15,10 @@ public class InteractableObject : MonoBehaviour
     [Header("UI Settings")]
     public string promptText = "Press E to interact";
 
+    [Header("Audio Settings")]
+    [Range(0f, 1f)]
+    public float typewriterVolume = 1f;
+
     [Header("Debug")]
     public bool showDebugLogs = true;
 
@@ -28,6 +32,8 @@ public class InteractableObject : MonoBehaviour
     private int currentDialogueIndex = 0;
     private Coroutine typingCoroutine;
     private BoxCollider2D triggerCollider;
+    private AudioSource typewriterAudioSource;
+    private AudioClip typewriterSound;
 
     private void Awake()
     {
@@ -36,6 +42,11 @@ public class InteractableObject : MonoBehaviour
         {
             triggerCollider.isTrigger = true;
         }
+
+        typewriterAudioSource = gameObject.AddComponent<AudioSource>();
+        typewriterAudioSource.volume = typewriterVolume;
+        typewriterAudioSource.playOnAwake = false;
+        typewriterAudioSource.loop = true;
     }
 
     private void OnEnable()
@@ -56,6 +67,19 @@ public class InteractableObject : MonoBehaviour
     private void Start()
     {
         StartCoroutine(InitializeReferences());
+        SetTypewriterSound();
+    }
+
+    private void SetTypewriterSound()
+    {
+        if (typewriterSound == null)
+        {
+            typewriterSound = Resources.Load<AudioClip>("Sound Effects/468927__malakme__medium-text-blip(1)");
+            if (typewriterSound == null)
+            {
+                Debug.LogError("Failed to load typewriter sound effect.");
+            }
+        }
     }
 
     private IEnumerator InitializeReferences()
@@ -150,6 +174,7 @@ public class InteractableObject : MonoBehaviour
             {
                 Debug.Log($"Player exited range of {gameObject.name}");
             }
+            StopTypewriterSound();
         }
     }
 
@@ -204,11 +229,19 @@ public class InteractableObject : MonoBehaviour
         if (dialogueText != null)
         {
             dialogueText.text = "";
+            if (typewriterSound != null)
+            {
+                typewriterAudioSource.clip = typewriterSound;
+                typewriterAudioSource.Play();
+            }
+
             foreach (char letter in sentence.ToCharArray())
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(typingSpeed);
             }
+
+            StopTypewriterSound();
         }
     }
 
@@ -225,6 +258,30 @@ public class InteractableObject : MonoBehaviour
         if (showDebugLogs)
         {
             Debug.Log($"Ended dialogue with {gameObject.name}");
+        }
+        StopTypewriterSound();
+    }
+
+    private void StopTypewriterSound()
+    {
+        if (typewriterAudioSource != null && typewriterAudioSource.isPlaying)
+        {
+            typewriterAudioSource.Stop();
+        }
+        
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+    }
+
+    public void SetTypewriterVolume(float volume)
+    {
+        typewriterVolume = Mathf.Clamp01(volume);
+        if (typewriterAudioSource != null)
+        {
+            typewriterAudioSource.volume = typewriterVolume;
         }
     }
 }
