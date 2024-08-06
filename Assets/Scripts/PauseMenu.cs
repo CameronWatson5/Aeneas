@@ -4,9 +4,23 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
-    private static bool GameIsPaused = false;
+    public static PauseMenu Instance { get; private set; }
+    public static bool GameIsPaused = false;
     private string currentSceneName;
     private MapManager mapManager;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -18,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("Escape key pressed. GameIsPaused: " + GameIsPaused);
             if (GameIsPaused)
             {
                 Resume();
@@ -35,33 +50,36 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
 
-        // Only unload if the scene is actually loaded
         if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
-            SceneManager.UnloadSceneAsync("PauseMenu");
+            SceneManager.UnloadSceneAsync("PauseMenu").completed += OnPauseMenuUnloaded;
         }
+    }
 
+    private void OnPauseMenuUnloaded(AsyncOperation obj)
+    {
+        Debug.Log("PauseMenu scene unloaded.");
         CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
         if (cameraFollow != null)
         {
             cameraFollow.FindPlayer();
             cameraFollow.CalculateBounds();
-            cameraFollow.isNewScene = true; // Force camera to center on player
+            cameraFollow.isNewScene = true;
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         Debug.Log("Pausing game to PauseMenu");
         GameIsPaused = true;
         Time.timeScale = 0f;
-        // Save the current scene name to PlayerPrefs
         PlayerPrefs.SetString("PreviousScene", currentSceneName);
         StartCoroutine(LoadPauseMenuScene());
     }
 
     IEnumerator LoadPauseMenuScene()
     {
+        Debug.Log("Loading PauseMenu scene...");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive);
 
         while (!asyncLoad.isDone)
@@ -70,6 +88,7 @@ public class PauseMenu : MonoBehaviour
         }
 
         InitializeMap();
+        Debug.Log("PauseMenu scene loaded.");
     }
 
     void InitializeMap()

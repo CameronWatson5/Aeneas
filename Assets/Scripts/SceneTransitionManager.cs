@@ -91,6 +91,10 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void TransitionToScene(string sceneName, string spawnPoint)
     {
+        if (PauseMenu.Instance != null && PauseMenu.GameIsPaused)
+        {
+            PauseMenu.Instance.Resume();
+        }
         Debug.Log($"SceneTransitionManager: Starting transition to {sceneName} with spawn point {spawnPoint}");
         if (sceneName == "Troy")
         {
