@@ -92,7 +92,7 @@ public class MapManager : MonoBehaviour
 
         if (PlayerPrefs.GetString("PreviousScene", "Troy") == "Troy")
         {
-            mapIconPos -= new Vector2(50, 100);
+            mapIconPos -= new Vector2(136, 19);
         }
 
         playerIcon.GetComponent<RectTransform>().anchoredPosition = mapIconPos;

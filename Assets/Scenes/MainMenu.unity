@@ -1156,6 +1156,7 @@ MonoBehaviour:
   cutsceneText: {fileID: 1169679443}
   typingSpeed: 0.05
   cutsceneLines:
+  - Story based on The Iliad by Homer and the Aeneid by Virgil.
   - 1200 BC. The ancient city of Troy still stands on the coast of modern-day Turkey.
   - Greek armies surround us, claiming Paris stole Helen.
   - Hector has fallen. Achilles rages. Our fate hangs in balance.
