@@ -4018,6 +4018,7 @@ MonoBehaviour:
   scenesToShowPopup:
   - Troy
   - TroySack
+  - Cave
 --- !u!4 &1812274311
 Transform:
   m_ObjectHideFlags: 0

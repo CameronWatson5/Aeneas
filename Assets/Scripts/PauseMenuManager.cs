@@ -227,6 +227,8 @@ public class PauseMenuManager : MonoBehaviour
             cameraFollow.CalculateBounds();
             cameraFollow.isNewScene = true; // Force camera to center on player
         }
+
+        PauseMenu.GameIsPaused = false; // Update the GameIsPaused state
     }
 
     public void QuitGame()

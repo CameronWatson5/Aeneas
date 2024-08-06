@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI playerGoldText;
     public Button exitButton;
     public GameObject itemPrefab;
+    public GameObject warningPanel; // Added this line
+    public TextMeshProUGUI warningText; // Added this line
 
     [Header("Player References")]
     private AeneasAttributes playerAttributes;
@@ -184,7 +187,16 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log("Not enough gold");
+            StartCoroutine(ShowWarning("Not enough gold!"));
         }
+    }
+
+    IEnumerator ShowWarning(string message)
+    {
+        warningText.text = message;
+        warningPanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(2f); // Use WaitForSecondsRealtime to avoid issues with time scaling
+        warningPanel.SetActive(false);
     }
 
     InventoryItem ConvertShopItemToInventoryItem(ShopItem shopItem)
