@@ -53,9 +53,9 @@ public class AeneasStatsUI : MonoBehaviour
 
     void UpdateUI()
     {
-        healthText.text = $"Health: {playerAttributes.currentHealth}/{playerAttributes.maxHealth}";
+        healthText.text = $"HP: {playerAttributes.currentHealth}/{playerAttributes.maxHealth}";
         goldText.text = $"Gold: {playerAttributes.gold}";
-        damageText.text = $"Damage: {playerAttributes.damage}";
+        damageText.text = $"Attack: {playerAttributes.damage}";
         armorText.text = $"Armor: {playerAttributes.armor}";
         speedText.text = $"Speed: {playerAttributes.speed}";
     }
