@@ -1,13 +1,10 @@
 using UnityEngine;
-using TMPro;
 
-public class GateController : MonoBehaviour
+public class GateController : MonoBehaviour, IInteractable
 {
     public Sprite closedSprite;
     public Sprite openSprite;
-    public TextMeshProUGUI interactionText;
-    public GameObject interactionPromptCanvas;
-    public string promptText = "Press E to interact";
+    public string promptText = "Press E or tap Interact to open";
     public float resetTime = 3.0f;
 
     private SpriteRenderer spriteRenderer;
@@ -31,18 +28,24 @@ public class GateController : MonoBehaviour
                 boxCollider = col;
             }
         }
-        interactionPromptCanvas.SetActive(false);
     }
 
     void Start()
     {
         spriteRenderer.sprite = closedSprite;
-        interactionText.text = promptText;
     }
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isOpen)
+        {
+            Interact();
+        }
+    }
+
+    public void Interact()
+    {
+        if (!isOpen)
         {
             OpenGate();
         }
@@ -53,7 +56,7 @@ public class GateController : MonoBehaviour
         isOpen = true;
         spriteRenderer.sprite = openSprite;
         boxCollider.enabled = false;
-        interactionPromptCanvas.SetActive(false);
+        UIManager.Instance.HideInteractionPrompt();
         Invoke("CloseGate", resetTime);
     }
 
@@ -62,6 +65,10 @@ public class GateController : MonoBehaviour
         isOpen = false;
         spriteRenderer.sprite = closedSprite;
         boxCollider.enabled = true;
+        if (playerInRange)
+        {
+            UIManager.Instance.ShowInteractionPrompt(promptText, this);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -69,7 +76,10 @@ public class GateController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            interactionPromptCanvas.SetActive(true);
+            if (!isOpen)
+            {
+                UIManager.Instance.ShowInteractionPrompt(promptText, this);
+            }
         }
     }
 
@@ -78,7 +88,7 @@ public class GateController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            interactionPromptCanvas.SetActive(false);
+            UIManager.Instance.HideInteractionPrompt();
         }
     }
 }

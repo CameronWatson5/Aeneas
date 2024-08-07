@@ -1,13 +1,16 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, IInteractable
 {
     public Sprite closedChestSprite;
     public Sprite openedChestSprite;
     public string contentsDescription = "5 gold coins";
     public int goldAmount = 5;
     public string chestID;  // Unique ID for the chest
+    public float displayTime = 3f; // Timer variable to be adjusted in the Inspector
 
     private bool isOpened = false;
     private bool isDisplayingContents = false;
@@ -49,7 +52,7 @@ public class Chest : MonoBehaviour
         {
             playerInRange = true;
             player = other.gameObject;
-            ShowInteractionPrompt();
+            UIManager.Instance.ShowInteractionPrompt("Press E or tap Interact to open chest", this);
         }
     }
 
@@ -58,28 +61,23 @@ public class Chest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            HideInteractionPrompt();
-            if (!isOpened)
-            {
-                HideContentsDescription();
-                EnablePlayerMovement();
-            }
+            UIManager.Instance.HideInteractionPrompt();
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
-            if (playerInRange && !isOpened)
-            {
-                OpenChest(player.GetComponent<AeneasAttributes>());
-            }
-            else if (isDisplayingContents)
-            {
-                HideContentsDescription();
-                EnablePlayerMovement();
-            }
+            Interact();
+        }
+    }
+
+    public void Interact()
+    {
+        if (!isOpened)
+        {
+            OpenChest(player.GetComponent<AeneasAttributes>());
         }
     }
 
@@ -87,7 +85,7 @@ public class Chest : MonoBehaviour
     {
         if (interactionText != null && interactionPrompt != null)
         {
-            interactionText.text = "Press E to interact";  // Set common text for interaction
+            interactionText.text = "Press E or tap Interact to open chest";
             interactionPrompt.SetActive(true);
         }
         else
@@ -119,7 +117,6 @@ public class Chest : MonoBehaviour
         // Show the contents description in the dialogue panel
         ShowContentsDescription();
         HideInteractionPrompt();
-        DisablePlayerMovement();
     }
 
     private void ShowContentsDescription()
@@ -130,6 +127,7 @@ public class Chest : MonoBehaviour
             dialogueText.text = contentsDescription;
             dialoguePanel.SetActive(true);
             isDisplayingContents = true;
+            StartCoroutine(HideDialogueAfterDelay(displayTime)); // Start coroutine to hide dialogue after the set time
         }
         else
         {
@@ -146,28 +144,10 @@ public class Chest : MonoBehaviour
         }
     }
 
-    private void DisablePlayerMovement()
+    private IEnumerator HideDialogueAfterDelay(float delay)
     {
-        if (player != null)
-        {
-            var playerMovement = player.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-            {
-                playerMovement.CanMove = false;
-            }
-        }
-    }
-
-    private void EnablePlayerMovement()
-    {
-        if (player != null)
-        {
-            var playerMovement = player.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-            {
-                playerMovement.CanMove = true;
-            }
-        }
+        yield return new WaitForSeconds(delay);
+        HideContentsDescription();
     }
 
     private void LoadChestState()

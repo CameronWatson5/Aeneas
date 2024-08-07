@@ -2,8 +2,9 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class InteractableObject : MonoBehaviour
+public class InteractableObject : MonoBehaviour, IInteractable
 {
     [Header("Interaction Settings")]
     public float interactionDistance = 2f;
@@ -13,7 +14,7 @@ public class InteractableObject : MonoBehaviour
     public bool useTypewriterEffect = true;
 
     [Header("UI Settings")]
-    public string promptText = "Press E to interact";
+    public string promptText = "Press E or tap Interact to interact";
 
     [Header("Audio Settings")]
     [Range(0f, 1f)]
@@ -130,16 +131,26 @@ public class InteractableObject : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (dialoguePanel != null)
+            Interact();
+        }
+    }
+
+    public void Interact()
+    {
+        HandleInteraction();
+    }
+
+    private void HandleInteraction()
+    {
+        if (dialoguePanel != null)
+        {
+            if (!dialoguePanel.activeSelf)
             {
-                if (!dialoguePanel.activeSelf)
-                {
-                    StartDialogue();
-                }
-                else
-                {
-                    DisplayNextSentence();
-                }
+                StartDialogue();
+            }
+            else
+            {
+                DisplayNextSentence();
             }
         }
     }
@@ -149,10 +160,7 @@ public class InteractableObject : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerInRange = true;
-            if (interactionPrompt != null)
-            {
-                interactionPrompt.SetActive(true);
-            }
+            UIManager.Instance.ShowInteractionPrompt(promptText, this);
             if (showDebugLogs)
             {
                 Debug.Log($"Player entered range of {gameObject.name}");
@@ -166,10 +174,7 @@ public class InteractableObject : MonoBehaviour
         {
             playerInRange = false;
             EndDialogue();
-            if (interactionPrompt != null)
-            {
-                interactionPrompt.SetActive(false);
-            }
+            UIManager.Instance.HideInteractionPrompt();
             if (showDebugLogs)
             {
                 Debug.Log($"Player exited range of {gameObject.name}");
@@ -184,10 +189,7 @@ public class InteractableObject : MonoBehaviour
         {
             dialoguePanel.SetActive(true);
         }
-        if (interactionPrompt != null)
-        {
-            interactionPrompt.SetActive(false);
-        }
+        UIManager.Instance.HideInteractionPrompt();
         if (nameText != null)
         {
             nameText.text = objectName;
@@ -251,9 +253,9 @@ public class InteractableObject : MonoBehaviour
         {
             dialoguePanel.SetActive(false);
         }
-        if (playerInRange && interactionPrompt != null)
+        if (playerInRange)
         {
-            interactionPrompt.SetActive(true);
+            UIManager.Instance.ShowInteractionPrompt(promptText, this);
         }
         if (showDebugLogs)
         {

@@ -6,12 +6,22 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    [Header("Dialogue UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI nameText;
+
+    [Header("Interaction UI")]
     public GameObject interactionPrompt;
     public TextMeshProUGUI interactionText;
-    public Button pauseButton; 
+    public Button interactButton;
+
+    [Header("Control UI")]
+    public Button pauseButton;
+    public Button attackButton;
+    public JoystickController joystick;
+
+    private IInteractable currentInteractable;
 
     private void Awake()
     {
@@ -32,9 +42,38 @@ public class UIManager : MonoBehaviour
         {
             pauseButton.onClick.AddListener(PauseGame);
         }
+
+        if (interactButton != null)
+        {
+            interactButton.onClick.AddListener(OnInteractButtonPressed);
+            interactButton.gameObject.SetActive(false);
+        }
+
+        if (attackButton != null)
+        {
+            attackButton.onClick.AddListener(OnAttackButtonPressed);
+        }
+
+        if (joystick == null)
+        {
+            Debug.LogWarning("Joystick not assigned in UIManager");
+        }
     }
 
-    public void ShowInteractionPrompt(string message)
+    private void OnAttackButtonPressed()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            AeneasAttack aeneasAttack = player.GetComponent<AeneasAttack>();
+            if (aeneasAttack != null)
+            {
+                aeneasAttack.TriggerAttack();
+            }
+        }
+    }
+
+    public void ShowInteractionPrompt(string message, IInteractable interactable)
     {
         if (interactionText != null)
         {
@@ -44,6 +83,11 @@ public class UIManager : MonoBehaviour
         {
             interactionPrompt.SetActive(true);
         }
+        if (interactButton != null)
+        {
+            interactButton.gameObject.SetActive(true);
+        }
+        currentInteractable = interactable;
     }
 
     public void HideInteractionPrompt()
@@ -51,6 +95,19 @@ public class UIManager : MonoBehaviour
         if (interactionPrompt != null)
         {
             interactionPrompt.SetActive(false);
+        }
+        if (interactButton != null)
+        {
+            interactButton.gameObject.SetActive(false);
+        }
+        currentInteractable = null;
+    }
+
+    private void OnInteractButtonPressed()
+    {
+        if (currentInteractable != null)
+        {
+            currentInteractable.Interact();
         }
     }
 
@@ -64,5 +121,10 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("PauseMenu instance not found!");
         }
+    }
+
+    public Vector2 GetJoystickInput()
+    {
+        return joystick != null ? joystick.inputVector : Vector2.zero;
     }
 }

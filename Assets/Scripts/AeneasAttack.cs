@@ -10,7 +10,7 @@ public class AeneasAttack : MonoBehaviour
     [SerializeField] private float knockbackForce = 10f; // Increased knockback force
 
     [Header("Character Center Adjustment")]
-    [SerializeField] private Vector2 characterCenterOffset = Vector2.zero; // Adjust this in the inspector
+    [SerializeField] private Vector2 characterCenterOffset = Vector2.zero; 
 
     [Header("Visual Settings")]
     [SerializeField] private float attackVisualDuration = 0.5f;
@@ -44,8 +44,17 @@ public class AeneasAttack : MonoBehaviour
         Debug.Log("AeneasAttack initialized.");
     }
 
+    public void TriggerAttack()
+    {
+        if (CanAttack())
+        {
+            Attack();
+        }
+    }
+
     private void Update()
     {
+        // Keep the keyboard input for testing purposes
         if (Input.GetKeyDown(KeyCode.Space) && CanAttack())
         {
             Attack();

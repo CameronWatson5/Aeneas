@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private const string MOVE_Y = "moveY";
     private const string MOVING = "moving";
 
+    [Header("Touch Controls")]
+    private JoystickController joystick;
+    private bool joystickInitialized = false;
     public bool CanMove
     {
         get { return canMove; }
@@ -57,16 +60,38 @@ public class PlayerMovement : MonoBehaviour
         change = Vector2.zero;
         lastMovementDirection = Vector2.zero;
         Debug.Log("PlayerMovement initialized.");
+        if (UIManager.Instance != null && UIManager.Instance.joystick == null)
+        {
+            Debug.LogWarning("Joystick not assigned in UIManager");
+        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        
         if (scene.name == "Troy")
         {
+            InitializeJoystick();
             PositionPlayer();
         }
     }
-
+    private void InitializeJoystick()
+    {
+        if (UIManager.Instance != null)
+        {
+            joystick = UIManager.Instance.joystick;
+            joystickInitialized = (joystick != null);
+            if (!joystickInitialized)
+            {
+                Debug.LogWarning("Joystick not found in UIManager");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("UIManager instance not found");
+        }
+    }
     private void PositionPlayer()
     {
         string spawnPointId = PlayerPrefs.GetString("SpawnPointIdentifier", "DefaultSpawnPoint");
@@ -100,8 +125,20 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        change.x = Input.GetAxisRaw(HORIZONTAL);
-        change.y = Input.GetAxisRaw(VERTICAL);
+        // Keyboard input
+        float keyboardHorizontal = Input.GetAxisRaw(HORIZONTAL);
+        float keyboardVertical = Input.GetAxisRaw(VERTICAL);
+
+        // Joystick input
+        Vector2 joystickInput = Vector2.zero;
+        if (joystickInitialized)
+        {
+            joystickInput = joystick.inputVector;
+        }
+
+        // Combine inputs, prioritizing keyboard if both are used
+        change.x = keyboardHorizontal != 0 ? keyboardHorizontal : joystickInput.x;
+        change.y = keyboardVertical != 0 ? keyboardVertical : joystickInput.y;
 
         if (change.sqrMagnitude > 1)
         {
@@ -110,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateAnimationAndMove();
     }
+
 
     private void UpdateAnimationAndMove()
     {
