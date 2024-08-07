@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PersistentManagers.unity
     guid: 04a7bf1fc2c63b8449d825d8352c9d87
+  - enabled: 1
+    path: Assets/Scenes/Carthage.unity
+    guid: 0ecf2eecef8224046bb63d7e88359cea
+  - enabled: 1
+    path: Assets/Scenes/Hades.unity
+    guid: 1cb3818967c9b0f4fb504c408772072e
+  - enabled: 1
+    path: Assets/Scenes/Italy.unity
+    guid: d6b2fcfa34f37244894e27a3019e9753
   m_configObjects: {}

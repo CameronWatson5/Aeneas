@@ -36,7 +36,10 @@ public class MissionManager : MonoBehaviour
             "Find and defeat 3 Greek heroes.",
             "Go back home to sleep.",
             "Find your son, wife, and father in Troy.",
-            "Escape from Troy."
+            "Escape from Troy.",
+            "Find Queen Dido in Carthage.",
+            "Find your father in Hades.",
+            "Defeat Turnus in Italy."
         };
         Debug.Log($"MissionManager: Initialized {missions.Count} missions");
     }
@@ -50,7 +53,10 @@ public class MissionManager : MonoBehaviour
             { "GreekHero3", false },
             { "Son", false },
             { "Wife", false },
-            { "Father", false }
+            { "Father", false },
+            { "QueenDido", false },
+            { "FatherInHades", false },
+            { "Turnus", false }
         };
         Debug.Log($"MissionManager: Initialized {missionTargets.Count} mission targets");
     }
@@ -92,6 +98,24 @@ public class MissionManager : MonoBehaviour
             case 3:
                 CompleteCurrentMission();
                 break;
+            case 4:
+                if (missionTargets["QueenDido"])
+                {
+                    CompleteCurrentMission();
+                }
+                break;
+            case 5:
+                if (missionTargets["FatherInHades"])
+                {
+                    CompleteCurrentMission();
+                }
+                break;
+            case 6:
+                if (missionTargets["Turnus"])
+                {
+                    CompleteCurrentMission();
+                }
+                break;
         }
     }
 
@@ -102,19 +126,7 @@ public class MissionManager : MonoBehaviour
         {
             currentMissionIndex++;
             UpdateMissionText();
-
-            if (currentMissionIndex == 1)
-            {
-                SetCompassTargetForMission2();
-            }
-            else if (currentMissionIndex == 2)
-            {
-                SetCompassTargetForMission3();
-            }
-            else if (currentMissionIndex == 3)
-            {
-                SetCompassTargetForMission4();
-            }
+            SetCompassTargetForCurrentMission();
         }
         else
         {
@@ -137,9 +149,9 @@ public class MissionManager : MonoBehaviour
         Debug.Log("MissionManager: Mission index reset to 0");
     }
 
-    private void SetCompassTargetForMission2()
+    private void SetCompassTargetForCurrentMission()
     {
-        Debug.Log("MissionManager: Setting compass target for mission 2");
+        Debug.Log("MissionManager: Setting compass target for current mission");
         if (compass == null)
         {
             compass = FindObjectOfType<Compass>();
@@ -147,70 +159,38 @@ public class MissionManager : MonoBehaviour
 
         if (compass != null)
         {
-            GameObject troyHouse2Exit = GameObject.Find("TroyHouse2");
-            if (troyHouse2Exit != null)
+            GameObject targetObject = null;
+
+            switch (currentMissionIndex)
             {
-                compass.SetTarget(troyHouse2Exit.transform);
-                Debug.Log("MissionManager: Compass target set to TroyHouse2Exit");
+                case 1:
+                    targetObject = GameObject.Find("TroyHouse2");
+                    break;
+                case 2:
+                    targetObject = GameObject.Find("FamilyLocation");
+                    break;
+                case 3:
+                    targetObject = GameObject.Find("EscapePoint");
+                    break;
+                case 4:
+                    targetObject = GameObject.Find("QueenDidoLocation");
+                    break;
+                case 5:
+                    targetObject = GameObject.Find("FatherInHadesLocation");
+                    break;
+                case 6:
+                    targetObject = GameObject.Find("TurnusLocation");
+                    break;
+            }
+
+            if (targetObject != null)
+            {
+                compass.SetTarget(targetObject.transform);
+                Debug.Log($"MissionManager: Compass target set to {targetObject.name}");
             }
             else
             {
-                Debug.LogWarning("MissionManager: TroyHouse2Exit not found in the scene.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("MissionManager: Compass not found in the scene.");
-        }
-    }
-
-    private void SetCompassTargetForMission3()
-    {
-        Debug.Log("MissionManager: Setting compass target for mission 3");
-        if (compass == null)
-        {
-            compass = FindObjectOfType<Compass>();
-        }
-
-        if (compass != null)
-        {
-            GameObject familyLocation = GameObject.Find("FamilyLocation");
-            if (familyLocation != null)
-            {
-                compass.SetTarget(familyLocation.transform);
-                Debug.Log($"MissionManager: Compass target set to FamilyLocation at position {familyLocation.transform.position}");
-            }
-            else
-            {
-                Debug.LogWarning("MissionManager: FamilyLocation not found in the scene.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("MissionManager: Compass not found in the scene.");
-        }
-    }
-
-
-    private void SetCompassTargetForMission4()
-    {
-        Debug.Log("MissionManager: Setting compass target for mission 4");
-        if (compass == null)
-        {
-            compass = FindObjectOfType<Compass>();
-        }
-
-        if (compass != null)
-        {
-            GameObject escapePoint = GameObject.Find("EscapePoint");
-            if (escapePoint != null)
-            {
-                compass.SetTarget(escapePoint.transform);
-                Debug.Log("MissionManager: Compass target set to EscapePoint");
-            }
-            else
-            {
-                Debug.LogWarning("MissionManager: EscapePoint not found in the scene.");
+                Debug.LogWarning("MissionManager: Target object not found in the scene.");
             }
         }
         else
@@ -312,6 +292,18 @@ public class MissionManager : MonoBehaviour
             {
                 SetupCaveScene();
             }
+            else if (scene.name == "Carthage")
+            {
+                SetupCarthageScene();
+            }
+            else if (scene.name == "Hades")
+            {
+                SetupHadesScene();
+            }
+            else if (scene.name == "Italy")
+            {
+                SetupItalyScene();
+            }
         }
     }
 
@@ -331,25 +323,43 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            SetCompassTargetForMission2();
+            SetCompassTargetForCurrentMission();
         }
     }
 
     private void SetupIndoorScene()
     {
         UpdateMissionText();
-        SetCompassTargetForMission3();
+        SetCompassTargetForCurrentMission();
     }
 
     private void SetupTroySackScene()
     {
         UpdateMissionText();
-        SetCompassTargetForMission3();
+        SetCompassTargetForCurrentMission();
     }
 
     private void SetupCaveScene()
     {
         UpdateMissionText();
-        SetCompassTargetForMission4();
+        SetCompassTargetForCurrentMission();
+    }
+
+    private void SetupCarthageScene()
+    {
+        UpdateMissionText();
+        SetCompassTargetForCurrentMission();
+    }
+
+    private void SetupHadesScene()
+    {
+        UpdateMissionText();
+        SetCompassTargetForCurrentMission();
+    }
+
+    private void SetupItalyScene()
+    {
+        UpdateMissionText();
+        SetCompassTargetForCurrentMission();
     }
 }

@@ -13,6 +13,7 @@ public class SpecialPopUpManager : MonoBehaviour
     public List<string> scenesToShowPopup;
     private HashSet<string> shownPopups; // To track shown popups
     private string nextSceneName;
+    private string nextSpawnPoint;
     private bool isGameOverPopup = false;
 
     private void Awake()
@@ -103,13 +104,14 @@ public class SpecialPopUpManager : MonoBehaviour
         return null;
     }
 
-    public void ShowPopup(string text, string nextScene)
+    public void ShowPopup(string text, string nextScene, string spawnPoint = null)
     {
         if (specialPopUp != null)
         {
             specialPopUp.ShowPopup(text);
             Debug.Log($"Popup panel active state after ShowPopup: {specialPopUp.gameObject.activeSelf}");
             nextSceneName = nextScene;
+            nextSpawnPoint = spawnPoint;
             isGameOverPopup = nextScene == "GameOver";
         }
         else
@@ -118,7 +120,7 @@ public class SpecialPopUpManager : MonoBehaviour
         }
     }
 
-    public void ShowPopupWithDelay(float delay, string text, string nextScene, string popupId)
+    public void ShowPopupWithDelay(float delay, string text, string nextScene, string popupId, string spawnPoint = null)
     {
         if (shownPopups.Contains(popupId))
         {
@@ -128,7 +130,7 @@ public class SpecialPopUpManager : MonoBehaviour
 
         if (specialPopUp != null)
         {
-            StartCoroutine(ShowPopupAfterDelay(delay, text, nextScene, popupId));
+            StartCoroutine(ShowPopupAfterDelay(delay, text, nextScene, popupId, spawnPoint));
             Debug.Log($"Popup panel active state after ShowPopupWithDelay: {specialPopUp.gameObject.activeSelf}");
         }
         else
@@ -137,10 +139,10 @@ public class SpecialPopUpManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowPopupAfterDelay(float delay, string text, string nextScene, string popupId)
+    private IEnumerator ShowPopupAfterDelay(float delay, string text, string nextScene, string popupId, string spawnPoint)
     {
         yield return new WaitForSecondsRealtime(delay);
-        ShowPopup(text, nextScene);
+        ShowPopup(text, nextScene, spawnPoint);
         shownPopups.Add(popupId); // Mark popup as shown
     }
 
@@ -154,7 +156,15 @@ public class SpecialPopUpManager : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(nextSceneName);
+                if (!string.IsNullOrEmpty(nextSpawnPoint))
+                {
+                    // Ensure to use a method that accepts the spawn point.
+                    SceneTransitionManager.Instance.TransitionToScene(nextSceneName, nextSpawnPoint);
+                }
+                else
+                {
+                    SceneManager.LoadScene(nextSceneName);
+                }
             }
         }
     }

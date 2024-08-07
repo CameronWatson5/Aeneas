@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogWarning("Joystick not assigned in UIManager");
         }
+        else
+        {
+            Debug.Log("Joystick assigned in UIManager");
+        }
     }
 
     private void OnAttackButtonPressed()

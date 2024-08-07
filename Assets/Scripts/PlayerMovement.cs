@@ -60,38 +60,33 @@ public class PlayerMovement : MonoBehaviour
         change = Vector2.zero;
         lastMovementDirection = Vector2.zero;
         Debug.Log("PlayerMovement initialized.");
-        if (UIManager.Instance != null && UIManager.Instance.joystick == null)
-        {
-            Debug.LogWarning("Joystick not assigned in UIManager");
-        }
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        InitializeJoystick();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        Debug.Log($"Scene loaded: {scene.name}");
+        InitializeJoystick();
         if (scene.name == "Troy")
         {
-            InitializeJoystick();
             PositionPlayer();
         }
     }
+
     private void InitializeJoystick()
     {
         if (UIManager.Instance != null)
         {
             joystick = UIManager.Instance.joystick;
             joystickInitialized = (joystick != null);
-            if (!joystickInitialized)
-            {
-                Debug.LogWarning("Joystick not found in UIManager");
-            }
+            Debug.Log(joystickInitialized ? "Joystick initialized successfully." : "Joystick not found in UIManager");
         }
         else
         {
             Debug.LogWarning("UIManager instance not found");
         }
     }
+
     private void PositionPlayer()
     {
         string spawnPointId = PlayerPrefs.GetString("SpawnPointIdentifier", "DefaultSpawnPoint");
@@ -147,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateAnimationAndMove();
     }
-
 
     private void UpdateAnimationAndMove()
     {

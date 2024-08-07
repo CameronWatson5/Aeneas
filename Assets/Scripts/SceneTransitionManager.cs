@@ -150,7 +150,6 @@ public class SceneTransitionManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-
     private void CleanupPersistentObjects()
     {
         Debug.Log("SceneTransitionManager: Cleaning up persistent objects");

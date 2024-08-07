@@ -203,5 +203,4 @@ public class Compass : MonoBehaviour
         target = newTarget;
         CompleteMission();
     }
-
 }
