@@ -3,45 +3,50 @@ using System.Collections;
 
 public class AeneasAttack : MonoBehaviour
 {
+    [System.Serializable]
+    public class SwishVisual
+    {
+        public GameObject prefab;
+        public Vector2 offset;
+        public Vector2 scale = Vector2.one;
+    }
+
     [Header("Attack Settings")]
     [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private float attackRadius = 1f;
-    [SerializeField] private float attackOffset = 0.5f; // Distance from player center to attack center
-    [SerializeField] private float knockbackForce = 10f; // Increased knockback force
+    [SerializeField] private int attackDamage = 10;
+    [SerializeField] private float knockbackForce = 10f;
 
-    [Header("Character Center Adjustment")]
-    [SerializeField] private Vector2 characterCenterOffset = Vector2.zero; 
+    [Header("Swish Visuals")]
+    [SerializeField] private SwishVisual swishLeft;
+    [SerializeField] private SwishVisual swishRight;
+    [SerializeField] private SwishVisual swishUp;
+    [SerializeField] private SwishVisual swishDown;
+    [SerializeField] private float swishDuration = 0.5f;
 
-    [Header("Visual Settings")]
-    [SerializeField] private float attackVisualDuration = 0.5f;
-    [SerializeField] private Color attackVisualColor = new Color(1, 0, 0, 0.5f);
-
-    [Header("Audio Settings")]
-    [SerializeField] private AudioClip attackSound; // Sound to play on attack
+    [Header("Audio")]
+    [SerializeField] private AudioClip attackSound;
 
     private float lastAttackTime;
     private Animator animator;
     private PlayerMovement playerMovement;
-    private AeneasAttributes aeneasAttributes;
-    private AudioSource audioSource; // AudioSource component
-    private GameObject attackRangeVisual;
+    private AudioSource audioSource;
 
     private void Start()
     {
+        InitializeComponents();
+    }
+
+    private void InitializeComponents()
+    {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        aeneasAttributes = GetComponent<AeneasAttributes>();
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        audioSource = GetComponent<AudioSource>();
 
-        if (!animator || !playerMovement || !aeneasAttributes || !audioSource)
+        if (!animator || !playerMovement || !audioSource)
         {
             Debug.LogError("Required components missing on the player!");
             enabled = false;
-            return;
         }
-
-        CreateAttackRangeVisual();
-        Debug.Log("AeneasAttack initialized.");
     }
 
     public void TriggerAttack()
@@ -54,7 +59,6 @@ public class AeneasAttack : MonoBehaviour
 
     private void Update()
     {
-        // Keep the keyboard input for testing purposes
         if (Input.GetKeyDown(KeyCode.Space) && CanAttack())
         {
             Attack();
@@ -73,61 +77,61 @@ public class AeneasAttack : MonoBehaviour
         string attackTrigger = GetAttackTrigger(attackDirection);
         animator.SetTrigger(attackTrigger);
 
-        PerformAttack(attackDirection);
-        PlayAttackSound(); // Play the attack sound effect
-        StartCoroutine(ShowAttackVisual(attackDirection));
+        PlaySwishAnimation(attackDirection);
+        PlayAttackSound();
 
-        Debug.Log($"Attack performed: Direction={attackTrigger}, Radius={attackRadius}");
+        Debug.Log($"Attack performed: Direction={attackTrigger}");
     }
 
     private Vector2 DetermineAttackDirection()
     {
         Vector2 lastDirection = playerMovement.GetLastMovementDirection();
-
-        if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
-        {
-            return lastDirection.x > 0 ? Vector2.right : Vector2.left;
-        }
-        else
-        {
-            return lastDirection.y > 0 ? Vector2.up : Vector2.down;
-        }
+        return Vector2.ClampMagnitude(lastDirection, 1f);
     }
 
     private string GetAttackTrigger(Vector2 direction)
     {
-        if (direction == Vector2.right) return "AttackRight";
-        if (direction == Vector2.left) return "AttackLeft";
-        if (direction == Vector2.up) return "AttackUp";
-        return "AttackDown";
+        return Mathf.Abs(direction.x) > Mathf.Abs(direction.y) 
+            ? (direction.x > 0 ? "AttackRight" : "AttackLeft")
+            : (direction.y > 0 ? "AttackUp" : "AttackDown");
     }
 
-    private Vector2 GetCharacterCenter()
+    private void PlaySwishAnimation(Vector2 attackDirection)
     {
-        return (Vector2)transform.position + characterCenterOffset;
-    }
+        SwishVisual swishVisual = GetSwishVisual(attackDirection);
 
-    private void PerformAttack(Vector2 attackDirection)
-    {
-        Vector2 attackCenter = GetCharacterCenter() + attackDirection * attackOffset;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackCenter, attackRadius);
-        int attackDamage = aeneasAttributes.damage;
-
-        foreach (Collider2D collider in hitColliders)
+        if (swishVisual?.prefab != null)
         {
-            if (collider.TryGetComponent(out GreekHero hero))
-            {
-                hero.TakeDamage(attackDamage);
-                Debug.Log($"Damage dealt to GreekHero {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
-            }
-            else if (collider.TryGetComponent(out EnemyHealth enemy))
-            {
-                enemy.TakeDamage(attackDamage, attackDirection, knockbackForce);
-                Debug.Log($"Damage dealt to {collider.name} with knockback direction {attackDirection} and force {knockbackForce}");
-            }
-        }
+            Vector2 swishPosition = (Vector2)transform.position + swishVisual.offset;
+            GameObject swishInstance = Instantiate(swishVisual.prefab, swishPosition, Quaternion.identity, transform);
 
-        Debug.Log($"Enemies hit: {hitColliders.Length}");
+            swishInstance.transform.localScale = new Vector3(swishVisual.scale.x, swishVisual.scale.y, 1f);
+
+            SetupSwishCollider(swishInstance, attackDirection);
+
+            Animator swishAnimator = swishInstance.GetComponent<Animator>();
+            swishAnimator?.SetTrigger("Swish");
+
+            Destroy(swishInstance, swishDuration);
+
+            Debug.Log($"Swish animation: Position={swishPosition}, Scale={swishVisual.scale}, Direction={attackDirection}");
+        }
+    }
+
+    private void SetupSwishCollider(GameObject swishInstance, Vector2 attackDirection)
+    {
+        BoxCollider2D swishCollider = swishInstance.AddComponent<BoxCollider2D>();
+        swishCollider.isTrigger = true;
+
+        SwishDamageDealer damageDealer = swishInstance.AddComponent<SwishDamageDealer>();
+        damageDealer.Initialize(attackDamage, knockbackForce, attackDirection);
+    }
+
+    private SwishVisual GetSwishVisual(Vector2 attackDirection)
+    {
+        return Mathf.Abs(attackDirection.x) > Mathf.Abs(attackDirection.y)
+            ? (attackDirection.x > 0 ? swishRight : swishLeft)
+            : (attackDirection.y > 0 ? swishUp : swishDown);
     }
 
     private void PlayAttackSound()
@@ -135,79 +139,7 @@ public class AeneasAttack : MonoBehaviour
         if (attackSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(attackSound);
-            Debug.Log("Attack sound played.");
-        }
-    }
-
-    private IEnumerator ShowAttackVisual(Vector2 attackDirection)
-    {
-        UpdateAttackRangeVisual(attackDirection);
-        attackRangeVisual.SetActive(true);
-
-        yield return new WaitForSeconds(attackVisualDuration);
-
-        attackRangeVisual.SetActive(false);
-    }
-
-    private void CreateAttackRangeVisual()
-    {
-        attackRangeVisual = new GameObject("AttackRangeVisual");
-        attackRangeVisual.transform.SetParent(transform);
-
-        SpriteRenderer spriteRenderer = attackRangeVisual.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = CreateCircleSprite();
-        spriteRenderer.color = attackVisualColor;
-        spriteRenderer.sortingLayerName = "Aeneas";
-        spriteRenderer.sortingOrder = 1;
-
-        attackRangeVisual.SetActive(false);
-    }
-
-    private Sprite CreateCircleSprite()
-    {
-        int textureSize = 128;
-        Texture2D texture = new Texture2D(textureSize, textureSize);
-        Color[] colors = new Color[textureSize * textureSize];
-
-        for (int y = 0; y < textureSize; y++)
-        {
-            for (int x = 0; x < textureSize; x++)
-            {
-                float distance = Vector2.Distance(new Vector2(x, y), new Vector2(textureSize / 2, textureSize / 2));
-                colors[y * textureSize + x] = distance < textureSize / 2 ? Color.white : Color.clear;
-            }
-        }
-
-        texture.SetPixels(colors);
-        texture.Apply();
-
-        return Sprite.Create(texture, new Rect(0, 0, textureSize, textureSize), new Vector2(0.5f, 0.5f));
-    }
-
-    private void UpdateAttackRangeVisual(Vector2 attackDirection)
-    {
-        if (attackRangeVisual != null)
-        {
-            Vector2 visualPosition = GetCharacterCenter() + attackDirection * attackOffset;
-            attackRangeVisual.transform.position = visualPosition;
-            attackRangeVisual.transform.localScale = Vector3.one * (attackRadius * 2);
-
-            Debug.Log($"Attack visual: Position={visualPosition}, Scale={attackRangeVisual.transform.localScale}");
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Vector2 characterCenter = GetCharacterCenter();
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(characterCenter, 0.1f); // Draw character center
-
-        if (playerMovement != null)
-        {
-            Vector2 attackDirection = DetermineAttackDirection();
-            Vector2 attackCenter = characterCenter + attackDirection * attackOffset;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackCenter, attackRadius);
         }
     }
 }
+

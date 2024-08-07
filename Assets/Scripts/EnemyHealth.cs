@@ -1,15 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 100;
-    private int _currentHealth;
-    public float knockbackDuration = 0.2f; // Duration to disable movement
-    public GameObject[] droppableItems; // Array of possible droppable items
-    public float dropChance = 0.2f; // 20% chance to drop an item
-    public AudioClip hurtSound; // Sound to play when the enemy is hurt
-    public AudioClip deathSound; // Sound to play when the enemy dies
+    [SerializeField] private float knockbackDuration = 0.2f;
+    [SerializeField] private GameObject[] droppableItems;
+    [SerializeField] private float dropChance = 0.2f;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
 
     public event System.Action<GameObject> OnEnemyDeath;
 
@@ -21,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
 
     public bool IsDead { get; private set; }
 
+    private int _currentHealth;
     private Rigidbody2D rb;
     private AudioSource audioSource;
 
@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
         if (rb != null)
         {
             rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-            rb.drag = 0; // Ensure drag is not too high
+            rb.drag = 0;
         }
 
         if (audioSource == null)
@@ -42,20 +42,18 @@ public class EnemyHealth : MonoBehaviour
             Debug.LogError("EnemyHealth: AudioSource component missing on the enemy!");
         }
 
-        // Register with the EnemyManager
         EnemyManager.Instance.RegisterEnemy(gameObject);
     }
 
     private void OnDestroy()
     {
-        // Unregister from the EnemyManager
         if (EnemyManager.Instance != null)
         {
             EnemyManager.Instance.UnregisterEnemy(gameObject);
         }
     }
 
-    public void TakeDamage(int damage, Vector2 knockbackDirection, float knockbackForce)
+    public void TakeDamage(int damage)
     {
         if (IsDead) return;
 
@@ -72,9 +70,15 @@ public class EnemyHealth : MonoBehaviour
             {
                 audioSource.PlayOneShot(hurtSound);
             }
-            Debug.Log("Enemy should be knocked back");
-            StartCoroutine(ApplyKnockback(knockbackDirection, knockbackForce));
         }
+    }
+
+    public void ApplyKnockback(Vector2 knockbackDirection, float knockbackForce)
+    {
+        if (IsDead) return;
+        
+        Debug.Log("Enemy should be knocked back");
+        StartCoroutine(ApplyKnockbackCoroutine(knockbackDirection, knockbackForce));
     }
 
     private void Die()
@@ -105,16 +109,10 @@ public class EnemyHealth : MonoBehaviour
             controller.enabled = false;
         }
 
-        // Trigger the death event
         OnEnemyDeath?.Invoke(gameObject);
-
-        // Drop an item
         DropItem();
-
-        // Play the death sound
         PlayDeathSound();
 
-        // Destroy the game object immediately
         Destroy(gameObject);
     }
 
@@ -127,25 +125,25 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private IEnumerator ApplyKnockback(Vector2 direction, float force)
+    private IEnumerator ApplyKnockbackCoroutine(Vector2 direction, float force)
     {
         if (rb != null)
         {
-            rb.velocity = Vector2.zero; // Reset velocity before applying knockback
+            rb.velocity = Vector2.zero;
             rb.AddForce(direction * force, ForceMode2D.Impulse);
             Debug.Log($"Knockback applied with direction {direction} and force {force}");
 
             EnemyController controller = GetComponent<EnemyController>();
             if (controller != null)
             {
-                controller.enabled = false; // Temporarily disable enemy movement
+                controller.enabled = false;
             }
 
-            yield return new WaitForSeconds(knockbackDuration); // Wait for knockback duration
+            yield return new WaitForSeconds(knockbackDuration);
 
             if (controller != null)
             {
-                controller.enabled = true; // Re-enable enemy movement
+                controller.enabled = true;
             }
         }
         else

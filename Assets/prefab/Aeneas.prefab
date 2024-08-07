@@ -214,13 +214,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8785570f52b1aa44e8b9de99be1acb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 0
-  attackRadius: 0.9
-  attackOffset: 0.5
+  attackCooldown: 0.3
+  attackDamage: 10
   knockbackForce: 5
-  characterCenterOffset: {x: 0.1, y: 0.5}
-  attackVisualDuration: 1
-  attackVisualColor: {r: 1, g: 0, b: 0, a: 0.5}
+  swishLeft:
+    prefab: {fileID: 8431745463709426653, guid: 348675cd5ba68b042b8ef340455d6e37, type: 3}
+    offset: {x: -1, y: 0}
+    scale: {x: 2, y: 2}
+  swishRight:
+    prefab: {fileID: 3782257264607969433, guid: 617eed12d223cb840922395b3d2b6f90, type: 3}
+    offset: {x: 1, y: 0}
+    scale: {x: 2, y: 2}
+  swishUp:
+    prefab: {fileID: 2964599672267755442, guid: 23b2b5025da4470488d8e280fef6ce6a, type: 3}
+    offset: {x: 0, y: 1}
+    scale: {x: 2, y: 2}
+  swishDown:
+    prefab: {fileID: 6641943436163177079, guid: 2aefa87aff8ee0549ab779818746f9e5, type: 3}
+    offset: {x: 0, y: -1}
+    scale: {x: 2, y: 2}
+  swishDuration: 0.3
   attackSound: {fileID: 8300000, guid: 5f3c0758afefb184eb07891bf4eb2d56, type: 3}
 --- !u!82 &8601717852836604662
 AudioSource:
