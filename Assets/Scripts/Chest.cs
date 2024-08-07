@@ -13,7 +13,6 @@ public class Chest : MonoBehaviour, IInteractable
     public float displayTime = 3f; // Timer variable to be adjusted in the Inspector
 
     private bool isOpened = false;
-    private bool isDisplayingContents = false;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
     private GameObject player;
@@ -30,15 +29,15 @@ public class Chest : MonoBehaviour, IInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        // Load the state of the chest
         LoadChestState();
 
         // Get UI elements from UIManager
-        dialoguePanel = UIManager.Instance.dialoguePanel;
-        dialogueText = UIManager.Instance.dialogueText;
-        nameText = UIManager.Instance.nameText;
-        interactionPrompt = UIManager.Instance.interactionPrompt;
-        interactionText = UIManager.Instance.interactionText;
+        UIManager uiManager = UIManager.Instance;
+        dialoguePanel = uiManager.dialoguePanel;
+        dialogueText = uiManager.dialogueText;
+        nameText = uiManager.nameText;
+        interactionPrompt = uiManager.interactionPrompt;
+        interactionText = uiManager.interactionText;
 
         if (dialoguePanel == null || dialogueText == null || nameText == null || interactionPrompt == null || interactionText == null)
         {
@@ -67,7 +66,7 @@ public class Chest : MonoBehaviour, IInteractable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange)
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange && !isOpened)
         {
             Interact();
         }
@@ -81,42 +80,17 @@ public class Chest : MonoBehaviour, IInteractable
         }
     }
 
-    private void ShowInteractionPrompt()
-    {
-        if (interactionText != null && interactionPrompt != null)
-        {
-            interactionText.text = "Press E or tap Interact to open chest";
-            interactionPrompt.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("Interaction prompt or text is not set.");
-        }
-    }
-
-    private void HideInteractionPrompt()
-    {
-        if (interactionPrompt != null)
-        {
-            interactionPrompt.SetActive(false);
-        }
-    }
-
     private void OpenChest(AeneasAttributes playerAttributes)
     {
         isOpened = true;
         spriteRenderer.sprite = openedChestSprite;
         boxCollider.enabled = false;
 
-        // Save the state of the chest
         PlayerPrefs.SetInt(chestID, 1);
-
-        // Update player's attributes
         playerAttributes.AddGold(goldAmount);
 
-        // Show the contents description in the dialogue panel
         ShowContentsDescription();
-        HideInteractionPrompt();
+        UIManager.Instance.HideInteractionPrompt();
     }
 
     private void ShowContentsDescription()
@@ -126,8 +100,7 @@ public class Chest : MonoBehaviour, IInteractable
             nameText.text = "Chest";
             dialogueText.text = contentsDescription;
             dialoguePanel.SetActive(true);
-            isDisplayingContents = true;
-            StartCoroutine(HideDialogueAfterDelay(displayTime)); // Start coroutine to hide dialogue after the set time
+            StartCoroutine(HideDialogueAfterDelay(displayTime));
         }
         else
         {
@@ -135,35 +108,20 @@ public class Chest : MonoBehaviour, IInteractable
         }
     }
 
-    private void HideContentsDescription()
-    {
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(false);
-            isDisplayingContents = false;
-        }
-    }
-
     private IEnumerator HideDialogueAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        HideContentsDescription();
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
     }
 
     private void LoadChestState()
     {
-        if (PlayerPrefs.GetInt(chestID, 0) == 1)
-        {
-            isOpened = true;
-            spriteRenderer.sprite = openedChestSprite;
-            boxCollider.enabled = false;
-        }
-        else
-        {
-            isOpened = false;
-            spriteRenderer.sprite = closedChestSprite;
-            boxCollider.enabled = true;
-        }
+        isOpened = PlayerPrefs.GetInt(chestID, 0) == 1;
+        spriteRenderer.sprite = isOpened ? openedChestSprite : closedChestSprite;
+        boxCollider.enabled = !isOpened;
     }
 
     public void ResetChestState()
