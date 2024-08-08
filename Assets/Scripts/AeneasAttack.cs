@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class AeneasAttack : MonoBehaviour
 {
@@ -27,7 +26,8 @@ public class AeneasAttack : MonoBehaviour
     [SerializeField] private AudioClip attackSound;
 
     private float lastAttackTime;
-    private Animator animator;
+    private Animator playerAnimator;
+    private Animator swishAnimator; 
     private PlayerMovement playerMovement;
     private AudioSource audioSource;
 
@@ -38,15 +38,39 @@ public class AeneasAttack : MonoBehaviour
 
     private void InitializeComponents()
     {
-        animator = GetComponent<Animator>();
+        // Get the main Animator for player animations
+        playerAnimator = GetComponent<Animator>();
+
+        // Find and get the secondary Animator for swish animations 
+        Transform swishAnimatorTransform = transform.Find("SwishAnimator");
+        if (swishAnimatorTransform != null)
+        {
+            swishAnimator = swishAnimatorTransform.GetComponent<Animator>();
+            if (swishAnimator == null)
+            {
+                Debug.LogError("SwishAnimator component is missing on the child GameObject!");
+                enabled = false;
+                return;
+            }
+        }
+        else
+        {
+            Debug.LogError("SwishAnimator child not found!");
+            enabled = false;
+            return;
+        }
+
         playerMovement = GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
 
-        if (!animator || !playerMovement || !audioSource)
+        if (!playerAnimator || !playerMovement || !audioSource)
         {
             Debug.LogError("Required components missing on the player!");
             enabled = false;
+            return;
         }
+
+        Debug.Log("Components initialized successfully.");
     }
 
     public void TriggerAttack()
@@ -57,14 +81,16 @@ public class AeneasAttack : MonoBehaviour
         }
     }
 
+   
     private void Update()
     {
+        if (PauseMenu.GameIsPaused || PopUp.IsPopupActive || SpecialPopUp.IsSpecialPopupActive) return; // Prevent attack if the game is paused or a popup is active
+
         if (Input.GetKeyDown(KeyCode.Space) && CanAttack())
         {
             Attack();
         }
     }
-
     private bool CanAttack()
     {
         return Time.time >= lastAttackTime + attackCooldown;
@@ -74,8 +100,9 @@ public class AeneasAttack : MonoBehaviour
     {
         lastAttackTime = Time.time;
         Vector2 attackDirection = DetermineAttackDirection();
+
         string attackTrigger = GetAttackTrigger(attackDirection);
-        animator.SetTrigger(attackTrigger);
+        playerAnimator.SetTrigger(attackTrigger); // Trigger the attack animation on the player
 
         PlaySwishAnimation(attackDirection);
         PlayAttackSound();
@@ -85,13 +112,24 @@ public class AeneasAttack : MonoBehaviour
 
     private Vector2 DetermineAttackDirection()
     {
+        if (playerMovement == null)
+        {
+            Debug.LogError("PlayerMovement is null.");
+            return Vector2.down; // Default to down if playerMovement is null
+        }
+
         Vector2 lastDirection = playerMovement.GetLastMovementDirection();
+        if (lastDirection == Vector2.zero)
+        {
+            lastDirection = Vector2.down; // Default to down if the direction is zero
+        }
+
         return Vector2.ClampMagnitude(lastDirection, 1f);
     }
 
     private string GetAttackTrigger(Vector2 direction)
     {
-        return Mathf.Abs(direction.x) > Mathf.Abs(direction.y) 
+        return Mathf.Abs(direction.x) > Mathf.Abs(direction.y)
             ? (direction.x > 0 ? "AttackRight" : "AttackLeft")
             : (direction.y > 0 ? "AttackUp" : "AttackDown");
     }
@@ -109,13 +147,20 @@ public class AeneasAttack : MonoBehaviour
 
             SetupSwishCollider(swishInstance, attackDirection);
 
-            Animator swishAnimator = swishInstance.GetComponent<Animator>();
-            swishAnimator?.SetTrigger("Swish");
+            // Trigger the swish animation on the swishAnimator
+            swishAnimator.SetTrigger(GetSwishTrigger(attackDirection));
 
             Destroy(swishInstance, swishDuration);
 
             Debug.Log($"Swish animation: Position={swishPosition}, Scale={swishVisual.scale}, Direction={attackDirection}");
         }
+    }
+
+    private string GetSwishTrigger(Vector2 direction)
+    {
+        return Mathf.Abs(direction.x) > Mathf.Abs(direction.y)
+            ? (direction.x > 0 ? "SwishRight" : "SwishLeft")
+            : (direction.y > 0 ? "SwishUp" : "SwishDown");
     }
 
     private void SetupSwishCollider(GameObject swishInstance, Vector2 attackDirection)
@@ -142,4 +187,3 @@ public class AeneasAttack : MonoBehaviour
         }
     }
 }
-

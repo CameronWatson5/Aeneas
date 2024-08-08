@@ -12,6 +12,8 @@ public class SpecialPopUp : MonoBehaviour
     [Range(0f, 1f)]
     public float typewriterVolume = 1f;
 
+    public static bool IsSpecialPopupActive { get; private set; }
+
     public event Action OnPopupClosed;
 
     private AudioSource typewriterAudioSource;
@@ -69,6 +71,7 @@ public class SpecialPopUp : MonoBehaviour
         instructionsText.fontSize = 14;
 
         popupPanel.SetActive(true);
+        IsSpecialPopupActive = true;
 
         // Make the popup cover the entire screen
         RectTransform rectTransform = popupPanel.GetComponent<RectTransform>();
@@ -126,6 +129,7 @@ public class SpecialPopUp : MonoBehaviour
             Debug.Log("Closing popup.");
             popupPanel.SetActive(false);
             Time.timeScale = 1; // Resume the game
+            IsSpecialPopupActive = false;
 
             StopTypewriterSound();
 

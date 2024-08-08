@@ -9,6 +9,8 @@ public class PopUp : MonoBehaviour
     public TMP_Text instructionsText;
     public Button closeButton;
 
+    public static bool IsPopupActive { get; private set; }
+
     private void Awake()
     {
         InitializeComponents();
@@ -37,6 +39,7 @@ public class PopUp : MonoBehaviour
         instructionsText.text = text;
         instructionsText.fontSize = 14; // Adjust font size
         popupPanel.SetActive(true);
+        IsPopupActive = true;
 
         RectTransform rectTransform = popupPanel.GetComponent<RectTransform>();
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
@@ -71,6 +74,7 @@ public class PopUp : MonoBehaviour
             Debug.Log("Closing popup.");
             popupPanel.SetActive(false);
             Time.timeScale = 1; // Resume the game
+            IsPopupActive = false;
         }
     }
 

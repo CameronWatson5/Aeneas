@@ -74,7 +74,14 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
         Time.timeScale = 0f;
         PlayerPrefs.SetString("PreviousScene", currentSceneName);
-        StartCoroutine(LoadPauseMenuScene());
+        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded) // Check if the scene is already loaded
+        {
+            StartCoroutine(LoadPauseMenuScene());
+        }
+        else
+        {
+            Debug.Log("PauseMenu scene is already loaded.");
+        }
     }
 
     IEnumerator LoadPauseMenuScene()
