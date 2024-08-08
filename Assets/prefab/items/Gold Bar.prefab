@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 3
-  amount: 30
+  amount: 10
   lifetime: 10
   pickupSound: {fileID: 8300000, guid: 9c7dfbcae99beea4c9008e80922a0ea3, type: 3}
 --- !u!82 &4259734499244360622
