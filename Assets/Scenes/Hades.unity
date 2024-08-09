@@ -10584,7 +10584,6 @@ GameObject:
   - component: {fileID: 1712360612}
   - component: {fileID: 1712360611}
   - component: {fileID: 1712360610}
-  - component: {fileID: 1712360609}
   - component: {fileID: 1712360608}
   - component: {fileID: 1712360607}
   - component: {fileID: 1712360606}
@@ -10680,28 +10679,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8924656, y: 0.9940071}
   m_EdgeRadius: 0
---- !u!114 &1712360609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712360604}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac9a48761ebad542911570c11cc771a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 5
-  dialogueLines:
-  - Aeneas, my son, the battle will be long and arduous, but we must persevere for
-    the sake of our people.
-  objectName: Anchises
-  typingSpeed: 0.05
-  useTypewriterEffect: 1
-  promptText: Press E to interact
-  typewriterVolume: 1
-  showDebugLogs: 1
 --- !u!61 &1712360610
 BoxCollider2D:
   m_ObjectHideFlags: 0

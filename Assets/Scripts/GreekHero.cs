@@ -3,36 +3,44 @@ using UnityEngine;
 public class GreekHero : MonoBehaviour
 {
     public string heroName;
-    public int health = 100;
     public string popupMessage; 
+    private EnemyHealth enemyHealth;
 
     private void Start()
     {
+        enemyHealth = GetComponent<EnemyHealth>();
+        if (enemyHealth == null)
+        {
+            Debug.LogError("GreekHero: EnemyHealth component not found!");
+            return;
+        }
+
+        enemyHealth.OnEnemyDeath += OnDefeated;
+
         if (MissionManager.Instance.missionTargets.ContainsKey(heroName) && MissionManager.Instance.missionTargets[heroName])
         {
-            Destroy(gameObject); // Do not respawn if already defeated
+            Destroy(gameObject); 
         }
     }
 
-    public void TakeDamage(int damage)
+    private void OnDefeated(GameObject defeatedHero)
     {
-        health -= damage;
-
-        if (health <= 0)
+        if (defeatedHero == this.gameObject)
         {
-            OnDefeated();
-            Destroy(gameObject); // Remove the hero from the game
+            MissionManager.Instance.SetMissionTargetStatus(heroName, true);
+
+            if (PopUpManager.Instance != null)
+            {
+                PopUpManager.Instance.ShowPopup(popupMessage, heroName);
+            }
         }
     }
 
-    private void OnDefeated()
+    private void OnDestroy()
     {
-        MissionManager.Instance.SetMissionTargetStatus(heroName, true);
-
-        // Trigger the popup
-        if (PopUpManager.Instance != null)
+        if (enemyHealth != null)
         {
-            PopUpManager.Instance.ShowPopup(popupMessage, heroName);
+            enemyHealth.OnEnemyDeath -= OnDefeated;
         }
     }
 }

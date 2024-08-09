@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 1
-  damageAmount: 10
+  detectionRange: 3
+  damageAmount: 5
   damageCooldown: 1
   obstacleLayer:
     serializedVersion: 2
