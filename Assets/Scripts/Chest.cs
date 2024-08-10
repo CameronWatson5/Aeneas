@@ -51,7 +51,7 @@ public class Chest : MonoBehaviour, IInteractable
         {
             playerInRange = true;
             player = other.gameObject;
-            UIManager.Instance.ShowInteractionPrompt("Press E or tap Interact to open chest", this);
+            UIManager.Instance.ShowInteractionPrompt("Press E or tap to Interact", this);
         }
     }
 

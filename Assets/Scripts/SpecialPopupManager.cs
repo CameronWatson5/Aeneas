@@ -143,7 +143,7 @@ public class SpecialPopUpManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delay);
         ShowPopup(text, nextScene, spawnPoint);
-        shownPopups.Add(popupId); // Mark popup as shown
+        //shownPopups.Add(popupId); // Mark popup as shown
     }
 
     private void HandlePopupClosed()

@@ -64,7 +64,6 @@ public class PopUpManager : MonoBehaviour
 
                     Debug.Log($"Popup panel active state: {popUp.gameObject.activeSelf}");
 
-                    // Remove the default popup show logic from here
                     popUp.gameObject.SetActive(false);
                 }
             }
@@ -117,9 +116,9 @@ public class PopUpManager : MonoBehaviour
         if (popUp != null)
         {
             popUp.ShowPopup(text, popupId);
-            shownPopups.Add(popupId); // Mark popup as shown
+            shownPopups.Add(popupId); // Mark the popup as shown
             Debug.Log($"Popup panel active state after ShowPopup: {popUp.gameObject.activeSelf}");
-            LogManager.Instance?.AddLogEntry(text); // Add log entry
+            LogManager.Instance?.AddLogEntry(text); // Optionally add a log entry
         }
         else
         {
@@ -139,9 +138,9 @@ public class PopUpManager : MonoBehaviour
         {
             popUp.gameObject.SetActive(true);
             popUp.ShowPopupOnSceneLoad(popupId, popupText, popupDelay);
-            shownPopups.Add(popupId); // Mark popup as shown
+            shownPopups.Add(popupId); // Mark the popup as shown
             Debug.Log($"Popup panel active state after ShowPopupOnSceneLoad: {popUp.gameObject.activeSelf}");
-            LogManager.Instance?.AddLogEntry(popupText); // Add log entry
+            LogManager.Instance?.AddLogEntry(popupText); // Optionally add a log entry
         }
         else
         {
@@ -160,13 +159,19 @@ public class PopUpManager : MonoBehaviour
         if (popUp != null)
         {
             StartCoroutine(popUp.ShowPopupWithDelay(delay, text, popupId));
-            shownPopups.Add(popupId); // Mark popup as shown
+            shownPopups.Add(popupId); // Mark the popup as shown
             Debug.Log($"Popup panel active state after ShowPopupWithDelay: {popUp.gameObject.activeSelf}");
-            LogManager.Instance?.AddLogEntry(text); // Add log entry
+            LogManager.Instance?.AddLogEntry(text); // Optionally add a log entry
         }
         else
         {
             Debug.LogError("PopUp component is not assigned in PopUpManager.");
         }
+    }
+
+    public void ResetPopups()
+    {
+        shownPopups.Clear(); // Clear the set of shown pop-ups, allowing them to be shown again
+        Debug.Log("PopUpManager: All pop-ups have been reset.");
     }
 }

@@ -18,6 +18,7 @@ public class Compass : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         FindPlayer();
         FindGreekHeroes();
         FindFamilyMembers();
@@ -47,7 +48,7 @@ public class Compass : MonoBehaviour
         }
         else
         {
-            arrowImage.enabled = false;
+            SetArrowTransparency(0f); // Make arrow transparent if not in a valid scene
         }
     }
 
@@ -72,7 +73,7 @@ public class Compass : MonoBehaviour
         }
         else
         {
-            arrowImage.enabled = false;
+            SetArrowTransparency(0f); // Make arrow transparent if no target is found
         }
     }
 
@@ -85,7 +86,7 @@ public class Compass : MonoBehaviour
         }
         else
         {
-            arrowImage.enabled = false;
+            SetArrowTransparency(0f); // Make arrow transparent if no nearest family member is found
         }
     }
 
@@ -98,7 +99,7 @@ public class Compass : MonoBehaviour
         }
         else
         {
-            arrowImage.enabled = false;
+            SetArrowTransparency(0f); // Make arrow transparent if no nearest hero is found
         }
     }
 
@@ -113,12 +114,23 @@ public class Compass : MonoBehaviour
             Vector3 direction = targetPosition - player.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             arrowImage.rectTransform.localRotation = Quaternion.Euler(0, 0, angle - 90);
-            arrowImage.enabled = true;
+            SetArrowTransparency(1f); // Make arrow visible when a valid target is found
+        }
+    }
+
+    private void SetArrowTransparency(float alpha)
+    {
+        if (arrowImage != null)
+        {
+            Color color = arrowImage.color;
+            color.a = alpha;
+            arrowImage.color = color;
         }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        FindPlayer(); // Ensure player reference is updated
         if (scene.name == troySceneName)
         {
             FindGreekHeroes();
