@@ -12,7 +12,6 @@ public class AeneasAttack : MonoBehaviour
 
     [Header("Attack Settings")]
     [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private int attackDamage = 10;
     [SerializeField] private float knockbackForce = 10f;
 
     [Header("Swish Visuals")]
@@ -30,6 +29,7 @@ public class AeneasAttack : MonoBehaviour
     private Animator swishAnimator; 
     private PlayerMovement playerMovement;
     private AudioSource audioSource;
+    private AeneasAttributes aeneasAttributes; 
 
     private void Start()
     {
@@ -62,8 +62,9 @@ public class AeneasAttack : MonoBehaviour
 
         playerMovement = GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
+        aeneasAttributes = GetComponent<AeneasAttributes>(); // Initialize AeneasAttributes reference
 
-        if (!playerAnimator || !playerMovement || !audioSource)
+        if (!playerAnimator || !playerMovement || !audioSource || !aeneasAttributes)
         {
             Debug.LogError("Required components missing on the player!");
             enabled = false;
@@ -81,7 +82,6 @@ public class AeneasAttack : MonoBehaviour
         }
     }
 
-   
     private void Update()
     {
         if (PauseMenu.GameIsPaused || PopUp.IsPopupActive || SpecialPopUp.IsSpecialPopupActive) return; // Prevent attack if the game is paused or a popup is active
@@ -91,6 +91,7 @@ public class AeneasAttack : MonoBehaviour
             Attack();
         }
     }
+
     private bool CanAttack()
     {
         return Time.time >= lastAttackTime + attackCooldown;
@@ -169,7 +170,7 @@ public class AeneasAttack : MonoBehaviour
         swishCollider.isTrigger = true;
 
         SwishDamageDealer damageDealer = swishInstance.AddComponent<SwishDamageDealer>();
-        damageDealer.Initialize(attackDamage, knockbackForce, attackDirection);
+        damageDealer.Initialize(aeneasAttributes.damage, knockbackForce, attackDirection); // Use damage from AeneasAttributes
     }
 
     private SwishVisual GetSwishVisual(Vector2 attackDirection)
