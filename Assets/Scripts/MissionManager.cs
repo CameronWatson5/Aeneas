@@ -33,13 +33,13 @@ public class MissionManager : MonoBehaviour
     {
         missions = new List<string>
         {
-            "Find and defeat 3 Greek heroes.",
-            "Go back home to sleep.",
-            "Find your son, wife, and father in Troy.",
-            "Escape from Troy.",
-            "Find Queen Dido in Carthage.",
-            "Find your father in Hades.",
-            "Defeat Turnus in Italy."
+            "Mission 1: Find and defeat 3 Greek heroes.",
+            "Mission 2: Go back home to sleep in your house in Troy. Your house is near the gate and has a fountain in front of it.",
+            "Mission 3: Find your son, wife, and father in Troy.",
+            "Mission 4: Find a way to escape from Troy.",
+            "Mission 5: Find Queen Dido in Carthage.",
+            "Mission 6: Find your late father in Hades.",
+            "Mission 7: Defeat Turnus in Italy."
         };
         Debug.Log($"MissionManager: Initialized {missions.Count} missions");
     }
