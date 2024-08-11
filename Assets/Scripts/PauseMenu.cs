@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     private string currentSceneName;
     private MapManager mapManager;
+
+    // List of scenes where pausing is not allowed
+    private readonly List<string> nonPausableScenes = new List<string> { "MainMenu", "GameOver" };
 
     private void Awake()
     {
@@ -24,13 +28,24 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        UpdateCurrentSceneName();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateCurrentSceneName();
+    }
+
+    void UpdateCurrentSceneName()
+    {
         currentSceneName = SceneManager.GetActiveScene().name;
         Debug.Log("Current Scene: " + currentSceneName);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !nonPausableScenes.Contains(currentSceneName))
         {
             Debug.Log("Escape key pressed. GameIsPaused: " + GameIsPaused);
             if (GameIsPaused)
@@ -70,11 +85,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        if (nonPausableScenes.Contains(currentSceneName))
+        {
+            Debug.Log("Cannot pause in " + currentSceneName);
+            return;
+        }
+
         Debug.Log("Pausing game to PauseMenu");
         GameIsPaused = true;
         Time.timeScale = 0f;
         PlayerPrefs.SetString("PreviousScene", currentSceneName);
-        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded) // Check if the scene is already loaded
+        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded)
         {
             StartCoroutine(LoadPauseMenuScene());
         }
@@ -109,5 +130,10 @@ public class PauseMenu : MonoBehaviour
         {
             Debug.LogError("MapManager not found in the scene.");
         }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
