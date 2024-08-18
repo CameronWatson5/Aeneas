@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class LogManager : MonoBehaviour
 {
@@ -38,16 +39,48 @@ public class LogManager : MonoBehaviour
 
     public void AddLogEntry(string entry)
     {
-        logEntries.Add(entry);
-        if (logContent != null && logEntryPrefab != null)
+        // Remove extra spaces
+        entry = Regex.Replace(entry, @"\s{2,}", " ");
+
+        // Split the log entry if it's too long
+        int maxLength = 40; 
+        List<string> splitEntries = SplitLogEntry(entry, maxLength);
+
+        foreach (string splitEntry in splitEntries)
         {
-            GameObject logEntryObject = Instantiate(logEntryPrefab, logContent);
-            TextMeshProUGUI textComponent = logEntryObject.GetComponent<TextMeshProUGUI>();
-            if (textComponent != null)
+            logEntries.Add(splitEntry);
+            if (logContent != null && logEntryPrefab != null)
             {
-                textComponent.text = entry;
+                GameObject logEntryObject = Instantiate(logEntryPrefab, logContent);
+                TextMeshProUGUI textComponent = logEntryObject.GetComponent<TextMeshProUGUI>();
+                if (textComponent != null)
+                {
+                    textComponent.text = splitEntry;
+                }
             }
         }
+    }
+
+    private List<string> SplitLogEntry(string entry, int maxLength)
+    {
+        List<string> splitEntries = new List<string>();
+
+        while (entry.Length > maxLength)
+        {
+            int lastSpaceIndex = entry.LastIndexOf(' ', maxLength);
+            if (lastSpaceIndex == -1) lastSpaceIndex = maxLength;
+
+            string splitEntry = entry.Substring(0, lastSpaceIndex).Trim();
+            splitEntries.Add(splitEntry);
+            entry = entry.Substring(lastSpaceIndex).Trim();
+        }
+
+        if (entry.Length > 0)
+        {
+            splitEntries.Add(entry);
+        }
+
+        return splitEntries;
     }
 
     private void InitializeLog()

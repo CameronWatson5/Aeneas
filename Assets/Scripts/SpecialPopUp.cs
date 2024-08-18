@@ -92,8 +92,8 @@ public class SpecialPopUp : MonoBehaviour
         buttonRectTransform.anchorMin = new Vector2(1, 1);
         buttonRectTransform.anchorMax = new Vector2(1, 1);
         buttonRectTransform.pivot = new Vector2(1, 1);
-        buttonRectTransform.anchoredPosition = new Vector2(-10, -10); // Offset from top right corner
-        buttonRectTransform.sizeDelta = new Vector2(30, 30);
+        buttonRectTransform.anchoredPosition = new Vector2(-2, -2); // Offset from top right corner
+        buttonRectTransform.sizeDelta = new Vector2(20, 20);
 
         Time.timeScale = 0; // Pause the game
 

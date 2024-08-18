@@ -14,7 +14,17 @@ public class FlashingIcon : MonoBehaviour
         if (image == null)
         {
             Debug.LogError("Image component not found on the FlashingIcon object.");
+            return;
         }
+
+        // Check if the current scene is Troy; disable the icon if it is not
+        string currentScene = PlayerPrefs.GetString("PreviousScene", "Troy");
+        if (currentScene != "Troy")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         nextToggleTime = Time.unscaledTime + flashDuration;
     }
 

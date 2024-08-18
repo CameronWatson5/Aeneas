@@ -595,7 +595,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 3000}
+  m_SizeDelta: {x: 0, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &286302450
 MonoBehaviour:
@@ -2557,39 +2557,61 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Credits: \r\nName: 16 bit Tileset TopDown Zelda Like Pro Version\r\nAuthor:
-    Ritpop\r\nLink: https://opengameart.org/content/16-bit-tileset-topdown-zelda-like-pro-version\r\nCopyright
-    type: \r\n\r\nName: Zelda-like tilesets and sprites\r\nAuthor: ArMM1998\r\nLink:
+  m_text: "Credits: \n\nGame made by Cameron Stewart Watson. All rights reserved.\r\n\nStory
+    Based on The Iliad by Homer, and The Aeneid by Virgil.\r\n\nOpen Source Graphics:\n\nName:
+    16 bit Tileset TopDown Zelda Like Pro Version\r\nAuthor: Ritpop\r\nLink: https://opengameart.org/content/16-bit-tileset-topdown-zelda-like-pro-version\r\nCopyright
+    type: CC BY 4.0\r\n\r\nName: Zelda-like tilesets and sprites\r\nAuthor: ArMM1998\r\nLink:
     https://opengameart.org/content/zelda-like-tilesets-and-sprites\r\nCopyright
-    type: \r\n\r\nName: Lots of free 2d tiles and sprites by Hyptosis\r\nAuthor:
+    type: CC0 1.0\r\n\r\nName: Lots of free 2d tiles and sprites by Hyptosis\r\nAuthor:
     Hyptosis\r\nLink: https://opengameart.org/content/lots-of-free-2d-tiles-and-sprites-by-hyptosis\r\nCopyright
-    type: \r\n\r\nName: Treasure chests 32x32\r\nAuthor: Bonsaiheldin http://bonsaiheld.org\r\nLink:
+    type: CC BY 3.0\r\n\r\nName: Treasure chests 32x32\r\nAuthor: Bonsaiheldin http://bonsaiheld.org\r\nLink:
+    https://opengameart.org/content/treasure-chests-32x32\r\nCopyright type: CC0
+    1.0\r\n\r\nName: Gold treasure icons 16x16\r\nAuthor: Bonsaiheldin http://bonsaiheld.org\r\nLink:
     https://opengameart.org/content/gold-treasure-icons-16x16\r\nCopyright type:
-    \r\n\r\nName: Gold treasure icons 16x16\r\nAuthor: Bonsaiheldin http://bonsaiheld.org\r\nLink:
-    https://opengameart.org/content/gold-treasure-icons-16x16\r\nCopyright type:
-    \r\n\r\nName: Shiny treasure icons 16x16\r\nAuthor: Bonsaiheldin http://bonsaiheld.org\r\nLink:
-    https://opengameart.org/content/shiny-treasure-icons-16x16\r\nCopyright type:
-    \r\n\r\nName: RPG Items\r\nAuthor: ScratchIO\r\nLink: RPG Items | OpenGameArt.org\r\nCopyright
-    type: \r\n\r\nName: Blowhard 2: Blow Harder\r\nAuthor: surt\r\nLink: https://opengameart.org/content/blowhard-2-blow-harder\r\nCopyright
-    type:\r\n\r\nName: Gauntness\r\nAuthor: surt\r\nLink: https://opengameart.org/content/gauntness\r\nCopyright
-    type:\r\n\r\nName: Classical Temple Tiles\r\nAuthor: surt\r\nLink: https://opengameart.org/content/classical-temple-tiles\r\nCopyright
-    type:\r\n\r\n\r\nName: Top down dungeon tileset\r\nAuthor: Buch\r\nLink: https://opengameart.org/content/top-down-dungeon-tileset\r\nCopyright
-    type:\r\n\r\nName: Zoria Tileset\r\nAuthor: DragonDePlatino\r\nLink: https://opengameart.org/content/zoria-tileset\r\nCopyright
-    type:\r\n\r\nName: Castle Tiles for RPG's\r\nAuthor: Hyptosis, Zabin, Daniel
-    Cook\r\nLink: https://opengameart.org/content/castle-tiles-for-rpgs\r\nCopyright
-    type:\r\n\r\nName: 16x16 Assorted RPG Icons\r\nAuthor: Shade\r\nLink: https://opengameart.org/content/16x16-assorted-rpg-icons\r\nCopyright
-    type:\r\n\r\nName: Slates [32x32px orthogonal tileset by Ivan Voirol]\r\nAuthor:
+    CC0 1.0\r\n\r\nName: RPG Items\r\nAuthor: ScratchIO\r\nLink: RPG Items | OpenGameArt.org\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Blowhard 2: Blow Harder\r\nAuthor: surt\r\nLink: https://opengameart.org/content/blowhard-2-blow-harder\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Gauntness\r\nAuthor: surt\r\nLink: https://opengameart.org/content/gauntness\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Classical Temple Tiles\r\nAuthor: surt\r\nLink: https://opengameart.org/content/classical-temple-tiles\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Top down dungeon tileset\r\nAuthor: Buch\r\nLink:
+    https://opengameart.org/content/top-down-dungeon-tileset\r\nCopyright type: CC
+    BY 3.0\r\n\r\nName: Zoria Tileset\r\nAuthor: DragonDePlatino\r\nLink: https://opengameart.org/content/zoria-tileset\r\nCopyright
+    type: CC BY 4.0\r\n\r\nName: Castle Tiles for RPG's\r\nAuthor: Hyptosis, Zabin,
+    Daniel Cook\r\nLink: https://opengameart.org/content/castle-tiles-for-rpgs\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: 16x16 Assorted RPG Icons\r\nAuthor: Shade\r\nLink:
+    https://opengameart.org/content/16x16-assorted-rpg-icons\r\nCopyright type: CC0
+    1.0\r\n\r\nName: Slates [32x32px orthogonal tileset by Ivan Voirol]\r\nAuthor:
     Ivan Voirol\r\nLink: https://opengameart.org/content/slates-32x32px-orthogonal-tileset-by-ivan-voirol\r\nCopyright
-    type:\r\n\r\nName: Compass\r\nAuthor: Aleh Lipka\r\nLink: https://opengameart.org/content/compass-0\r\nCopyright
-    type:\r\n\r\nName: arrow\r\nAuthor: mart\r\nLink: https://opengameart.org/content/arrow-1\r\nCopyright
-    type:\r\n\r\nName: Simple ornamented arrow\r\nAuthor: Nallebeorn\r\nLink: https://opengameart.org/content/simple-ornamented-arrow\r\nCopyright
-    type:\r\n\r\n\r\nMusic:\r\nAuthor: Gustav Holst \u2013\r\nBand: USAF Heritage
-    of America Band \r\nTrack: The Planets, Op. 32 - II. Venus, the Bringer of Peace
-    \r\nLink: https://musopen.org/music/43775-the-planets-op-32/\r\nCopyright: No
-    copyright\r\n\r\nSound Effects: 37 hits/punches\r\nAuthor: Independent.nu\r\nLink:
-    https://opengameart.org/content/37-hitspunches\r\nCopyright:\r\nSound Effects:
-    8-Bit Sound Effects Library\r\nAuthor: Little Robot Sound Factory\r\nLink: https://opengameart.org/content/8-bit-sound-effects-library\r\nCopyright:\r\n\r\nSound
-    Effects: 5 Hit Sounds + Dying\r\nAuthor: TinyWorlds\r\nLink: https://opengameart.org/content/5-hit-sounds-dying\r\nCopyright:\r\n\r\n"
+    type: CC BY 4.0\r\n\r\nName: Compass\r\nAuthor: Aleh Lipka\r\nLink: https://opengameart.org/content/compass-0\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Simple ornamented arrow\r\nAuthor: Nallebeorn\r\nLink:
+    https://opengameart.org/content/simple-ornamented-arrow\r\nCopyright type: CC
+    BY 3.0\r\n\r\nName: CC0 Footgear Icons\r\nAuthor: AntumDeluge\r\nLink: https://opengameart.org/content/cc0-footgear-icons\r\nCopyright
+    type: CC0 1.0\r\n\r\nUI:\r\n\nName: Fantasy UI Borders\r\nAuthor: Kenney\r\nLink:
+    https://opengameart.org/content/fantasy-ui-borders\r\nCopyright type: CC0 1.0\r\n\r\nName:
+    Joystick Pack - Virtual Joystick UI\r\nAuthor: Hannemann\r\nLink: https://opengameart.org/content/joystick-pack-virtual-joystick-ui\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Heart plus icon\r\nAuthor: Zeromancer \r\nLink: https://game-icons.net/1x1/zeromancer/heart-plus.html#download\r\nCopyright
+    type: CC0 1.0\r\n\r\nName: Crested helmet icon\r\nAuthor: Lorc\r\nLink: https://game-icons.net/1x1/lorc/crested-helmet.html\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Gladius icon\r\nAuthor: Skoll\r\nLink: https://game-icons.net/1x1/skoll/gladius.html#download\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Blade drag icon\r\nAuthor: Lorc\r\nLink: https://game-icons.net/1x1/lorc/blade-drag.html#download\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Cash icon\r\nAuthor: Lorc\r\nLink: https://game-icons.net/1x1/lorc/cash.html\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Wingfoot icon\r\nAuthor: Lorc\r\nLink: https://game-icons.net/1x1/lorc/wingfoot.html#download\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Run icon\r\nAuthor: Lorc\r\nLink: https://game-icons.net/1x1/lorc/run.html\r\nCopyright
+    type: CC BY 3.0\r\n\r\nName: Pause button icon\r\nAuthor: Guard13007\r\nLink:
+    https://game-icons.net/1x1/guard13007/pause-button.html\r\nCopyright type: CC
+    BY 3.0\r\n\r\nName: Click icon\r\nAuthor: Skoll \r\nLink: https://game-icons.net/1x1/skoll/click.html\r\nCopyright
+    type: CC BY 3.0\r\n\r\nMusic: \r\nTrack: Ancient Ruins\r\nAuthor: Ted Kerr 2017
+    Wolfgang_ \r\nLink: https://opengameart.org/content/ancient-ruins\r\nCopyright:
+    CC BY 3.0\r\n\r\nSound Effects: 37 hits/punches\r\nAuthor: Independent.nu\r\nLink:
+    https://opengameart.org/content/37-hitspunches\r\nCopyright: CC0 1.0\r\n\r\nSound
+    Effects: 8-Bit Sound Effects Library\r\nAuthor: Little Robot Sound Factory\r\nLink:
+    https://opengameart.org/content/8-bit-sound-effects-library\r\nCopyright: CC
+    BY 3.0\r\n\r\nSound Effects: 5 Hit Sounds + Dying\r\nAuthor: TinyWorlds\r\nLink:
+    https://opengameart.org/content/5-hit-sounds-dying\r\nCopyright: CC0 1.0\r\n\r\nSound
+    Effects: Rain (loopable)\r\nAuthor: Ylmir\r\nLink: https://opengameart.org/content/rain-loopable\r\nCopyright:
+    CC0 1.0\r\n\r\nSound Effects: Medium Text Blip\r\nAuthor: malakme\r\nLink: https://freesound.org/people/malakme/sounds/468927/\r\nCopyright:
+    CC0 1.0\r\n\r\nSound Effects: UI Sound effects pack \r\nAuthor: ViRiX\r\nLink:
+    https://opengameart.org/content/ui-sound-effects-pack\r\nCopyright: CC BY 3.0\r\n\r\nSound
+    Effects: UI and Item sounds Sample 1\r\nAuthor: ViRiX\r\nLink: https://opengameart.org/content/ui-and-item-sounds-sample-1\r\nCopyright:
+    CC BY 3.0\r\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3833,7 +3855,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 908886949}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.031006666
+  m_Size: 0.023255
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4320,7 +4342,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 276315893}
   m_HandleRect: {fileID: 276315892}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

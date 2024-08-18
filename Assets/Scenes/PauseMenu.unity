@@ -582,7 +582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls:
+  m_text: 'Keyboard Controls:
 
 
     Movement: WASD or Arrows
@@ -590,7 +590,17 @@ MonoBehaviour:
     Attack: Space bar
 
     Talk,
-    open, read, buy: E button'
+    open, read, buy: E button
+
+
+    Touch Controls:
+
+
+    Movement: Joystick with
+    run icon on the bottom left of the screen
+
+    Attack, Interact, and Menu Buttons:
+    Bottom right of the screen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -617,8 +627,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2063,8 +2073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.5645, y: -0.000099182}
-  m_SizeDelta: {x: 623.921, y: 213.46}
+  m_AnchoredPosition: {x: -2.145, y: 25.687}
+  m_SizeDelta: {x: 619.081, y: 264.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321927563
 MonoBehaviour:
@@ -2092,9 +2102,20 @@ MonoBehaviour:
     Aeneas'' house is near the gate of Troy, and it has a red
     and white roof with a signpost in front which says Aeneas''s house on it.
 
+
     Directly
-    west of Troy there is a shop. When you buy an item, you can equip in the pause
-    menu. '
+    south of Troy there is a shop. When you buy an item, you can equip in the pause
+    menu.
+
+
+    In the map, there are arrow icons as clues.
+
+
+    The compass points
+    towards the mission objective.
+
+
+    Hearts heal the player.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2561,8 +2582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 83.473, y: 23.36}
-  m_SizeDelta: {x: -166.95, y: -192.58}
+  m_AnchoredPosition: {x: 83.47299, y: -28.053684}
+  m_SizeDelta: {x: -166.95, y: -89.7526}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487155512
 MonoBehaviour:
@@ -3767,7 +3788,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2075063682}
   m_HandleRect: {fileID: 2075063681}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

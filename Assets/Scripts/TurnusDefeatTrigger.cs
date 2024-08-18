@@ -20,7 +20,7 @@ public class TurnusDefeatTrigger : MonoBehaviour
         if (MissionManager.Instance.IsCurrentMission(6))
         {
             MissionManager.Instance.CompleteCurrentMission();
-            SpecialPopUpManager.Instance.ShowPopup("You defeated Turnus!", "GameOver");
+            SpecialPopUpManager.Instance.ShowPopup("You defeated Turnus! With Turnus fallen, the war ended. Trojan and Latin would now unite, forging a new people. From this union would rise a city like no other - Rome. Aeneas had fulfilled his destiny, laying the foundation for an empire that would shape the world for centuries to come.", "GameOver");
         }
     }
 }

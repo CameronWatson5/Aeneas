@@ -30,7 +30,7 @@ public class MapManager : MonoBehaviour
         {
             playerIcon = Instantiate(playerIconPrefab, mapImage.transform);
         }
-        UpdatePlayerIconPosition(worldSize);
+        UpdatePlayerIconPosition(worldSize, mapSize);
     }
 
     public void SetupMapForScene(string sceneName)
@@ -46,32 +46,52 @@ public class MapManager : MonoBehaviour
             worldSize = new Vector2(299, 306);
         }
 
+        // Ensure the map takes up the full 300x300 space
         Vector2 mapSize = new Vector2(300, 300);
         SetupMap(mapSize, worldSize, mapSprite);
     }
 
     Sprite LoadMapSpriteForScene(string sceneName)
     {
-        // Load and return the appropriate map texture based on the scene name
-        if (sceneName == "Troy" || sceneName == "Indoor")
+        switch (sceneName)
         {
-            return Resources.Load<Sprite>("Art/Maps/TroyMap");
+            case "Troy":
+            case "Indoor":
+                return Resources.Load<Sprite>("Art/Maps/TroyMap");
+            case "Cave":
+                return Resources.Load<Sprite>("Art/Maps/CaveMap");
+            case "Carthage":
+                return Resources.Load<Sprite>("Art/Maps/CarthageMap");
+            case "Hades":
+                return Resources.Load<Sprite>("Art/Maps/HadesMap");
+            case "Italy":
+                return Resources.Load<Sprite>("Art/Maps/ItalyMap");
+            case "TroySack":
+                return Resources.Load<Sprite>("Art/Maps/TroySackMap");
+            default:
+                return null;
         }
-        return null;
     }
 
     Vector2 GetWorldSizeForScene(string sceneName)
     {
-        // Return the world size for the given scene name
-        if (sceneName == "Troy" || sceneName == "Indoor")
+        switch (sceneName)
         {
-            return new Vector2(299, 306);
+            case "Troy":
+            case "Indoor":
+                return new Vector2(299, 306);
+            case "Cave":
+            case "Carthage":
+            case "Hades":
+            case "Italy":
+            case "TroySack":
+                return new Vector2(100, 100);
+            default:
+                return Vector2.zero;
         }
-
-        return Vector2.zero;
     }
 
-    void UpdatePlayerIconPosition(Vector2 worldSize)
+    void UpdatePlayerIconPosition(Vector2 worldSize, Vector2 mapSize)
     {
         Vector3 playerPos = new Vector3(
             PlayerPrefs.GetFloat("PlayerPosX", 0),
@@ -84,12 +104,13 @@ public class MapManager : MonoBehaviour
         float normalizedX = (playerPos.x + worldSize.x / 2) / worldSize.x;
         float normalizedY = (playerPos.y + worldSize.y / 2) / worldSize.y;
 
-        // Adjust the position by subtracting from both x and y for the Troy scene
+        // Scale the position to match the full 300x300 map size
         Vector2 mapIconPos = new Vector2(
-            (normalizedX * mapRect.sizeDelta.x),
-            (normalizedY * mapRect.sizeDelta.y)
+            (normalizedX * mapSize.x),
+            (normalizedY * mapSize.y)
         );
 
+        // Adjust the position for the Troy scene if needed
         if (PlayerPrefs.GetString("PreviousScene", "Troy") == "Troy")
         {
             mapIconPos -= new Vector2(136, 19);
@@ -103,7 +124,8 @@ public class MapManager : MonoBehaviour
         if (playerIcon != null)
         {
             Vector2 worldSize = GetWorldSizeForScene(PlayerPrefs.GetString("PreviousScene", "Troy"));
-            UpdatePlayerIconPosition(worldSize);
+            Vector2 mapSize = new Vector2(300, 300); // All maps are displayed as 300x300
+            UpdatePlayerIconPosition(worldSize, mapSize);
         }
 
         HandleZoom();

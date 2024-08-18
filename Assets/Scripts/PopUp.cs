@@ -67,8 +67,8 @@ public class PopUp : MonoBehaviour
         buttonRectTransform.anchorMin = new Vector2(1, 1);
         buttonRectTransform.anchorMax = new Vector2(1, 1);
         buttonRectTransform.pivot = new Vector2(1, 1);
-        buttonRectTransform.anchoredPosition = new Vector2(-10, -10);
-        buttonRectTransform.sizeDelta = new Vector2(30, 30);
+        buttonRectTransform.anchoredPosition = new Vector2(-2, -2);
+        buttonRectTransform.sizeDelta = new Vector2(20, 20);
 
         // Pause the game while the pop-up is active
         Time.timeScale = 0;

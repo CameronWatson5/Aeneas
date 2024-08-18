@@ -205,7 +205,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1053644063}
   m_HandleRect: {fileID: 1053644062}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -28704,7 +28704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupDelay: 0.5
-  popupMessage: Test in test
+  popupMessage: Aeneas, wake up! Troy's final hour has come. The city falls tonight.
+    You must flee! Take your family. Troy's future rests with you now.
   nextSceneName: IndoorSack
   popupId: 100
 --- !u!61 &1895978398

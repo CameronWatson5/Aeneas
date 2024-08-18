@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  inventorySize: 20
+  inventorySize: 40
   startingItems:
   - itemName: Trojan Sword
     itemType: 0
