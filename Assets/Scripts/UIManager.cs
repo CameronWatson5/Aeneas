@@ -21,6 +21,10 @@ public class UIManager : MonoBehaviour
     public Button attackButton;
     public JoystickController joystick;
 
+    [Header("Stats and Mission UI")]
+    public GameObject statsPanel;
+    public GameObject missionPanel;
+
     private IInteractable currentInteractable;
 
     private void Awake()
@@ -38,6 +42,13 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        SetupButtons();
+        SetupJoystick();
+        PositionPanels();
+    }
+
+    private void SetupButtons()
+    {
         if (pauseButton != null)
         {
             pauseButton.onClick.AddListener(PauseGame);
@@ -53,7 +64,10 @@ public class UIManager : MonoBehaviour
         {
             attackButton.onClick.AddListener(OnAttackButtonPressed);
         }
+    }
 
+    private void SetupJoystick()
+    {
         if (joystick == null)
         {
             Debug.LogWarning("Joystick not assigned in UIManager");
@@ -61,6 +75,32 @@ public class UIManager : MonoBehaviour
         else
         {
             Debug.Log("Joystick assigned in UIManager");
+        }
+    }
+
+    private void PositionPanels()
+    {
+        PositionPanel(statsPanel, 0.1f, true);  // Position at top 10%
+        PositionPanel(missionPanel, 0.1f, false);  // Position at bottom 10%
+    }
+
+    private void PositionPanel(GameObject panel, float heightPercentage, bool isTop)
+    {
+        if (panel != null)
+        {
+            RectTransform rectTransform = panel.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                rectTransform.anchorMin = new Vector2(0, isTop ? 1 - heightPercentage : 0);
+                rectTransform.anchorMax = new Vector2(1, isTop ? 1 : heightPercentage);
+                rectTransform.anchoredPosition = Vector2.zero;
+                rectTransform.sizeDelta = Vector2.zero;
+            }
+            panel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning($"{(isTop ? "Stats" : "Mission")} panel is not assigned in UIManager");
         }
     }
 

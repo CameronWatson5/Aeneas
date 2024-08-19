@@ -38424,22 +38424,22 @@ MonoBehaviour:
     icon: {fileID: 1595307397, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     price: 100
     damageBonus: 0
-    armorBonus: 3
-    healthBonus: 0
+    armorBonus: 1
+    healthBonus: 10
     itemType: 1
   - itemName: Fortuna's Bulwark
     icon: {fileID: -1804769310, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     price: 200
     damageBonus: 0
-    armorBonus: 4
-    healthBonus: 0
+    armorBonus: 2
+    healthBonus: 20
     itemType: 1
   - itemName: Aegis of Minerva
     icon: {fileID: -578339240, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
     price: 300
     damageBonus: 0
-    armorBonus: 5
-    healthBonus: 0
+    armorBonus: 3
+    healthBonus: 30
     itemType: 1
   - itemName: Virtus' Helm
     icon: {fileID: 1498722044, guid: 4a886b6b26660ed4ba2a41f317b2f47f, type: 3}
@@ -38466,21 +38466,21 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e4285edcab299bd46881cb8ec6914511, type: 3}
     price: 20
     damageBonus: 0
-    armorBonus: 0
+    armorBonus: 1
     healthBonus: 5
     itemType: 3
   - itemName: Volturnus' Boots
     icon: {fileID: 21300000, guid: f2c2a9c785cd94a4997729bd095636bc, type: 3}
     price: 50
     damageBonus: 0
-    armorBonus: 0
+    armorBonus: 2
     healthBonus: 25
     itemType: 3
   - itemName: Hermes' Boots
     icon: {fileID: 21300000, guid: df929f118047aea4d8db328592d6e8e2, type: 3}
     price: 100
     damageBonus: 0
-    armorBonus: 0
+    armorBonus: 3
     healthBonus: 40
     itemType: 3
   shopCanvas: {fileID: 704047461}

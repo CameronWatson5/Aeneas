@@ -45,9 +45,9 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !nonPausableScenes.Contains(currentSceneName))
+        if (Input.GetKeyDown(KeyCode.Q) && !nonPausableScenes.Contains(currentSceneName))
         {
-            Debug.Log("Escape key pressed. GameIsPaused: " + GameIsPaused);
+            Debug.Log("Q key pressed. GameIsPaused: " + GameIsPaused);
             if (GameIsPaused)
             {
                 Resume();

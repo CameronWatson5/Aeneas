@@ -1159,7 +1159,7 @@ MonoBehaviour:
   - Story based on The Iliad by Homer and the Aeneid by Virgil.
   - 1200 BC. The ancient city of Troy still stands on the coast of modern-day Turkey.
   - Greek armies surround us, claiming Paris stole Helen.
-  - Hector has fallen. Achilles rages. Our fate hangs in balance.
+  - Hector has fallen. Achilles rages. Our fate hangs in the balance.
   - You are Aeneas, Trojan prince. Your choices will shape our future.
   - The gods watch. Destiny awaits.
   nextSceneName: Troy
@@ -2959,7 +2959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1253063580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3855,7 +3855,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 908886949}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.023255
+  m_Size: 0.023254998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4342,8 +4342,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 276315893}
   m_HandleRect: {fileID: 276315892}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

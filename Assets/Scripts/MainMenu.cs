@@ -319,7 +319,11 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("MainMenu: QuitGame called");
-        Application.Quit();
+#if UNITY_WEBGL
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+#else
+               Application.Quit();
+#endif
     }
 
     public void ResetMainMenu()

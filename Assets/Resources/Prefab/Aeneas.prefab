@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 0.3
-  attackDamage: 10
   knockbackForce: 5
   swishLeft:
     prefab: {fileID: 8431745463709426653, guid: 348675cd5ba68b042b8ef340455d6e37, type: 3}
