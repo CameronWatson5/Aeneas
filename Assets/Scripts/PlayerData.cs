@@ -1,3 +1,5 @@
+// This script was used to keep track of the player's position
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

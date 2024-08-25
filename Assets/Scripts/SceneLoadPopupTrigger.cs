@@ -1,3 +1,5 @@
+// This script is used for the opening pop up which has the controls for the player.
+
 using UnityEngine;
 
 public class SceneLoadPopupTrigger : MonoBehaviour

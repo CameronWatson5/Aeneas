@@ -1,3 +1,6 @@
+// This script is used for mission 7.
+// This is used to end mission 7 and the game when Turnus is defeated.
+
 using UnityEngine;
 
 public class TurnusDefeatTrigger : MonoBehaviour

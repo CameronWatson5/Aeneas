@@ -1,3 +1,4 @@
+// This script is used for managing the audio in the game.
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour

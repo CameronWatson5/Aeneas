@@ -1,3 +1,5 @@
+// This is the mission manager script which keeps track of the current mission
+
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;

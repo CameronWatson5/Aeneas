@@ -1,3 +1,5 @@
+// This script is attached to the shopkeeper in order to trigger the shop interface.
+
 using UnityEngine;
 using UnityEngine.UI;
 

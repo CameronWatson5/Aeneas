@@ -1,3 +1,5 @@
+// This script is used to manage the shop and store information about the items which are sold.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

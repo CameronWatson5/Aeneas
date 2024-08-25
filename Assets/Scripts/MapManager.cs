@@ -1,3 +1,5 @@
+// This script is used for the map in the game's pause menu.
+
 using UnityEngine;
 using UnityEngine.UI;
 

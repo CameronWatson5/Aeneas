@@ -1,3 +1,6 @@
+// This script is used to transition the player form the Cave scene to the Carthage scene.
+// This is done at the end of mission 4.
+
 using UnityEngine;
 
 public class CaveToCarthageTransition : MonoBehaviour

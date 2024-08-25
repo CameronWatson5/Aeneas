@@ -1,3 +1,5 @@
+// This script is used to transition the game from gameplay to the pause menu
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;

@@ -1,3 +1,5 @@
+// This script stores the data about the items sold in a shop.
+
 using UnityEngine;
 
 [System.Serializable]

@@ -1,3 +1,5 @@
+// This script is used to show the player's stats at the top of the screen.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,7 @@
+// This script is used for the map in the pause menu.
+// It shows where the player is positioned.
+
+
 using UnityEngine;
 using UnityEngine.UI;
 

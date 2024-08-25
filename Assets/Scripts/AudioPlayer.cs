@@ -1,3 +1,4 @@
+// This script is used for the background music of the game.
 using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour

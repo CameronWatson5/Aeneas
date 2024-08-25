@@ -1,3 +1,5 @@
+// This script was used to help me debug problems with the cutscenes.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

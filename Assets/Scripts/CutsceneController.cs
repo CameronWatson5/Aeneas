@@ -1,3 +1,5 @@
+// Unused script
+
 // using UnityEngine;
 //
 // public class CutsceneController : MonoBehaviour

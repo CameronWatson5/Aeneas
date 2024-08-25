@@ -1,3 +1,5 @@
+// This script was used for testing
+
 using UnityEngine;
 
 public class BoxColliderLogger : MonoBehaviour

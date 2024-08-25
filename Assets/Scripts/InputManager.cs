@@ -1,3 +1,5 @@
+// This script is used for controls
+
 using UnityEngine;
 using UnityEngine.UI;
 

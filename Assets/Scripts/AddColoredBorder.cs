@@ -1,3 +1,5 @@
+// Unused script
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,7 @@ public class AddColoredBorder : MonoBehaviour
         GameObject panel = new GameObject("Panel", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
         panel.transform.SetParent(transform);
         RectTransform panelRect = panel.GetComponent<RectTransform>();
-        panelRect.sizeDelta = new Vector2(300, 200); // Example size
+        panelRect.sizeDelta = new Vector2(300, 200); 
         Image panelImage = panel.GetComponent<Image>();
         panelImage.color = panelColor;
 

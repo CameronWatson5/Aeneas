@@ -1,3 +1,5 @@
+// This script is used for the opening cutscene after the main menu button is pressed.
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;

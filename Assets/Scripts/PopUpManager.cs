@@ -1,3 +1,5 @@
+// This script manages the popups, and ensures that popups are not shown multiple times.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;

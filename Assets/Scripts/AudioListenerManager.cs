@@ -1,3 +1,5 @@
+// This script is used to keep track of the Audio Listener Objects in the game.
+// This script also deletes duplicates  
 using UnityEngine;
 
 public class AudioListenerManager : MonoBehaviour

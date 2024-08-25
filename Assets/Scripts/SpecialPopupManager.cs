@@ -1,3 +1,5 @@
+// This script is used to keep track of the special pops
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;

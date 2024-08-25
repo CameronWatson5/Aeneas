@@ -1,3 +1,6 @@
+// This script is used for scene transitions, such as moving the player
+// from the Troy scene to the Indoor scene.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;

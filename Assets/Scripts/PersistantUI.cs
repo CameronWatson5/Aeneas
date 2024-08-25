@@ -1,3 +1,5 @@
+// This script ensure that teh UI persists between scenes.
+
 using UnityEngine;
 
 public class PersistentUI : MonoBehaviour

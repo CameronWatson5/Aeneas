@@ -1,3 +1,6 @@
+// This script is related to the weather, including the rain, rain sound effect, and nighttime effect
+// in the TroySack scene
+
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;

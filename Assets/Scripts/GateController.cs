@@ -1,3 +1,5 @@
+// This is used to open the farm gate in the Troy scene.
+
 using UnityEngine;
 
 public class GateController : MonoBehaviour, IInteractable

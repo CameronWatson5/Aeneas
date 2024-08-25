@@ -1,3 +1,5 @@
+// This script is used to turn on and off panels and buttons based on what is currently selected.
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;

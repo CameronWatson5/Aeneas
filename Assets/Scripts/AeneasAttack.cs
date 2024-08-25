@@ -1,3 +1,7 @@
+// This script is used for the player's attack. It allows the player to damage enemies.
+// A swish visual is displayed in front of the player, this visual damages enemies based 
+// on the attack stat of the player.
+
 using UnityEngine;
 
 public class AeneasAttack : MonoBehaviour

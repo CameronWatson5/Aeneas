@@ -1,3 +1,5 @@
+// This script is used in the Indoor scene.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

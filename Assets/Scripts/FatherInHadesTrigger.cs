@@ -1,3 +1,7 @@
+// This script is used for mission 6.
+// It is triggered when the player finds their father in Hades.
+// It then transitions the player to Italy for the final mission.
+
 using UnityEngine;
 
 public class FatherInHadesTrigger : MonoBehaviour

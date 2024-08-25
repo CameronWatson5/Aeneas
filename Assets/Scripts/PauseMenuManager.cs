@@ -1,3 +1,5 @@
+// This script manages the Pause Menu and sets it up.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

@@ -1,3 +1,8 @@
+// This script controls the enemies AI.
+// It controls movement speed, vision range, weight (through push force), and also makes
+// enemies avoid colliding with each other.
+// The enemy will run towards the player if the player is inside of their detection range.
+
 using UnityEngine;
 using System.Collections;
 

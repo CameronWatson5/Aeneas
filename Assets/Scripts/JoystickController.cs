@@ -1,3 +1,6 @@
+// This script is used for the joystick on the bottom left of the screen.
+// It can be used with touch controls or the mouse.
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 

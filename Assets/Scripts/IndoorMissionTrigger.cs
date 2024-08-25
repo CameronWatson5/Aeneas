@@ -1,3 +1,5 @@
+// This is used in mission 2 to trigger the transition to the sack of Troy scene.
+
 using UnityEngine;
 
 public class IndoorMissionTrigger : MonoBehaviour

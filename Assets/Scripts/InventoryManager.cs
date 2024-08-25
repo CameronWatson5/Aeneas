@@ -1,3 +1,5 @@
+// This is used to set up the player's inventory and the max size of the inventory.
+
 using System.Collections.Generic;
 using UnityEngine;
 

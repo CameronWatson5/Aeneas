@@ -1,3 +1,4 @@
+// This script is played in the main menu when the start game button is pressed.
 using UnityEngine;
 using UnityEngine.UI;
 

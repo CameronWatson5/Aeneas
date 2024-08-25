@@ -1,3 +1,7 @@
+// This script is used when the player meets Queen Dido in Carthage.
+// This is done at the end of mission 5.
+// It creates a popup with story information, then transports the player to the next scene, Hades.
+
 using UnityEngine;
 
 public class CarthageToHadesTransition : MonoBehaviour

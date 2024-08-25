@@ -1,3 +1,5 @@
+// This script keeps track of the player's statistics, such as health, damage, armor, gold, and speed.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

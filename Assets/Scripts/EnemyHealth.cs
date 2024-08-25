@@ -1,3 +1,8 @@
+// This script is used for the enemies' health.
+// This script allows for enemies to be defeated.
+// Furthermore, this script also controls the items which are dropped and the percentage chance
+// that these items will be dropped. It also controls the hurt and death sound effects.
+
 using UnityEngine;
 using System.Collections;
 

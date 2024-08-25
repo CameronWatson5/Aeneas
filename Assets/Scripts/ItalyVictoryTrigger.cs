@@ -1,3 +1,6 @@
+// This script is used for mission 7.
+// It is a victory trigger, which ends the game when King Turnus is defeated.
+
 using UnityEngine;
 
 public class ItalyVictoryTrigger : MonoBehaviour

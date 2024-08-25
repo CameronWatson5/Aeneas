@@ -1,3 +1,7 @@
+// The special popups are different from regular popups.
+// This is because they look different, as they use a black prefab, and also, they
+// transition the player to a new scene.
+
 using System;
 using System.Collections;
 using UnityEngine;

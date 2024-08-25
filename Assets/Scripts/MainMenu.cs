@@ -1,3 +1,5 @@
+// This script is used to start the game from the main menu.
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;

@@ -1,3 +1,6 @@
+// This script is for the items which are dropped by enemies.
+// For example, gold coins and health hearts are droppable items.
+
 using System.Collections;
 using UnityEngine;
 

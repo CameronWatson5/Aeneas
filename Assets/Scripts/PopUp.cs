@@ -1,3 +1,5 @@
+// This script is used to set up popups which can be closed.
+
 using System.Collections;
 using UnityEngine;
 using TMPro;

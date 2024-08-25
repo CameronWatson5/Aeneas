@@ -1,3 +1,5 @@
+// This script is used for the rain effect in the TroySack scene.
+
 using UnityEngine;
 
 public class RainController : MonoBehaviour

@@ -1,3 +1,5 @@
+// This script is used for the game over scene. Handles transitions between scenes.
+
 using UnityEngine;
 using UnityEngine.UI;
 

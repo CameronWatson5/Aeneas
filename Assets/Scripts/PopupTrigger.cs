@@ -1,3 +1,5 @@
+// This is used to trigger a popup.
+
 using UnityEngine;
 
 public class PopupTrigger : MonoBehaviour

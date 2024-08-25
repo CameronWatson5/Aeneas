@@ -1,3 +1,5 @@
+// This script is used to keep track of what items are equipped on the player and their bonuses.
+
 using UnityEngine;
 
 [System.Serializable]

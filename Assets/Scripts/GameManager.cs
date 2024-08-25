@@ -1,3 +1,5 @@
+// This script is used to control the player and scene transitions.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

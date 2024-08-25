@@ -1,3 +1,4 @@
+// This script is used to control the camera and make it follow the player.
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;

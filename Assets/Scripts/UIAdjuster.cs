@@ -1,3 +1,5 @@
+// This script makes sure that popup are shown correctly.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

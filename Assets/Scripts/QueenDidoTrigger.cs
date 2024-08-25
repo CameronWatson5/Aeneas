@@ -1,3 +1,6 @@
+// This script is used for mission 5.
+// It ends the mission when the player finds Queen Dido.
+
 using UnityEngine;
 
 public class QueenDidoTrigger : MonoBehaviour

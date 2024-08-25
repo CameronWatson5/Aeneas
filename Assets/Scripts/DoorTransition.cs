@@ -1,3 +1,6 @@
+// This script is used for the player to enter and exit buildings. This is done 
+// by transitioning the player to a new scene and spawning them into the correct location within that scene.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,5 @@
+// This script is used to change the animation speed for objects, such as the player and enemies.
+
 using UnityEngine;
 
 public class AnimatorSpeed : MonoBehaviour

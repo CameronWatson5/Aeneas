@@ -1,3 +1,5 @@
+// This script keeps track of enemies in the game
+
 using System.Collections.Generic;
 using UnityEngine;
 

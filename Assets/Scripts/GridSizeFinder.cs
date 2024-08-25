@@ -1,3 +1,5 @@
+// This script was used to find out the size of the map.
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

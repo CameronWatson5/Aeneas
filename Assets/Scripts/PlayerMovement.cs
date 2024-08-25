@@ -1,3 +1,5 @@
+// This script is used to move the player.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

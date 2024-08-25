@@ -1,3 +1,5 @@
+// Used for displaying items in the UI
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

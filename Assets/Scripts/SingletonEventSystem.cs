@@ -1,3 +1,5 @@
+// This script is used to keep track of the event system and destroy duplicates.
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 

@@ -1,3 +1,5 @@
+// This is used in the pause menu to show the equip able items.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 

@@ -1,3 +1,6 @@
+// This script is used for both NPC dialogue and signposts.
+// The player can interact with these objects and talk to them.
+
 using UnityEngine;
 using TMPro;
 using System.Collections;

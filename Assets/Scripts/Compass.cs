@@ -1,3 +1,5 @@
+// This script is used for the the navigation compass at the bottom left of the screen.
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;

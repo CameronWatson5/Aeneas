@@ -1,3 +1,5 @@
+// This script is used to record all of the popups and list them.
+
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;

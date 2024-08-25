@@ -1,3 +1,5 @@
+// This script is used to manage the gameplay UI.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

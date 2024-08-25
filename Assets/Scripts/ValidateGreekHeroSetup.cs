@@ -1,3 +1,5 @@
+// Testing script used to ensure that the Greek heroes are set up correctly.
+
 using UnityEngine;
 
 public class ValidateGreekHeroSetup : MonoBehaviour

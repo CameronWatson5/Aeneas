@@ -1,3 +1,5 @@
+// This script is used in mission 3 for when the player finds their family members.
+
 using UnityEngine;
 
 public class FamilyMemberTrigger : MonoBehaviour

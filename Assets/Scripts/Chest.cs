@@ -1,3 +1,6 @@
+// This script is used for the chests that are in the game. Player's
+// gain gold from these chests which they can spend on items at the shop.
+
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;

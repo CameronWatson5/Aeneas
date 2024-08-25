@@ -1,3 +1,6 @@
+// This script is used at the end of mission 6.
+// It transitiions the player from Hades to Italy, after the player finds their father in Hades.
+
 using UnityEngine;
 
 public class HadesToItalyTransition : MonoBehaviour

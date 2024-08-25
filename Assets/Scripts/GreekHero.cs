@@ -1,3 +1,6 @@
+// This script is used for Mission 1.
+// The 3 bosses, the 3 Greek Heroes, have this script attached.
+
 using UnityEngine;
 
 public class GreekHero : MonoBehaviour

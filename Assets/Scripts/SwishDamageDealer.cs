@@ -1,3 +1,5 @@
+// This script is used with the AeneasAttack script to damage enemies.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

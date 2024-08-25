@@ -1,3 +1,5 @@
+// Script is related to the inventory manager.
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

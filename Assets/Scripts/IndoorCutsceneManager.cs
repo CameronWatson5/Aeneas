@@ -1,3 +1,5 @@
+// Unused script
+
 // using UnityEngine;
 // using UnityEngine.UI;
 // using TMPro;
